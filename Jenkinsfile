@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker stop Clumsy_AnalysisOfAnalogousCase || true'
                 sh 'docker rm Clumsy_AnalysisOfAnalogousCase || true'
                 sh 'docker run --name Clumsy_AnalysisOfAnalogousCase -p 12345:8080 -d dordoka/tomcat' //端口11111需要修改
-                sh 'docker cp target/AnalysisOfAnalogousCase-1.0-SNAPSHOT.jar Clumsy_AnalysisOfAnalogousCase:/opt/tomcat/webapps/' //制品路径需要修改
+                sh 'docker cp target/AnalysisOfAnalogousCase.war Clumsy_AnalysisOfAnalogousCase:/opt/tomcat/webapps/' //制品路径需要修改
             }
         }
     }
