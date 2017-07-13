@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/
+ java
+Main-Class: First
+
