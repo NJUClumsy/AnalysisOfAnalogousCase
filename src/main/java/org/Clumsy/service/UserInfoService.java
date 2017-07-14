@@ -10,4 +10,6 @@ import java.util.List;
 public interface UserInfoService {
 
     List<UserInfoPO> login(UserInfoPO cond);
+
+    List<UserInfoPO> getAllUsers();
 }

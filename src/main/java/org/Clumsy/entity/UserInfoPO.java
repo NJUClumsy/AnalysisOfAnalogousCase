@@ -12,8 +12,18 @@ public class UserInfoPO {
     private String userName;
     private String password;
 
+    public UserInfoPO(int id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public UserInfoPO() {
+    }
+
     @Id
     @Column(name = "id", nullable = false)
+
     public int getId() {
         return id;
     }

@@ -25,4 +25,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserInfoPO> login(UserInfoPO cond) {
         return userInfoDAO.search(cond);
     }
+
+    @Override
+    public List<UserInfoPO> getAllUsers() {
+        return null;
+    }
 }

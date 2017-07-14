@@ -5,6 +5,7 @@ import org.Clumsy.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -29,5 +30,11 @@ public class UserInfoHandler {
             // 登录失败，重定向到login.jsp
             return "redirect:/login.jsp";
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/returnJson")
+    public List<UserInfoPO> returnJson() {
+        return userInfoService.login(new UserInfoPO(1, "tydety97", "123456"));
     }
 }

@@ -21,4 +21,5 @@ public class HomeController {
         //返回一个index.jsp这个视图
         return "index";
     }
+
 }
