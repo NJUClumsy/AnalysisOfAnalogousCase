@@ -21,6 +21,6 @@ public class OrderInfoControllerTest {
     @Test
     public void testReturnJson() throws Exception {
 
-        System.out.println(orderInfoController.returnJson().get(0).getId());
+        System.out.println(orderInfoController.returnJson().size());
     }
 }
