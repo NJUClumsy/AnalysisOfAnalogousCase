@@ -1,7 +1,7 @@
 package org.Clumsy.controller;
 
-import org.Clumsy.entity.UserInfoPO;
-import org.Clumsy.service.UserInfoService;
+import org.Clumsy.entity.Order;
+import org.Clumsy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,27 +14,15 @@ import java.util.List;
  * Created by slow_time on 2017/7/12.
  */
 @Controller
-@RequestMapping("/userinfo")
+@RequestMapping("/orderinfo")
 public class UserInfoHandler {
 
     @Autowired
-    private UserInfoService userInfoService;
-    @RequestMapping("/login")
-    public String login(UserInfoPO ui) {
-        List<UserInfoPO> uilist = userInfoService.login(ui);
-        if (uilist.size() > 0) {
-            // 登录成功
-            return "index";
-        }
-        else {
-            // 登录失败，重定向到login.jsp
-            return "redirect:/login.jsp";
-        }
-    }
+    private OrderService orderService;
 
     @ResponseBody
-    @RequestMapping("/returnJson")
-    public List<UserInfoPO> returnJson() {
-        return userInfoService.login(new UserInfoPO(1, "tydety97", "123456"));
+    @RequestMapping("/showOrderByJson")
+    public List<Order> returnJson() {
+        return orderService.getAllOrders();
     }
 }

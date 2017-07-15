@@ -2,7 +2,7 @@
 <head>
     <script type="text/javascript">
         function getUserInfoJson() {
-            var url = "userinfo/returnJson";
+            var url = "/userinfo/returnJson";
             var args = {};
             $.post(url, args, function(){});
         }

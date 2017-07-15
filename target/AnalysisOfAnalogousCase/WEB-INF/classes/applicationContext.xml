@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <!-- 配置数据源 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost/ClumsyTest" />
-        <property name="user" value="root" />
-        <property name="password" value="root" />
-        <property name="minPoolSize" value="5" />
-        <property name="maxPoolSize" value="10" />
+    <mongo:repositories base-package="org.Clumsy.dao"/>
+
+    <mongo:mongo/>
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg value="mytestdb"/>
     </bean>
 
-    <!--配置Hibernate的sessionFactory实例-->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <!--配置数据源属性-->
-        <property name="dataSource" ref="dataSource"/>
+    <!--&lt;!&ndash; 配置数据源 &ndash;&gt;-->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="driverClass" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost/ClumsyTest" />-->
+        <!--<property name="user" value="root" />-->
+        <!--<property name="password" value="root" />-->
+        <!--<property name="minPoolSize" value="5" />-->
+        <!--<property name="maxPoolSize" value="10" />-->
+    <!--</bean>-->
 
-        <!--配置Hibernate的基本属性-->
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">
-                    org.hibernate.dialect.MySQLDialect
-                </prop>
-            </props>
-        </property>
+    <!--&lt;!&ndash;配置Hibernate的sessionFactory实例&ndash;&gt;-->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
+        <!--&lt;!&ndash;配置数据源属性&ndash;&gt;-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
 
-        <!--配置Hibernate基于注解的实体类的位置及名称-->
-        <property name="annotatedClasses">
-            <list>
-                <value>org.Clumsy.entity.UserInfoPO</value>
-            </list>
-        </property>
-    </bean>
+        <!--&lt;!&ndash;配置Hibernate的基本属性&ndash;&gt;-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="hibernate.dialect">-->
+                    <!--org.hibernate.dialect.MySQLDialect-->
+                <!--</prop>-->
+            <!--</props>-->
+        <!--</property>-->
 
-    <!--声明Hibernate事务管理器-->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
+        <!--&lt;!&ndash;配置Hibernate基于注解的实体类的位置及名称&ndash;&gt;-->
+        <!--<property name="annotatedClasses">-->
+            <!--<list>-->
+                <!--<value>org.Clumsy.entity.UserInfoPO</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;声明Hibernate事务管理器&ndash;&gt;-->
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">-->
+        <!--<property name="sessionFactory" ref="sessionFactory" />-->
+    <!--</bean>-->
 
     <!--开启注解处理器-->
     <context:annotation-config />
 
     <!--开启Spring的Bean自动扫描机制来检查与管理Bean实例-->
-    <context:component-scan base-package="java">
+    <context:component-scan base-package="org.Clumsy">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
     </context:component-scan>
 
-    <!--配置基于@Transactional注解方式的事务管理器-->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--&lt;!&ndash;配置基于@Transactional注解方式的事务管理器&ndash;&gt;-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager" />-->
 
 
 
