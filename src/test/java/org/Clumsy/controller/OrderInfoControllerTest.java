@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class OrderInfoControllerTest {
 
     @Autowired
-    OrderInfoController orderInfoController;
+    private OrderInfoController orderInfoController;
 
 
     @Test
