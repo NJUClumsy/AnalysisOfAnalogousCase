@@ -55,4 +55,14 @@ public class Order {
     public void setItems(Collection<Item> items) {
         this.items = items;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", customer='" + customer + '\'' +
+                ", type='" + type + '\'' +
+                ", items=" + items +
+                '}';
+    }
 }
