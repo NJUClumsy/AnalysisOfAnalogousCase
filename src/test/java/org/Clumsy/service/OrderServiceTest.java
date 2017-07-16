@@ -1,4 +1,4 @@
-package org.Clumsy.controller;
+package org.Clumsy.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,15 +12,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/test/resources/test-config.xml")
-public class OrderInfoControllerTest {
+public class OrderServiceTest {
 
     @Autowired
-    private OrderInfoController orderInfoController;
+    private OrderService orderService;
 
 
     @Test
     public void testReturnJson() throws Exception {
-
-        System.out.println(orderInfoController.returnJson().get(0));
+        System.out.println(orderService.getOrdersByType("WEB").get(0));
     }
 }

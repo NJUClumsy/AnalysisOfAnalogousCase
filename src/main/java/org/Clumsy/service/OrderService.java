@@ -11,5 +11,7 @@ public interface OrderService {
 
     List<Order> getOrdersByCustomer(String name);
 
+    List<String> getOrdersByType(String type);
+
     List<Order> getAllOrders();
 }

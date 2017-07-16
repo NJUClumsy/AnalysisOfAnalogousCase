@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by slow_time on 2017/7/15.
@@ -23,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrdersByCustomer(String name) {
         return orderRepository.findByCustomer(name);
+    }
+
+    @Override
+    public List<String> getOrdersByType(String type) {
+        return orderRepository.findOrdersByType(type).stream().map(Order::getType).distinct().collect(Collectors.toList());
     }
 
     @Override

@@ -17,7 +17,20 @@
 
     <mongo:repositories base-package="org.Clumsy.dao"/>
 
-    <mongo:mongo host="121.196.244.53"/>
+    <mongo:mongo host="121.196.244.53">
+        <mongo:options connections-per-host="8"
+                       threads-allowed-to-block-for-connection-multiplier="4"
+                       connect-timeout="10000"
+                       max-wait-time="15000"
+                       auto-connect-retry="true"
+                       socket-keep-alive="true"
+                       socket-timeout="1500"
+                       slave-ok="true"
+                       write-number="1"
+                       write-timeout="0"
+                       write-fsync="true"/>
+    </mongo:mongo>
+
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongo"/>

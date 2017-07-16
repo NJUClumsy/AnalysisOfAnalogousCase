@@ -22,6 +22,7 @@ public class OrderRepositoryImpl implements OrderOperations {
         String type = t.equals("NET") ? "WEB" : t;
         Criteria where = Criteria.where("type").is(t);
         Query query = Query.query(where);
+        query.fields().include("type");
         return mongo.find(query, Order.class);
     }
 }
