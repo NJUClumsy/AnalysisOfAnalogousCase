@@ -25,6 +25,6 @@ public class CaseServiceTest {
 
     @Test
     public void testCaseInfoByCaseNumber() throws Exception {
-        System.out.println(caseService.getCaseInfoByCaseNumber("（2008）丽民初字第3531号"));
+        System.out.println(caseService.getCaseInfoByCaseNumber("（2007）红民一初字第645号"));
     }
 }
