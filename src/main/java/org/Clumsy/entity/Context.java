@@ -90,6 +90,20 @@ public class Context {
     }
 
     @Override
+    public String toString() {
+        return "Context{" +
+                "head='" + head + '\'' +
+                ", participants='" + participants + '\'' +
+                ", records='" + records + '\'' +
+                ", situation='" + situation + '\'' +
+                ", analysis='" + analysis + '\'' +
+                ", result='" + result + '\'' +
+                ", tail='" + tail + '\'' +
+                ", appendix='" + appendix + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
