@@ -19,7 +19,7 @@ public class OrderServiceTest {
 
 
     @Test
-    public void testReturnJson() throws Exception {
+    public void testGetOrdersByType() throws Exception {
         System.out.println(orderService.getOrdersByType("WEB").get(0));
     }
 }

@@ -18,13 +18,26 @@ public class CaseServiceTest {
     private CaseService caseService;
 
 
-//    @Test
-//    public void testGetAllCases() throws Exception {
-//        System.out.println(caseService.getAllCases().size());
-//    }
+    @Test
+    public void testGetAllCases() throws Exception {
+        System.out.println(caseService.getAllCases().size());
+    }
 
     @Test
     public void testCaseInfoByCaseNumber() throws Exception {
         System.out.println(caseService.getCaseInfoByCaseNumber("（2007）红民一初字第645号"));
     }
+
+
+    @Test
+    public void testGetCasesByCause() throws Exception {
+        System.out.println(caseService.getCasesByCause("分家析产纠纷").size());
+    }
+
+
+    @Test
+    public void testGetAllCauses() throws Exception {
+        System.out.println(caseService.getAllCauses().keySet());
+    }
+
 }

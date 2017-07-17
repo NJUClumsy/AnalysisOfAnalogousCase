@@ -45,7 +45,7 @@ public class Case {
     @Field("法条")
     private Collection<Law> law;
     @Field("具体裁判段")
-    private Collection<String> judgment1;
+    private Collection<String> judgement1;
     @Field("刑事判决结果分组")
     private Judgement judgement2;
     @Field("审判员")
@@ -176,11 +176,11 @@ public class Case {
     }
 
     public Collection<String> getJudgment1() {
-        return judgment1;
+        return judgement1;
     }
 
     public void setJudgment1(Collection<String> judgment1) {
-        this.judgment1 = judgment1;
+        this.judgement1 = judgment1;
     }
 
     public Judgement getJudgement2() {
@@ -233,7 +233,7 @@ public class Case {
                 ", defendant_state='" + defendant_state + '\'' +
                 ", fact='" + fact + '\'' +
                 ", law=" + law +
-                ", judgment1=" + judgment1 +
+                ", judgment1=" + judgement1 +
                 ", judgement2=" + judgement2 +
                 ", judge=" + judge +
                 ", court_clerk='" + court_clerk + '\'' +
@@ -265,7 +265,7 @@ public class Case {
             return false;
         if (fact != null ? !fact.equals(aCase.fact) : aCase.fact != null) return false;
         if (law != null ? !law.equals(aCase.law) : aCase.law != null) return false;
-        if (judgment1 != null ? !judgment1.equals(aCase.judgment1) : aCase.judgment1 != null) return false;
+        if (judgement1 != null ? !judgement1.equals(aCase.judgement1) : aCase.judgement1 != null) return false;
         if (judgement2 != null ? !judgement2.equals(aCase.judgement2) : aCase.judgement2 != null) return false;
         if (judge != null ? !judge.equals(aCase.judge) : aCase.judge != null) return false;
         if (court_clerk != null ? !court_clerk.equals(aCase.court_clerk) : aCase.court_clerk != null) return false;
@@ -289,7 +289,7 @@ public class Case {
         result = 31 * result + (defendant_state != null ? defendant_state.hashCode() : 0);
         result = 31 * result + (fact != null ? fact.hashCode() : 0);
         result = 31 * result + (law != null ? law.hashCode() : 0);
-        result = 31 * result + (judgment1 != null ? judgment1.hashCode() : 0);
+        result = 31 * result + (judgement1 != null ? judgement1.hashCode() : 0);
         result = 31 * result + (judgement2 != null ? judgement2.hashCode() : 0);
         result = 31 * result + (judge != null ? judge.hashCode() : 0);
         result = 31 * result + (court_clerk != null ? court_clerk.hashCode() : 0);
