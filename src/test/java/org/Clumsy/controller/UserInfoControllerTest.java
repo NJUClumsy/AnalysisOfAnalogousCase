@@ -25,6 +25,6 @@ public class UserInfoControllerTest {
         User user = new User();
         user.setUsername("tydety97");
         user.setPassword("123456");
-        System.out.println(userInfoController.login(user));
+        System.out.println(userInfoController.login("tydety97", "123456"));
     }
 }
