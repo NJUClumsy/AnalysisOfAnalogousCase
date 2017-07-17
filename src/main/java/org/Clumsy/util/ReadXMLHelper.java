@@ -33,7 +33,7 @@ public class ReadXMLHelper {
     private static ArrayList<String> lawName = new ArrayList<String>();
 
     public static void main(String[] args){
-        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";
+        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";//路径
         initializeAllKeyMap(url);
         Case a = ReadXMLHelper.getCase();
         System.out.println(a.getContext());
