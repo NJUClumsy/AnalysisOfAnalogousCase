@@ -16,6 +16,10 @@ import java.util.Collection;
  */
 public class VOEntityConvertHelper {
 
+    private VOEntityConvertHelper(){
+
+    }
+
     /**
      * 将Case转换为CaseCO
      * @param thisCase
@@ -38,11 +42,13 @@ public class VOEntityConvertHelper {
 
         Collection<LawVO> law = null;
         Collection<Law> laws = thisCase.getLaw();
-        if(laws.size()>=1 && laws!=null){
-            law = new ArrayList<LawVO>();
-            for(Law instant: laws){
-                LawVO lawVO = new LawVO( instant.getLawName(), instant.getCite());
-                law.add(lawVO);
+        if(laws.size()>=1){
+            law = new ArrayList<>();
+            if(!laws.isEmpty()){
+                for(Law instant: laws){
+                    LawVO lawVO = new LawVO( instant.getLawName(), instant.getCite());
+                    law.add(lawVO);
+                }
             }
         }
 
@@ -52,9 +58,8 @@ public class VOEntityConvertHelper {
         String court_clerk = thisCase.getCourt_clerk();
         LocalDate date = thisCase.getDate();
 
-        CaseVO caseVO = new CaseVO( id, context, court, type, process, accuser, defendant, organ, cause, law,
+        return  new CaseVO( id, context, court, type, process, accuser, defendant, organ, cause, law,
                 judgement1, judgement2, judge, court_clerk, date);
-        return caseVO;
     }
 
 }

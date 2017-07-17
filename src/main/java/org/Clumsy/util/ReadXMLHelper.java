@@ -26,11 +26,15 @@ public class ReadXMLHelper {
             "AH","SPCX","SSCYRMC","GSJG","AY","KTSLXX","YGSCD","ZKDL","BGBCD","BCDL","CMSSD","BSSLD","FLFTMC","TM",
             "JTCPD","SPRYXM","CPSJ","XSPJJGFZ","PJZZM","DZPF","ZXPF","SSSF","FL","SPRYJS"};
 
-    private static ArrayList<String> newList = new ArrayList<String>();
+    private static ArrayList<String> newList = new ArrayList<>();
 
-    private static Map<String,String> allKeyMap = new HashMap<String,String>();
+    private static Map<String,String> allKeyMap = new HashMap<>();
 
-    private static ArrayList<String> lawName = new ArrayList<String>();
+    private static ArrayList<String> lawName = new ArrayList<>();
+
+    private ReadXMLHelper(){
+
+    }
 
     /**
      * 根据doucument获取Case
@@ -39,10 +43,14 @@ public class ReadXMLHelper {
      */
     public static Case getCase( Document document){
         initialize();
-        Element root=document.getRootElement();
-        getNodes(root);
-        System.out.println(allKeyMap);
-        return ReadXMLHelper.getEditedCase();
+        try{
+            Element root=document.getRootElement();
+            getNodes(root);
+            return ReadXMLHelper.getEditedCase();
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -68,9 +76,12 @@ public class ReadXMLHelper {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root=document.getRootElement();
-        getNodes(root);
-        System.out.println(allKeyMap);
+        try{
+            Element root=document.getRootElement();
+            getNodes(root);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -78,37 +89,34 @@ public class ReadXMLHelper {
      * @param node
      */
     public static void getNodes(Element node){
-//        System.out.println("--------------------");
-        ArrayList<String> instant = new ArrayList<String>();
+        ArrayList<String> instant = new ArrayList<>();
         if(newList.contains(node.getName())){
-//            System.out.println("当前节点名称："+node.getName());
             List<Attribute> listAttr=node.attributes();
             for(Attribute attr:listAttr){
                 String value=attr.getValue();
-//                System.out.println("属性值："+value);
                 instant.add(value);
             }
             if(instant.size()<2){
                 instant.add("空");
             }
 
-            if(instant.get(1).equals("审判人员姓名")){
+            if("审判人员姓名".equals(instant.get(1))){
                 spryxm=instant.get(0);
-            }else if(instant.get(1).equals("审判人员角色")){
+            }else if("审判人员角色".equals(instant.get(1))){
                 allKeyMap.put(instant.get(0),spryxm);
             }
 
-            if(instant.get(1).equals("法律法条名称")){
+            if("法律法条名称".equals(instant.get(1))){
                 flftmc=instant.get(0);
                 allKeyMap.put(instant.get(1),instant.get(0));
                 lawName.add(instant.get(0));
-            }else if(instant.get(1).equals("条目")){
+            }else if("条目".equals(instant.get(1))){
                 allKeyMap.put(flftmc,instant.get(0));
             }
 
-            if(instant.get(1).equals("诉讼参与人名称")){
+            if("诉讼参与人名称".equals(instant.get(1))){
                 name=instant.get(0);
-            }else if(instant.get(1).equals("诉讼身份")){
+            }else if("诉讼身份".equals(instant.get(1))){
                 allKeyMap.put(instant.get(0),name);
             }else{
                 allKeyMap.put(instant.get(1),instant.get(0));
@@ -140,7 +148,7 @@ public class ReadXMLHelper {
         String execPenalty=null;
 
         ArrayList<Law> lawList = null;
-        Map<String,ArrayList<String>> law = new HashMap<String,ArrayList<String>>();
+        Map<String,ArrayList<String>> law = new HashMap<>();
 
         LocalDate date = null;
         String dateToChange=null;
@@ -149,8 +157,8 @@ public class ReadXMLHelper {
 
 
         for (Map.Entry<String,String> entry : allKeyMap.entrySet()) {
-            if(entry.getKey().equals("法律法条名称")){
-                law.put(entry.getValue(),new ArrayList<String>());
+            if("法律法条名称".equals(entry.getKey())){
+                law.put(entry.getValue(),new ArrayList<>());
             }
         }
 
@@ -230,32 +238,34 @@ public class ReadXMLHelper {
                     break;
                 case "裁判时间":
                     dateToChange = entry.getValue();
+                default:
+                    break;
             }
-            if(entry.getKey().equals("原告")||entry.getKey().equals("原告人")){
+            if("原告".equals(entry.getKey())||"原告人".equals(entry.getKey())){
                 if(accuser==null){
-                    accuser = new ArrayList<String>();
+                    accuser = new ArrayList<>();
                 }
                 accuser.add(defineName(entry.getValue()));
-            }else if(entry.getKey().equals("被告")||entry.getKey().equals("被告人")){
+            }else if("被告".equals(entry.getKey())||"被告人".equals(entry.getKey())){
                 if(defendant==null){
-                    defendant = new ArrayList<String>();
+                    defendant = new ArrayList<>();
                 }
                 defendant.add(defineName(entry.getValue()));
-            }else if(entry.getKey().equals("审判员")||entry.getKey().equals("代理审判员")||entry.getKey().equals("审判长")){
+            }else if("审判员".equals(entry.getKey())||"代理审判员".equals(entry.getKey())||"审判长".equals(entry.getKey())){
                 if(judge==null){
-                    judge = new ArrayList<String>();
+                    judge = new ArrayList<>();
                 }
                 judge.add(defineName(entry.getValue()));
-            }else if(entry.getKey().equals("具体裁判段")){
+            }else if("具体裁判段".equals(entry.getKey())){
                 if(judgment1==null){
-                    judgment1 = new ArrayList<String>();
+                    judgment1 = new ArrayList<>();
                 }
                 judgment1.add(defineName(entry.getValue()));
             }else if(lawName.contains(entry.getKey())){
                 law.get(entry.getKey()).add(entry.getValue());
-            }else if(entry.getKey().equals("公诉机关")){
+            }else if("公诉机关".equals(entry.getKey())){
                 if(organ==null){
-                    organ = new ArrayList<String>();
+                    organ = new ArrayList<>();
                 }
                 organ.add(defineName(entry.getValue()));
             }
@@ -274,7 +284,7 @@ public class ReadXMLHelper {
 
         if(law.size()>0){
             if(lawList==null){
-                lawList = new ArrayList<Law>();
+                lawList = new ArrayList<>();
             }
             for(Map.Entry<String,ArrayList<String>> entry : law.entrySet()){
                 Law instant = new Law();
@@ -335,10 +345,11 @@ public class ReadXMLHelper {
      * @return String
      */
     public static String getModified(String original){
-        original = original.replaceFirst("null", "1");
-        original = original.replace('O', '0');
-        original = original.replace('Ｏ', '0');
-        return original;
+        String result = original;
+        result = result.replaceFirst("null", "1");
+        result = result.replace('O', '0');
+        result = result.replace('Ｏ', '0');
+        return result;
     }
 
     /**
@@ -347,12 +358,11 @@ public class ReadXMLHelper {
      * @return String
      */
     public static String defineName(String fakeName){
-        String result=null;
         if(fakeName.startsWith("：")&&fakeName.length()>1){
-            result = fakeName.substring(1);
+            String result = fakeName.substring(1);
             return result;
         }else if(fakeName.startsWith(":")&&fakeName.length()>1){
-            result = fakeName.substring(0,fakeName.length()-1);
+            String result = fakeName.substring(0,fakeName.length()-1);
             return result;
         }else{
             return fakeName;
@@ -369,9 +379,9 @@ public class ReadXMLHelper {
     public static JSONObject deepMerge(JSONObject source, JSONObject target) throws JSONException {
         for (Object key: source.keySet()) {
             Object value = source.get(key);
-            if (!target.containsKey(key)) {// new value for "key":
+            if (!target.containsKey(key)) {
                 target.put(key, value);
-            } else {// existing value for "key" - recursively deep merge:
+            } else {
                 if (value instanceof JSONObject) {
                     JSONObject valueJson = (JSONObject)value;
                     deepMerge(valueJson, target.getJSONObject(key.toString()));
@@ -383,31 +393,6 @@ public class ReadXMLHelper {
         return target;
     }
 
-//    public static void main(String[] args){
-//        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";//路径
-//        initializeAllKeyMap(url);
-//        Case a = ReadXMLHelper.getCase();
-//        System.out.println(a.getContext());
-//        System.out.println(a.getAccuser());
-//        System.out.println(a.getAccuser_state());
-//        System.out.println(a.getCaseNumber());
-//        System.out.println(a.getCause());
-//        System.out.println(a.getCourt());
-//        System.out.println(a.getCourt_clerk());
-//        System.out.println(a.getDate());
-//        System.out.println(a.getDefendant());
-//        System.out.println(a.getDefendant_state());
-//        System.out.println(a.getFact());
-//        System.out.println(a.getInfo_try());
-//        System.out.println(a.getJudge());//
-//        System.out.println(a.getJudgement2());
-//        System.out.println(a.getJudgment1());//
-//        System.out.println(a.getLaw());
-//        System.out.println(a.getOrgan());
-//        System.out.println(a.getProcess());
-//        System.out.println(a.getType());
-//        System.out.println(">>>>");
-//    }
 }
 
 

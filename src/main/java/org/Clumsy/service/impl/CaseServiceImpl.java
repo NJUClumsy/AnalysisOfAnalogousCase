@@ -88,7 +88,7 @@ public class CaseServiceImpl implements CaseService {
         CaseVO caseVO = VOEntityConvertHelper.convert(thisCase);
 
         if(!isCreated(caseFile)){
-            //存储的接口？？？
+            caseRepository.save(thisCase);
         }
         return caseVO;
     }
