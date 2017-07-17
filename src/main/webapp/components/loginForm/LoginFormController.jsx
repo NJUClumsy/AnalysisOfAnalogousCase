@@ -2,8 +2,13 @@ var React = require('react');
 var LoginForm = require('./LoginForm');
 var ListStore = require('../../stores/ListStore');
 var ButtonActions = require('../../actions/ButtonActions');
+import { browserHistory } from 'react-router';
 
 var LoginFormController = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object
+    },
+
     getInitialState: function () {
         return {
             isLogin: ListStore.getIsLogin()
@@ -28,10 +33,16 @@ var LoginFormController = React.createClass({
         });
     },
 
+    jumpToUpload: function () {
+        browserHistory.push('/#/upload');
+        window.location.reload();
+    },
+
     render: function() {
         return <LoginForm
             isLogin={this.state.isLogin}
-            onClick={this.changeForm}
+            onClickTag={this.changeForm}
+            onClickButton={this.jumpToUpload}
         />;
     }
 

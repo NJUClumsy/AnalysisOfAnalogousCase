@@ -1,17 +1,7 @@
-// import DatePicker from 'antd/lib/date-picker';
-// import 'antd/dist/antd.css';
-// import Button from 'antd/lib/button';
-
-// var Button = require('antd/lib/date-picker');
 var React = require('react');
-// import 'antd/lib/date-picker/style';
-
-// var antd = require('antd');
-// import { DatePicker } from 'antd';
-// import 'antd/dist/antd.css';
 
 var LoginForm = function(props) {
-    // import { Input } from 'antd';
+    // import { DatePicker } from 'antd';
     var isLogin = props.isLogin;
     var description = isLogin? '登录您的账户' : '注册您的账户';
     var passHtml = isLogin? null : <div className="form-row">
@@ -40,9 +30,9 @@ var LoginForm = function(props) {
         <div className="form-action">
             <div className="change-label">
                 <span className="form-change-des from-text">{changeDes}</span>
-                <span className="form-change-tag" onClick={props.onClick}>{changeTag}</span>
+                <span className="form-change-tag" onClick={props.onClickTag}>{changeTag}</span>
             </div>
-            <button onClick={props.onClick}>{buttonText}</button>
+            <button onClick={props.onClickButton}>{buttonText}</button>
         </div>
         {/*<DatePicker/>*/}
     </div>;

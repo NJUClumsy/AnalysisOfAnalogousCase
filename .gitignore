@@ -1,7 +1,7 @@
 *.class
 *.iml
 .DS_Store
-
+/target/AnalysisOfAnalogousCase/node_modules/
 /.idea
 
 /.idea/workspace.xml
