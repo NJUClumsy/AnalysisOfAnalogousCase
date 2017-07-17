@@ -4,8 +4,6 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.*;
 import org.apache.log4j.Logger;
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
 import org.Clumsy.entity.Case;
 import org.Clumsy.entity.Context;
 import org.Clumsy.entity.Judgement;
@@ -75,12 +73,10 @@ public class ReadXMLHelper {
         Document document= null;
         try {
             document = sax.read(xmlFile);
-        } catch (DocumentException e) {
-            logger.info("context"+e);
-        }
-        try{
             Element root=document.getRootElement();
             getNodes(root);
+        } catch (DocumentException e) {
+            logger.info("context"+e);
         }catch(NullPointerException e){
             logger.info("context"+e);
         }
@@ -367,36 +363,6 @@ public class ReadXMLHelper {
             return fakeName;
         }
     }
-
-    /**
-     * 将两个JsonObject合并
-     * @param source
-     * @param target
-     * @return JsonObject
-     * @throws JSONException
-     */
-    public static JSONObject deepMerge(JSONObject source, JSONObject target){
-        try{
-            for (Object key: source.keySet()) {
-                Object value = source.get(key);
-                if (!target.containsKey(key)) {
-                    target.put(key, value);
-                } else {
-                    if (value instanceof JSONObject) {
-                        JSONObject valueJson = (JSONObject)value;
-                        deepMerge(valueJson, target.getJSONObject(key.toString()));
-                    } else {
-                        target.put(key, value);
-                    }
-                }
-            }
-            return target;
-        }catch(JSONException e){
-            logger.info("context"+e);
-        }
-        return null;
-    }
-
 }
 
 
