@@ -3,7 +3,11 @@ package org.Clumsy.service.impl;
 import org.Clumsy.dao.CaseRepository;
 import org.Clumsy.entity.Case;
 import org.Clumsy.service.CaseService;
+import org.Clumsy.util.BytesToFile;
+import org.Clumsy.util.ReadXMLHelper;
+import org.Clumsy.util.VOEntityConvertHelper;
 import org.Clumsy.vo.CaseVO;
+import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,8 +32,15 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
-    public Case getCaseInfoByCaseNumber(String caseNumber) {
-        return caseRepository.findFirstByCaseNumber(caseNumber);
+    public CaseVO getCaseInfoByCaseNumber(String caseNumber) {
+        Case c = caseRepository.findFirstByCaseNumber(caseNumber);
+        return transfer(c);
+    }
+
+    @Override
+    public CaseVO getCaseInfoById(String id) {
+        Case c = caseRepository.findById(id);
+        return transfer(c);
     }
 
     @Override
@@ -52,18 +63,83 @@ public class CaseServiceImpl implements CaseService {
         return causes;
     }
 
+    /**
+     * 判断文书是否被处理过
+     * @param caseFile
+     * @return boolean
+     */
     @Override
     public Boolean isCreated(MultipartFile caseFile) {
-        return null;
+        boolean isCreated = false;
+
+        Case thisCase = initialize(caseFile);
+        String caseNumber = thisCase.getCaseNumber();
+
+        List<Case> caseList = getAllCases();
+        for(Case ins: caseList){
+            if(ins.getCaseNumber().equals(caseNumber)){
+                isCreated = true;
+            }
+        }
+        return isCreated;
     }
 
+    /**
+     * 文书未曾处理过，需要处理过后存储，再将处理结果返回
+     * @param caseFile
+     * @return CaseVO
+     */
     @Override
     public CaseVO createCase(MultipartFile caseFile) {
-        return null;
+        Case thisCase = initialize(caseFile);
+        CaseVO caseVO = VOEntityConvertHelper.convert(thisCase);
+
+        if(!isCreated(caseFile)){
+            caseRepository.save(thisCase);
+        }
+        return caseVO;
     }
 
+    /**
+     * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果
+     * @param caseFile
+     * @return CaseVO
+     */
     @Override
     public CaseVO constructCase(MultipartFile caseFile) {
-        return null;
+        Case thisCase = initialize(caseFile);
+        String caseNumber = thisCase.getCaseNumber();
+
+        return getCaseInfoByCaseNumber(caseNumber);
+    }
+
+    /**
+     * 初始化文件
+     * @param caseFile
+     * @return Case
+     */
+    public Case initialize(MultipartFile caseFile){
+        //处理文件
+        Document document = BytesToFile.multipartFileToDocument(caseFile);
+        Case thisCase = ReadXMLHelper.getCase(document);
+        return thisCase;
+    }
+
+
+
+    /**
+     * 将Case转换为CaseVO
+     * @param c
+     * @return
+     */
+    private CaseVO transfer(Case c) {
+        if (c == null)
+            return null;
+        else {
+            if (c.getId() == null)
+                return null;
+            else
+                return new CaseVO(c);
+        }
     }
 }

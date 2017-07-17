@@ -21,4 +21,6 @@ public interface CaseRepository extends MongoRepository<Case, String>, CaseOpera
      * @return 若文书之前未被处理过，则返回的List的size为0；若已经被处理过，则返回的是一个size为1的List
      */
     List<Case> findByCaseNumber(String causeNumber);
+
+    Case findById(String id);
 }

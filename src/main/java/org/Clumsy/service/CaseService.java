@@ -12,12 +12,40 @@ import java.util.Map;
  */
 public interface CaseService {
 
+    /**
+     * 获得所有案件信息
+     * @return
+     */
     List<Case> getAllCases();
 
-    Case getCaseInfoByCaseNumber(String caseNumber);
+    /**
+     * 通过案号获得案件信息
+     * @param caseNumber
+     * @return
+     */
+    CaseVO getCaseInfoByCaseNumber(String caseNumber);
 
+
+    /**
+     * 通过案件Id获得案件信息
+     * @param id
+     * @return
+     */
+    CaseVO getCaseInfoById(String id);
+
+
+    /**
+     * 通过案由所得一组案件信息
+     * @param cause
+     * @return
+     */
     List<Case> getCasesByCause(String cause);
 
+
+    /**
+     * 获得所有的案由，以及其对应的出现的次数
+     * @return
+     */
     Map<String, Integer> getAllCauses();
 
     /**
