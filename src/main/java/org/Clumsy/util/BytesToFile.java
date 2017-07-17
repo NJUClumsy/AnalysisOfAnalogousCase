@@ -38,11 +38,9 @@ public class BytesToFile {
             bos.close();
             buffer = bos.toByteArray();
         } catch (FileNotFoundException e) {
-            logger.info(e);
-            e.printStackTrace();
+            logger.info("context"+e);
         } catch (IOException e) {
-            logger.info(e);
-            e.printStackTrace();
+            logger.info("context"+e);
         }
         return buffer;
     }
@@ -58,8 +56,7 @@ public class BytesToFile {
         try {
             bytes = multipartFile.getBytes();
         } catch (IOException e) {
-            logger.info(e);
-            e.printStackTrace();
+            logger.info("context"+e);
         }
         return getDocument(bytes);
     }
@@ -75,8 +72,7 @@ public class BytesToFile {
             document = reader.read(new ByteArrayInputStream(bfile));
 
         } catch (DocumentException e) {
-            logger.info(e);
-            e.printStackTrace();
+            logger.info("context"+e);
         }
         return document;
     }
