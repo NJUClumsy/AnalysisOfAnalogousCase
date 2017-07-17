@@ -1,5 +1,7 @@
 package org.Clumsy.vo;
 
+import org.Clumsy.entity.Law;
+
 import java.util.Collection;
 
 /**
@@ -7,11 +9,16 @@ import java.util.Collection;
  */
 public class LawVO {
 
-    String lawName;
-    Collection<String> cite;
+    public String lawName;
+    public Collection<String> cite;
 
     public LawVO(String lawName, Collection<String> cite) {
         this.lawName = lawName;
         this.cite = cite;
+    }
+
+    public LawVO (Law law){
+        this.lawName = law.getLawName();
+        this.cite = law.getCite();
     }
 }

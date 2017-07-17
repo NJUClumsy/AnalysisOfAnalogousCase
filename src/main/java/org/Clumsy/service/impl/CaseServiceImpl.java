@@ -28,8 +28,15 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
-    public Case getCaseInfoByCaseNumber(String caseNumber) {
-        return caseRepository.findFirstByCaseNumber(caseNumber);
+    public CaseVO getCaseInfoByCaseNumber(String caseNumber) {
+        Case c = caseRepository.findFirstByCaseNumber(caseNumber);
+        return transfer(c);
+    }
+
+    @Override
+    public CaseVO getCaseInfoById(String id) {
+        Case c = caseRepository.findById(id);
+        return transfer(c);
     }
 
     @Override
@@ -65,5 +72,23 @@ public class CaseServiceImpl implements CaseService {
     @Override
     public CaseVO constructCase(MultipartFile caseFile) {
         return null;
+    }
+
+
+
+    /**
+     * 将Case转换为CaseVO
+     * @param c
+     * @return
+     */
+    private CaseVO transfer(Case c) {
+        if (c == null)
+            return null;
+        else {
+            if (c.getId() == null)
+                return null;
+            else
+                return new CaseVO(c);
+        }
     }
 }

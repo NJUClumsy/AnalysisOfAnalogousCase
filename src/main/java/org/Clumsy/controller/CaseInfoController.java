@@ -46,4 +46,37 @@ public class CaseInfoController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+
+    /**
+     * 获得对应的ID的案件文书
+     * @param caseNumber 案号
+     * @return
+     */
+    @RequestMapping(value = "/obtainByNum", method = RequestMethod.GET)
+    public ResponseEntity<CaseVO> getCaseByCaseNumber(@RequestParam("caseNumber") String caseNumber) {
+        CaseVO caseVO = caseService.getCaseInfoByCaseNumber(caseNumber);
+        if (caseVO == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(caseVO, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * 获得对应的ID的案件文书
+     * @param id 文书的id
+     * @return
+     */
+    @RequestMapping(value = "/obtainById", method = RequestMethod.GET)
+    public ResponseEntity<CaseVO> getCaseByCaseId(@RequestParam("id") String id) {
+        CaseVO caseVO = caseService.getCaseInfoById(id);
+        if (caseVO == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(caseVO, HttpStatus.OK);
+        }
+    }
 }
