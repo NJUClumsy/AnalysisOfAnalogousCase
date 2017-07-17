@@ -1,5 +1,6 @@
 package org.Clumsy.util;
 
+import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -7,10 +8,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
+
 /**
+ * 将multipartFile转化成Document
  * Created by Lucifer on 17/7/17.
  */
 public class BytesToFile {
+    private static Logger logger=Logger.getLogger(BytesToFile.class);
+
+    private BytesToFile(){
+
+    }
+
     /**
      * 获得指定文件的byte数组
      */
@@ -29,8 +38,10 @@ public class BytesToFile {
             bos.close();
             buffer = bos.toByteArray();
         } catch (FileNotFoundException e) {
+            logger.info(e);
             e.printStackTrace();
         } catch (IOException e) {
+            logger.info(e);
             e.printStackTrace();
         }
         return buffer;
@@ -47,6 +58,7 @@ public class BytesToFile {
         try {
             bytes = multipartFile.getBytes();
         } catch (IOException e) {
+            logger.info(e);
             e.printStackTrace();
         }
         return getDocument(bytes);
@@ -63,6 +75,7 @@ public class BytesToFile {
             document = reader.read(new ByteArrayInputStream(bfile));
 
         } catch (DocumentException e) {
+            logger.info(e);
             e.printStackTrace();
         }
         return document;
