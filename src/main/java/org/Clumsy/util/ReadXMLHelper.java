@@ -3,7 +3,7 @@ package org.Clumsy.util;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.*;
-
+import org.apache.log4j.Logger;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.Clumsy.entity.Case;
@@ -17,6 +17,8 @@ import org.dom4j.io.SAXReader;
  * Created by Lucifer on 17/7/15.
  */
 public class ReadXMLHelper {
+
+    private static Logger logger=Logger.getLogger(BytesToFile.class);
 
     private static String name="";
     private static String flftmc="";
@@ -48,7 +50,7 @@ public class ReadXMLHelper {
             getNodes(root);
             return ReadXMLHelper.getEditedCase();
         }catch(NullPointerException e){
-            e.printStackTrace();
+            logger.info("context"+e);
         }
         return null;
     }
@@ -74,13 +76,13 @@ public class ReadXMLHelper {
         try {
             document = sax.read(xmlFile);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            logger.info("context"+e);
         }
         try{
             Element root=document.getRootElement();
             getNodes(root);
         }catch(NullPointerException e){
-            e.printStackTrace();
+            logger.info("context"+e);
         }
     }
 
@@ -142,7 +144,6 @@ public class ReadXMLHelper {
         ArrayList<String> judge = null;
         ArrayList<String> judgment1 = null;
 
-        Judgement judgement2 = null;
         String mainCharge=null;
         String singlePenalty=null;
         String execPenalty=null;
@@ -150,7 +151,6 @@ public class ReadXMLHelper {
         ArrayList<Law> lawList = null;
         Map<String,ArrayList<String>> law = new HashMap<>();
 
-        LocalDate date = null;
         String dateToChange=null;
 
         ArrayList<String> organ = null;
@@ -238,6 +238,7 @@ public class ReadXMLHelper {
                     break;
                 case "裁判时间":
                     dateToChange = entry.getValue();
+                    break;
                 default:
                     break;
             }
@@ -275,7 +276,7 @@ public class ReadXMLHelper {
         littleCase.setContext(context);
 
         if(mainCharge!=null && singlePenalty!=null && execPenalty!=null){
-            judgement2 = new Judgement();
+            Judgement judgement2 = new Judgement();
             judgement2.setMain_charge(mainCharge);
             judgement2.setSingle_penalty(singlePenalty);
             judgement2.setExec_penalty(execPenalty);
@@ -296,7 +297,7 @@ public class ReadXMLHelper {
         }
 
         if(dateToChange!=null){
-            date = getDate(dateToChange);
+            LocalDate date = getDate(dateToChange);
             littleCase.setDate(date);
         }
 
@@ -325,9 +326,9 @@ public class ReadXMLHelper {
      * @return LocalDate
      */
     public static LocalDate getDate(String text){
-        int ydex=text.indexOf("年");
-        int mdex=text.indexOf("月");
-        int ddex=text.indexOf("日");
+        int ydex=text.indexOf('年');
+        int mdex=text.indexOf('月');
+        int ddex=text.indexOf('日');
 
         String yearStr = getModified(text.substring(0,ydex));
         String monthStr = getModified(text.substring(ydex+1,mdex));
@@ -359,11 +360,9 @@ public class ReadXMLHelper {
      */
     public static String defineName(String fakeName){
         if(fakeName.startsWith("：")&&fakeName.length()>1){
-            String result = fakeName.substring(1);
-            return result;
+            return fakeName.substring(1);
         }else if(fakeName.startsWith(":")&&fakeName.length()>1){
-            String result = fakeName.substring(0,fakeName.length()-1);
-            return result;
+            return fakeName.substring(0,fakeName.length()-1);
         }else{
             return fakeName;
         }
@@ -376,21 +375,26 @@ public class ReadXMLHelper {
      * @return JsonObject
      * @throws JSONException
      */
-    public static JSONObject deepMerge(JSONObject source, JSONObject target) throws JSONException {
-        for (Object key: source.keySet()) {
-            Object value = source.get(key);
-            if (!target.containsKey(key)) {
-                target.put(key, value);
-            } else {
-                if (value instanceof JSONObject) {
-                    JSONObject valueJson = (JSONObject)value;
-                    deepMerge(valueJson, target.getJSONObject(key.toString()));
-                } else {
+    public static JSONObject deepMerge(JSONObject source, JSONObject target){
+        try{
+            for (Object key: source.keySet()) {
+                Object value = source.get(key);
+                if (!target.containsKey(key)) {
                     target.put(key, value);
+                } else {
+                    if (value instanceof JSONObject) {
+                        JSONObject valueJson = (JSONObject)value;
+                        deepMerge(valueJson, target.getJSONObject(key.toString()));
+                    } else {
+                        target.put(key, value);
+                    }
                 }
             }
+            return target;
+        }catch(JSONException e){
+            logger.info("context"+e);
         }
-        return target;
+        return null;
     }
 
 }
