@@ -110,9 +110,7 @@ public class CaseServiceImpl implements CaseService {
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
 
-        Case found = getCaseInfoByCaseNumber(caseNumber);
-        CaseVO caseVO = VOEntityConvertHelper.convert(found);
-        return caseVO;
+        return getCaseInfoByCaseNumber(caseNumber);
     }
 
     /**
