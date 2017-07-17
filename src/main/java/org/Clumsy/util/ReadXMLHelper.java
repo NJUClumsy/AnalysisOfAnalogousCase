@@ -32,38 +32,32 @@ public class ReadXMLHelper {
 
     private static ArrayList<String> lawName = new ArrayList<String>();
 
-    public static void main(String[] args){
-        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";//路径
-        initializeAllKeyMap(url);
-        Case a = ReadXMLHelper.getCase();
-        System.out.println(a.getContext());
-        System.out.println(a.getAccuser());
-        System.out.println(a.getAccuser_state());
-        System.out.println(a.getCaseNumber());
-        System.out.println(a.getCause());
-        System.out.println(a.getCourt());
-        System.out.println(a.getCourt_clerk());
-        System.out.println(a.getDate());
-        System.out.println(a.getDefendant());
-        System.out.println(a.getDefendant_state());
-        System.out.println(a.getFact());
-        System.out.println(a.getInfo_try());
-        System.out.println(a.getJudge());//
-        System.out.println(a.getJudgement2());
-        System.out.println(a.getJudgment1());//
-        System.out.println(a.getLaw());
-        System.out.println(a.getOrgan());
-        System.out.println(a.getProcess());
-        System.out.println(a.getType());
-        System.out.println(">>>>");
+    /**
+     * 根据doucument获取Case
+     * @param document
+     * @return Case
+     */
+    public static Case getCase( Document document){
+        initialize();
+        Element root=document.getRootElement();
+        getNodes(root);
+        System.out.println(allKeyMap);
+        return ReadXMLHelper.getEditedCase();
     }
 
+    /**
+     *初始化需要搜索的XML的键值名称
+     */
     public static void initialize(){
         for(int i=0;i<list.length;i++){
             newList.add(list[i]);
         }
     }
 
+    /**
+     *根据路径初始化键值对
+     * @param url
+     */
     public static void initializeAllKeyMap(String url){
         initialize();
         SAXReader sax=new SAXReader();
@@ -79,6 +73,10 @@ public class ReadXMLHelper {
         System.out.println(allKeyMap);
     }
 
+    /**
+     *递归获得所有需要的键值对
+     * @param node
+     */
     public static void getNodes(Element node){
 //        System.out.println("--------------------");
         ArrayList<String> instant = new ArrayList<String>();
@@ -123,7 +121,11 @@ public class ReadXMLHelper {
         }
     }
 
-    public static Case getCase(){
+    /**
+     *获得编辑后的Case
+     * @return Case
+     */
+    public static Case getEditedCase(){
         Case littleCase = new Case();
         Context context = new Context();
 
@@ -307,6 +309,11 @@ public class ReadXMLHelper {
         return littleCase;
     }
 
+    /**
+     * 获得修正的日期
+     * @param text
+     * @return LocalDate
+     */
     public static LocalDate getDate(String text){
         int ydex=text.indexOf("年");
         int mdex=text.indexOf("月");
@@ -322,6 +329,11 @@ public class ReadXMLHelper {
         return LocalDate.of(ydex,mdex,ddex);
     }
 
+    /**
+     * 修正日期
+     * @param original
+     * @return String
+     */
     public static String getModified(String original){
         original = original.replaceFirst("null", "1");
         original = original.replace('O', '0');
@@ -329,6 +341,11 @@ public class ReadXMLHelper {
         return original;
     }
 
+    /**
+     * 修正人名的字符串
+     * @param fakeName
+     * @return String
+     */
     public static String defineName(String fakeName){
         String result=null;
         if(fakeName.startsWith("：")&&fakeName.length()>1){
@@ -342,6 +359,13 @@ public class ReadXMLHelper {
         }
     }
 
+    /**
+     * 将两个JsonObject合并
+     * @param source
+     * @param target
+     * @return JsonObject
+     * @throws JSONException
+     */
     public static JSONObject deepMerge(JSONObject source, JSONObject target) throws JSONException {
         for (Object key: source.keySet()) {
             Object value = source.get(key);
@@ -358,6 +382,32 @@ public class ReadXMLHelper {
         }
         return target;
     }
+
+//    public static void main(String[] args){
+//        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";//路径
+//        initializeAllKeyMap(url);
+//        Case a = ReadXMLHelper.getCase();
+//        System.out.println(a.getContext());
+//        System.out.println(a.getAccuser());
+//        System.out.println(a.getAccuser_state());
+//        System.out.println(a.getCaseNumber());
+//        System.out.println(a.getCause());
+//        System.out.println(a.getCourt());
+//        System.out.println(a.getCourt_clerk());
+//        System.out.println(a.getDate());
+//        System.out.println(a.getDefendant());
+//        System.out.println(a.getDefendant_state());
+//        System.out.println(a.getFact());
+//        System.out.println(a.getInfo_try());
+//        System.out.println(a.getJudge());//
+//        System.out.println(a.getJudgement2());
+//        System.out.println(a.getJudgment1());//
+//        System.out.println(a.getLaw());
+//        System.out.println(a.getOrgan());
+//        System.out.println(a.getProcess());
+//        System.out.println(a.getType());
+//        System.out.println(">>>>");
+//    }
 }
 
 
