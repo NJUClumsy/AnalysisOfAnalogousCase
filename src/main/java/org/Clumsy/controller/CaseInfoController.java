@@ -32,16 +32,17 @@ public class CaseInfoController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity<CaseVO> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("username") String username) {
         if (!caseFile.isEmpty()) {
-            // 文书未处理过
+            // 文书未处理过，状态码是201
             if (!caseService.isCreated(caseFile)) {
                 return new ResponseEntity<>(caseService.createCase(caseFile), HttpStatus.CREATED);
             }
-            // 文书已经处理过
+            // 文书已经处理过，状态码是200
             else {
                 return new ResponseEntity<>(caseService.constructCase(caseFile), HttpStatus.OK);
             }
         }
         else {
+            // 状态码是204
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
