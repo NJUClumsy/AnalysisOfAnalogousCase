@@ -1,7 +1,7 @@
 package org.Clumsy.controller;
 
 import org.Clumsy.service.UserService;
-import org.Clumsy.vo.CauseVO;
+import org.Clumsy.vo.CaseNumberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,12 +65,12 @@ public class UserInfoController {
      * @return
      */
     @RequestMapping(value = "/cases", method = RequestMethod.GET)
-    public ResponseEntity<CauseVO> getUserCases(@RequestParam("username") String username) {
-        CauseVO causeVO = userService.getUserCases(username);
-        if (causeVO != null) {
-            if (causeVO.causes != null) {
-                if (causeVO.causes.size() > 0) {
-                    return new ResponseEntity<>(causeVO, HttpStatus.OK);
+    public ResponseEntity<CaseNumberVO> getUserCases(@RequestParam("username") String username) {
+        CaseNumberVO caseNumberVO = userService.getUserCases(username);
+        if (caseNumberVO != null) {
+            if (caseNumberVO.caseNumbers != null) {
+                if (caseNumberVO.caseNumbers.size() > 0) {
+                    return new ResponseEntity<>(caseNumberVO, HttpStatus.OK);
                 }
                 else {
                     return new ResponseEntity<>(HttpStatus.NO_CONTENT);

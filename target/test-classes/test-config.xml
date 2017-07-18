@@ -16,10 +16,6 @@
     <!--<mongo:mongo host="121.196.244.53"/>-->
     <mongo:mongo />
 
-    <bean id="defaultMongoTypeMapper"
-          class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
-        <constructor-arg name="typeKey"><null/></constructor-arg>
-    </bean>
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongo"/>

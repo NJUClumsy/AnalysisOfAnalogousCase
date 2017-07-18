@@ -35,4 +35,16 @@ public class UserServiceTest {
     public void testSignUp() throws Exception {
         assertFalse(userService.signUp("slowtime", "123456789"));
     }
+
+//    @Test
+//    public void tesSaveCase() throws Exception {
+//        userService.saveCase("slowtime", "（2008）丽民初字第3531号");
+//    }
+
+
+    @Test
+    public void tesGetUserCases() throws Exception {
+        System.out.println(userService.getUserCases("slowtime"));
+    }
+
 }

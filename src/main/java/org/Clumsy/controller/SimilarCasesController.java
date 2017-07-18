@@ -29,13 +29,13 @@ public class SimilarCasesController {
      */
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public ResponseEntity<CaseNumberVO> getSimilarCases(@RequestParam("id") String id) {
-        CaseNumberVO causeVO = similarCaseService.recommendCases(id);
+        CaseNumberVO caseNumberVO = similarCaseService.recommendCases(id);
         // 推荐失败，状态码为404
-        if (causeVO == null)
+        if (caseNumberVO == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         // 推荐成功，状态码为200
         else
-            return new ResponseEntity<>(causeVO, HttpStatus.OK);
+            return new ResponseEntity<>(caseNumberVO, HttpStatus.OK);
     }
 
 

@@ -1,7 +1,7 @@
 package org.Clumsy.service;
 
 import org.Clumsy.entity.User;
-import org.Clumsy.vo.CauseVO;
+import org.Clumsy.vo.CaseNumberVO;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    CauseVO getUserCases(String username);
+    CaseNumberVO getUserCases(String username);
 
 
     /**
