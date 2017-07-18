@@ -1,6 +1,7 @@
 package org.Clumsy.dao.impl;
 
 import org.Clumsy.dao.operations.UserOperations;
+import org.Clumsy.entity.CaseNumber;
 import org.Clumsy.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -25,9 +26,12 @@ public class UserRepositoryImpl implements UserOperations {
     }
 
     @Override
-    public void saveUserCases(String username, String caseNumber) {
+    public void saveUserCases(String username, String caseId, String caseNumber) {
         Criteria where = Criteria.where("username").is(username);
         Query query = new Query(where);
+        CaseNumber c = new CaseNumber();
+        c.setCaseId(caseId);
+        c.setCaseNumber(caseNumber);
         Update update = new Update().addToSet("cases", caseNumber);
         mongo.updateFirst(query, update, User.class);
     }

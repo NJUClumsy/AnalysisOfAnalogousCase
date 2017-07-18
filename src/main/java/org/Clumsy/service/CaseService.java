@@ -60,12 +60,12 @@ public interface CaseService {
      * @param caseFile
      * @return
      */
-    CaseVO createCase(MultipartFile caseFile);
+    String createCase(MultipartFile caseFile);
 
     /**
      * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果
      * @param caseFile
      * @return
      */
-    CaseVO constructCase(MultipartFile caseFile);
+    String constructCase(MultipartFile caseFile);
 }

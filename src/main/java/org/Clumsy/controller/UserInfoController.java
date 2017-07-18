@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Created by slow_time on 2017/7/15.
  */
@@ -70,18 +72,13 @@ public class UserInfoController {
      * @return
      */
     @RequestMapping(value = "/cases", method = RequestMethod.GET)
-    public ResponseEntity<CaseNumberVO> getUserCases(@RequestParam("username") String username) {
-        CaseNumberVO caseNumberVO = userService.getUserCases(username);
-        if (caseNumberVO != null) {
-            if (caseNumberVO.caseNumbers != null) {
-                if (caseNumberVO.caseNumbers.size() > 0) {
-                    HttpHeaders httpHeaders = new HttpHeaders();
-                    httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
-                    return new ResponseEntity<>(caseNumberVO, httpHeaders, HttpStatus.OK);
-                }
-                else {
-                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-                }
+    public ResponseEntity<List<CaseNumberVO>> getUserCases(@RequestParam("username") String username) {
+        List<CaseNumberVO> caseNumberVOS = userService.getUserCases(username);
+        if (caseNumberVOS != null) {
+            if (caseNumberVOS.size() > 0) {
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                return new ResponseEntity<>(caseNumberVOS, httpHeaders, HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

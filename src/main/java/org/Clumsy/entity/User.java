@@ -17,7 +17,7 @@ public class User {
 
     private String username;
     private String password;
-    private Collection<String> cases;
+    private Collection<CaseNumber> cases;
 
     public String getUsername() {
         return username;
@@ -44,14 +44,13 @@ public class User {
         this.id = id;
     }
 
-    public Collection<String> getCases() {
+    public Collection<CaseNumber> getCases() {
         return cases;
     }
 
-    public void setCases(Collection<String> cases) {
+    public void setCases(Collection<CaseNumber> cases) {
         this.cases = cases;
     }
-
 
     @Override
     public boolean equals(Object o) {

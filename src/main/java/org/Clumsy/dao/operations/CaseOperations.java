@@ -9,5 +9,17 @@ import java.util.List;
  */
 public interface CaseOperations {
 
+    /**
+     * 获得所有案由
+     * @return
+     */
     List<Case> findCauses();
+
+
+    /**
+     * 通过案号获得Id
+     * @param caseNumber
+     * @return
+     */
+    Case findIdByCaseNumber(String caseNumber);
 }

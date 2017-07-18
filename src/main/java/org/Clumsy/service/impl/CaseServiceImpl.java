@@ -87,30 +87,31 @@ public class CaseServiceImpl implements CaseService {
     /**
      * 文书未曾处理过，需要处理过后存储，再将处理结果返回
      * @param caseFile
-     * @return CaseVO
+     * @return String
      */
     @Override
-    public CaseVO createCase(MultipartFile caseFile) {
+    public String createCase(MultipartFile caseFile) {
         Case thisCase = initialize(caseFile);
-        CaseVO caseVO = VOEntityConvertHelper.convert(thisCase);
 
         if(!isCreated(caseFile)){
             caseRepository.save(thisCase);
         }
-        return caseVO;
+        String caseNumber = thisCase.getCaseNumber();
+        Case found = caseRepository.findIdByCaseNumber(caseNumber);
+        return found.getId();
     }
 
     /**
      * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果
      * @param caseFile
-     * @return CaseVO
+     * @return String
      */
     @Override
-    public CaseVO constructCase(MultipartFile caseFile) {
+    public String constructCase(MultipartFile caseFile) {
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
-
-        return getCaseInfoByCaseNumber(caseNumber);
+        Case found = caseRepository.findIdByCaseNumber(caseNumber);
+        return found.getId();
     }
 
     /**
