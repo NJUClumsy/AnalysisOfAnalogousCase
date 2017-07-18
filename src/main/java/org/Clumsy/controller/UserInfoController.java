@@ -3,7 +3,9 @@ package org.Clumsy.controller;
 import org.Clumsy.service.UserService;
 import org.Clumsy.vo.CaseNumberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,13 +56,16 @@ public class UserInfoController {
         }
         // 注册失败，返回状态码409
         else {
-            return new ResponseEntity<>("用户名：" + username + "已被占用", HttpStatus.CONFLICT);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+            return new ResponseEntity<>("用户名：" + username + "已被占用", httpHeaders, HttpStatus.CONFLICT);
         }
     }
 
 
     /**
      * 用户获取自己上传的所有文书的案号
+     * 若上传的文书为空，则状态码为204，否则为200
      * @param username
      * @return
      */
@@ -70,7 +75,9 @@ public class UserInfoController {
         if (caseNumberVO != null) {
             if (caseNumberVO.caseNumbers != null) {
                 if (caseNumberVO.caseNumbers.size() > 0) {
-                    return new ResponseEntity<>(caseNumberVO, HttpStatus.OK);
+                    HttpHeaders httpHeaders = new HttpHeaders();
+                    httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                    return new ResponseEntity<>(caseNumberVO, httpHeaders, HttpStatus.OK);
                 }
                 else {
                     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
