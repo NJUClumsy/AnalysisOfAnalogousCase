@@ -2,7 +2,7 @@ var React = require('react')
 
 var RecCase = function(props) {
 
-    return <div className="rec-case info-head">
+    return <div className="rec-case info-head"id="rec-case">
         <div className="general-info-title">
             关联案件推荐
         </div>

@@ -41,7 +41,7 @@ var GeneralInfo = function(props) {
     var info = props.caseInfo;
 
 
-    return <div className="general-info">
+    return <div className="general-info" id="general-info">
         <div className="general-info-title">
             概要
         </div>
