@@ -23,4 +23,13 @@ public class JudgementVO {
         this.single_penalty = judgement.getSingle_penalty();
         this.exec_penalty = judgement.getExec_penalty();
     }
+
+    @Override
+    public String toString() {
+        return "JudgementVO{" +
+                "main_charge='" + main_charge + '\'' +
+                ", single_penalty='" + single_penalty + '\'' +
+                ", exec_penalty='" + exec_penalty + '\'' +
+                '}';
+    }
 }

@@ -21,4 +21,12 @@ public class LawVO {
         this.lawName = law.getLawName();
         this.cite = law.getCite();
     }
+
+    @Override
+    public String toString() {
+        return "LawVO{" +
+                "lawName='" + lawName + '\'' +
+                ", cite=" + cite +
+                '}';
+    }
 }

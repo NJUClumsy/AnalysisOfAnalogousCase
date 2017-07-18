@@ -62,4 +62,25 @@ public class CaseVO {
         this.court_clerk = c.getCourt_clerk();
         this.date = c.getDate();
     }
+
+    @Override
+    public String toString() {
+        return "CaseVO{" +
+                "id='" + id + '\'' +
+                ", context=" + context +
+                ", court='" + court + '\'' +
+                ", type='" + type + '\'' +
+                ", process='" + process + '\'' +
+                ", accuser=" + accuser +
+                ", defendant=" + defendant +
+                ", organ=" + organ +
+                ", cause='" + cause + '\'' +
+                ", law=" + law +
+                ", judgement1=" + judgement1 +
+                ", judgement2=" + judgement2 +
+                ", judge=" + judge +
+                ", court_clerk='" + court_clerk + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
