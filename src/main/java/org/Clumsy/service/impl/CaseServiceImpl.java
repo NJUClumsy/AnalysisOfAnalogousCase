@@ -90,14 +90,15 @@ public class CaseServiceImpl implements CaseService {
      * @return CaseVO
      */
     @Override
-    public CaseVO createCase(MultipartFile caseFile) {
+    public String createCase(MultipartFile caseFile) {
         Case thisCase = initialize(caseFile);
         CaseVO caseVO = VOEntityConvertHelper.convert(thisCase);
 
         if(!isCreated(caseFile)){
             caseRepository.save(thisCase);
         }
-        return caseVO;
+//        return caseVO;
+        return null;
     }
 
     /**
@@ -106,11 +107,12 @@ public class CaseServiceImpl implements CaseService {
      * @return CaseVO
      */
     @Override
-    public CaseVO constructCase(MultipartFile caseFile) {
+    public String constructCase(MultipartFile caseFile) {
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
 
-        return getCaseInfoByCaseNumber(caseNumber);
+//        return getCaseInfoByCaseNumber(caseNumber);
+        return null;
     }
 
     /**
