@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Created by slow_time on 2017/7/17.
  */
@@ -28,14 +30,17 @@ public class SimilarCasesController {
      * @return
      */
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
-    public ResponseEntity<CaseNumberVO> getSimilarCases(@RequestParam("id") String id) {
-        CaseNumberVO caseNumberVO = similarCaseService.recommendCases(id);
+    public ResponseEntity<List<CaseNumberVO>> getSimilarCases(@RequestParam("id") String id) {
+        List<CaseNumberVO> caseNumberVOS = similarCaseService.recommendCases(id);
         // 推荐失败，状态码为404
-        if (caseNumberVO == null)
+        if (caseNumberVOS == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // 无相似案由，状态码为204
+        else if (caseNumberVOS.size() == 0)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         // 推荐成功，状态码为200
         else
-            return new ResponseEntity<>(caseNumberVO, HttpStatus.OK);
+            return new ResponseEntity<>(caseNumberVOS, HttpStatus.OK);
     }
 
 
