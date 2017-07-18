@@ -1,6 +1,7 @@
 var React = require('react')
 
 var CaseContext = function(props) {
+    var info = props.caseInfo;
 
     return <div className="case-context">
         <div className="general-info-title">

@@ -1,6 +1,45 @@
 var React = require('react')
+import '../../util/Validation'
+
+function checkInfoVal(text) {
+    if(text === '')
+        return '暂无信息';
+    return text;
+}
+
+function checkArrayVal(array) {
+    if(array === [])
+        return '暂无信息';
+    return array.map(function (item, i) {
+        return <span key={i}>{item} </span>;
+    });
+}
+
+function getLawName(array) {
+    if(array === [])
+        return '暂无信息';
+    var law = array.map(function (item, i, array) {
+        if(i === array.length - 1)
+            return <span key={i}>{ item.lawName } <span>{getCiteString(item.cite)}</span> </span>;
+        return <span key={i}>{ item.lawName } <span>{getCiteString(item.cite)}</span> ，</span>;
+    });
+    return law
+}
+
+function getCiteString(array) {
+    if(array === [])
+        return '暂无信息';
+    return array.map(function (item, i, array) {
+        console.log(array.length)
+        if(i === array.length - 1)
+            return '第' + item + '条' ;
+        return '第' + item + '条' + '、';
+    });
+}
 
 var GeneralInfo = function(props) {
+    var info = props.caseInfo;
+
 
     return <div className="general-info">
         <div className="general-info-title">
@@ -8,67 +47,96 @@ var GeneralInfo = function(props) {
         </div>
         <div className="general-info-row">
             <div className="general-info-row-unit general-info-column-f">
-                <div className="general-info-cell">
+                <div className="general-info-cell general-info-column-f">
                     基本信息
                 </div>
             </div>
             <div className="general-info-row-unit">
                 <div className="general-info-cell">
-                    案件类型
+                    经办法院
+                </div>
+                <div className="general-info-cell">
+                    文书名称
+                </div>
+                <div className="general-info-cell">
+                    审判程序
+                </div>
+                <div className="general-info-cell">
+                    原告
+                </div>
+                <div className="general-info-cell">
+                    被告
+                </div>
+                <div className="general-info-cell">
+                    具体裁判段
+                </div>
+                <div className="general-info-cell">
+                    书记员
+                </div>
+                <div className="general-info-cell">
+                    审判员
                 </div>
                 <div className="general-info-cell">
                     案由
                 </div>
                 <div className="general-info-cell general-info-row-l">
-                    原被告
+                    裁判时间
                 </div>
             </div>
             <div className="general-info-row-unit general-info-column-m1">
                 <div className="general-info-cell">
-                    民事案件
+                    {checkInfoVal(info.court)}
                 </div>
                 <div className="general-info-cell">
-                    机动车交通事故责任纠纷
+                    {checkInfoVal(info.type)}
+                </div>
+                <div className="general-info-cell">
+                    {checkInfoVal(info.process)}
+                </div>
+                <div className="general-info-cell">
+                    {checkArrayVal(info.accuser)}
+                </div>
+                <div className="general-info-cell">
+                    {checkArrayVal(info.defendant)}
+                </div>
+                <div className="general-info-cell">
+                    {checkArrayVal(info.judgement1)}
+                </div>
+                <div className="general-info-cell">
+                    {checkInfoVal(info.court_clerk)}
+                </div>
+                <div className="general-info-cell">
+                    {checkArrayVal(info.judge)}
+                </div>
+                <div className="general-info-cell">
+                    {checkInfoVal(info.cause)}
                 </div>
                 <div className="general-info-cell general-info-row-l">
-                    周瑞芬、张彩英、刘振财、吴苏花
+                    {checkInfoVal(info.date)}
                 </div>
             </div>
         </div>
         <div className="general-info-row">
             <div className="general-info-row-unit general-info-column-f">
-                <div className="general-info-cell">
-                    案件特征
-                </div>
-            </div>
-            <div className="general-info-row-unit general-info-column-m2">
-                <div className="general-info-cell general-info-row-l">
-                    碰撞受损、违反交通信号指示灯、未交交强险、超速行驶、人身损害
-                </div>
-            </div>
-        </div>
-        <div className="general-info-row">
-            <div className="general-info-row-unit general-info-column-f">
-                <div className="general-info-cell">
+                <div className="general-info-cell general-info-column-f">
                     引用法条
                 </div>
             </div>
             <div className="general-info-row-unit general-info-column-m2">
                 <div className="general-info-cell general-info-row-l">
-                    最高人民法院关于执行《中华人民共和国行政诉讼法》若干问题的解释 第十三条、第十九条、
-                    二十一条等
+                    {getLawName(info.law)}
                 </div>
             </div>
         </div>
         <div className="general-info-row general-info-row-l">
             <div className="general-info-row-unit general-info-column-f">
-                <div className="general-info-cell">
+                <div className="general-info-cell general-info-column-f">
                     判决结果
                 </div>
             </div>
             <div className="general-info-row-unit general-info-column-m2">
                 <div className="general-info-cell general-info-row-l">
-                    本案财产损失共计28915元，刘雪红只应承担70%的民事即20240.50元
+                    {checkInfoVal(info.context.result)}
                 </div>
             </div>
         </div>

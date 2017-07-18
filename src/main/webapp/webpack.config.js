@@ -2,14 +2,8 @@ var webpack = require('webpack');
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
-// var options = {
-//     style: 'css',
-//     libraryDirectory: 'lib',       // default: lib
-//     libraryName: 'antd'            // default: antd
-// };
-
 module.exports = {
-    entry: './main.jsx',
+    entry: './index.jsx',
     output: {
         filename: 'bundle.js'
     },
