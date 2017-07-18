@@ -3,7 +3,9 @@ package org.Clumsy.controller;
 import org.Clumsy.service.CaseService;
 import org.Clumsy.vo.CaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,11 +36,15 @@ public class CaseInfoController {
         if (!caseFile.isEmpty()) {
             // 文书未处理过，状态码是201
             if (!caseService.isCreated(caseFile)) {
-                return new ResponseEntity<>(caseService.createCase(caseFile), HttpStatus.CREATED);
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                return new ResponseEntity<>(caseService.createCase(caseFile), httpHeaders, HttpStatus.CREATED);
             }
             // 文书已经处理过，状态码是200
             else {
-                return new ResponseEntity<>(caseService.constructCase(caseFile), HttpStatus.OK);
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
             }
         }
         else {
@@ -60,7 +66,9 @@ public class CaseInfoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else {
-            return new ResponseEntity<>(caseVO, HttpStatus.OK);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+            return new ResponseEntity<>(caseVO, httpHeaders, HttpStatus.OK);
         }
     }
 
@@ -76,7 +84,9 @@ public class CaseInfoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else {
-            return new ResponseEntity<>(caseVO, HttpStatus.OK);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+            return new ResponseEntity<>(caseVO, httpHeaders, HttpStatus.OK);
         }
     }
 }

@@ -3,10 +3,11 @@ package org.Clumsy.service.impl;
 import org.Clumsy.dao.UserRepository;
 import org.Clumsy.entity.User;
 import org.Clumsy.service.UserService;
-import org.Clumsy.vo.CauseVO;
+import org.Clumsy.vo.CaseNumberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
+            user.setCases(new ArrayList<>());
             userRepository.save(user);
             return true;
         }
@@ -47,9 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public CauseVO getUserCases(String username) {
+    public CaseNumberVO getUserCases(String username) {
         User user = userRepository.getUserCases(username);
-        return new CauseVO(user.getCases());
+        return new CaseNumberVO(user.getCases());
     }
 
     @Override

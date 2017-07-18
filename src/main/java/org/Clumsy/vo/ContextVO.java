@@ -37,4 +37,18 @@ public class ContextVO {
         this.tail = context.getTail();
         this.appendix = context.getAppendix();
     }
+
+    @Override
+    public String toString() {
+        return "ContextVO{" +
+                "head='" + head + '\'' +
+                ", participants='" + participants + '\'' +
+                ", records='" + records + '\'' +
+                ", situation='" + situation + '\'' +
+                ", analysis='" + analysis + '\'' +
+                ", result='" + result + '\'' +
+                ", tail='" + tail + '\'' +
+                ", appendix='" + appendix + '\'' +
+                '}';
+    }
 }

@@ -1,9 +1,11 @@
 package org.Clumsy.controller;
 
-import org.Clumsy.entity.User;
+import org.Clumsy.vo.CaseNumberVO;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,10 +23,29 @@ public class UserInfoControllerTest {
 
     @Test
     public void testLogin() throws Exception {
+        Assert.assertEquals(200, userInfoController.login("tydety97", "123456").getStatusCodeValue());
+        Assert.assertEquals(401, userInfoController.login("slowtime", "12345").getStatusCodeValue());
+    }
 
-        User user = new User();
-        user.setUsername("tydety97");
-        user.setPassword("123456");
-        System.out.println(userInfoController.login("tydety97", "123456"));
+    @Test
+    public void testSignUp() throws Exception {
+//        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety97", "12344533");
+//        Assert.assertEquals(409, responseEntity.getStatusCodeValue());
+//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety", "12344533");
+        Assert.assertEquals(201, responseEntity.getStatusCodeValue());
+//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+    }
+
+
+    @Test
+    public void testGetUserCases() throws Exception {
+//        ResponseEntity<CaseNumberVO> responseEntity = userInfoController.getUserCases("tydety");
+//        Assert.assertEquals(204, responseEntity.getStatusCodeValue());
+        ResponseEntity<CaseNumberVO> responseEntity = userInfoController.getUserCases("tydety97");
+        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+
+        System.out.println(responseEntity.getBody());
+        System.out.println(responseEntity.getHeaders());
     }
 }

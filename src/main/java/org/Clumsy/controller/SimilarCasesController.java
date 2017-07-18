@@ -1,7 +1,7 @@
 package org.Clumsy.controller;
 
 import org.Clumsy.service.SimilarCaseService;
-import org.Clumsy.vo.CauseVO;
+import org.Clumsy.vo.CaseNumberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +28,14 @@ public class SimilarCasesController {
      * @return
      */
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
-    public ResponseEntity<CauseVO> getSimilarCases(@RequestParam("id") String id) {
-        CauseVO causeVO = similarCaseService.recommendCases(id);
+    public ResponseEntity<CaseNumberVO> getSimilarCases(@RequestParam("id") String id) {
+        CaseNumberVO caseNumberVO = similarCaseService.recommendCases(id);
         // 推荐失败，状态码为404
-        if (causeVO == null)
+        if (caseNumberVO == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         // 推荐成功，状态码为200
         else
-            return new ResponseEntity<>(causeVO, HttpStatus.OK);
+            return new ResponseEntity<>(caseNumberVO, HttpStatus.OK);
     }
 
 

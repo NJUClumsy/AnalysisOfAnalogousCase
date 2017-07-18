@@ -13,4 +13,10 @@ public class CauseVO {
         this.causes = causes;
     }
 
+    @Override
+    public String toString() {
+        return "CauseVO{" +
+                "causes=" + causes +
+                '}';
+    }
 }

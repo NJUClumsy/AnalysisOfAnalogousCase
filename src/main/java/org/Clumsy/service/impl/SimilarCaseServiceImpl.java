@@ -1,7 +1,7 @@
 package org.Clumsy.service.impl;
 
 import org.Clumsy.service.SimilarCaseService;
-import org.Clumsy.vo.CauseVO;
+import org.Clumsy.vo.CaseNumberVO;
 import org.springframework.stereotype.Service;
 
 
@@ -14,7 +14,7 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
 
     @Override
-    public CauseVO recommendCases(String id) {
+    public CaseNumberVO recommendCases(String id) {
         return null;
     }
 }
