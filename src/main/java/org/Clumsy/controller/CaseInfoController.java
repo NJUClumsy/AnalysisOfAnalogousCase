@@ -32,18 +32,18 @@ public class CaseInfoController {
      * @return
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseEntity<CaseVO> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("username") String username) {
+    public ResponseEntity<String> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("username") String username) {
         if (!caseFile.isEmpty()) {
             // 文书未处理过，状态码是201
             if (!caseService.isCreated(caseFile)) {
                 HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                httpHeaders.setContentType(MediaType.TEXT_PLAIN);
                 return new ResponseEntity<>(caseService.createCase(caseFile), httpHeaders, HttpStatus.CREATED);
             }
             // 文书已经处理过，状态码是200
             else {
                 HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                httpHeaders.setContentType(MediaType.TEXT_PLAIN);
                 return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
             }
         }
@@ -55,7 +55,7 @@ public class CaseInfoController {
 
 
     /**
-     * 获得对应的ID的案件文书
+     * 获得对应的案号的案件文书
      * @param caseNumber 案号
      * @return
      */

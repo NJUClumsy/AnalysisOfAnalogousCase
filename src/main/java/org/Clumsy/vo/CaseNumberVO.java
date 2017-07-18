@@ -1,22 +1,31 @@
 package org.Clumsy.vo;
 
-import java.util.Collection;
+import org.Clumsy.entity.CaseNumber;
 
 /**
  * Created by slow_time on 2017/7/18.
  */
 public class CaseNumberVO {
 
-    public Collection<String> caseNumbers;
+    public String caseId;
 
-    public CaseNumberVO(Collection<String> caseNumbers) {
-        this.caseNumbers = caseNumbers;
+    public String caseNumber;
+
+    public CaseNumberVO(String caseId, String caseNumber) {
+        this.caseId = caseId;
+        this.caseNumber = caseNumber;
+    }
+
+    public CaseNumberVO(CaseNumber c) {
+       this.caseId = c.getCaseId();
+       this.caseNumber = c.getCaseNumber();
     }
 
     @Override
     public String toString() {
         return "CaseNumberVO{" +
-                "caseNumbers=" + caseNumbers +
+                "caseId='" + caseId + '\'' +
+                ", caseNumbers='" + caseNumber + '\'' +
                 '}';
     }
 }
