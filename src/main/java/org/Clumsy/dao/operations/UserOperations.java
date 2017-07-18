@@ -9,5 +9,5 @@ public interface UserOperations {
 
     User getUserCases(String username);
 
-    void saveUserCases(String username, String caseNumber);
+    void saveUserCases(String username, String caseID, String caseNumber);
 }

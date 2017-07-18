@@ -32,9 +32,10 @@ public interface UserService {
     /**
      * 保存用户的上传文书的记录
      * @param username
+     * @param caseId
      * @param caseNumber
      */
-    void saveCase(String username, String caseNumber);
+    void saveCase(String username, String caseId, String caseNumber);
 
 
     /**
@@ -42,7 +43,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    CaseNumberVO getUserCases(String username);
+    List<CaseNumberVO> getUserCases(String username);
 
 
     /**

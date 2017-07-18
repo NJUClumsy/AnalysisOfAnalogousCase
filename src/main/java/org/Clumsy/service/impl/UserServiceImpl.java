@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by slow_time on 2017/7/15.
@@ -44,14 +45,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveCase(String username, String caseNumber) {
-        userRepository.saveUserCases(username, caseNumber);
+    public void saveCase(String username, String caseId, String caseNumber) {
+        userRepository.saveUserCases(username, caseId, caseNumber);
     }
 
     @Override
-    public CaseNumberVO getUserCases(String username) {
+    public List<CaseNumberVO> getUserCases(String username) {
         User user = userRepository.getUserCases(username);
-        return new CaseNumberVO(user.getCases());
+        return user.getCases().stream().map(CaseNumberVO::new).collect(Collectors.toList());
     }
 
     @Override
