@@ -53,7 +53,10 @@ public class VOEntityConvertHelper {
         }
 
         Collection<String> judgement1 = thisCase.getJudgment1();
-        JudgementVO judgement2 = new JudgementVO( thisCase.getJudgement2().getMain_charge(), thisCase.getJudgement2().getSingle_penalty(), thisCase.getJudgement2().getExec_penalty());
+        JudgementVO judgement2 = null;
+        if(thisCase.getJudgement2()!=null){
+            judgement2 = new JudgementVO( thisCase.getJudgement2().getMain_charge(), thisCase.getJudgement2().getSingle_penalty(), thisCase.getJudgement2().getExec_penalty());
+        }
         Collection<String> judge = thisCase.getJudge();
         String court_clerk = thisCase.getCourt_clerk();
         LocalDate date = thisCase.getDate();

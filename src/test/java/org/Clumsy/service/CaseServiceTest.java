@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -44,6 +45,5 @@ public class CaseServiceTest {
             System.out.println(cause + caseService.getAllCauses().get(cause));
         }
     }
-
 
 }
