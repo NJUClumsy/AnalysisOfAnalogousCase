@@ -15,6 +15,15 @@ var CaseInfoController = React.createClass({
         });
     },
 
+    // anchorJump: function () {
+    //     console.log(11)
+    //     var anchorName = '#rec-case'
+    //     if (anchorName) {
+    //         var anchorElement = document.getElementById(anchorName);
+    //         if(anchorElement) { anchorElement.scrollIntoView(); }
+    //     }
+    // },
+
     render: function() {
         return <CaseInfo
             caseInfo={this.state.caseInfo}

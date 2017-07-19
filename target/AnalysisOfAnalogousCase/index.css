@@ -270,6 +270,27 @@ body {
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+.anchor{
+    top: 100px;
+    left: 30px;
+    font-size: 14px;
+    position: fixed;
+    border-left: 3px solid #999999;
+    padding-left: 5px;
+}
+
+.anchor span {
+    display: block;
+    cursor: pointer;
+}
+
+.anchor-sub {
+    margin-left: 10px;
+}
+
+>>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
 .info-back-link {
     font-size: 15px;
     margin: 15px 0 10px 30px;
@@ -354,6 +375,15 @@ td.column-money {
     margin: 20px 60px;
     border: 1px solid #DDDDDD;
     border-radius: 5px;
+<<<<<<< HEAD
+=======
+    font-size: 15px;
+}
+
+.context-content p {
+    font-size: 15px;
+    text-indent: 2em;
+>>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
 }
 
 .context-content {
@@ -370,6 +400,21 @@ td.column-money {
     font-size: 15px;
 }
 
+<<<<<<< HEAD
+=======
+#context-head {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-indent: 0em;
+}
+
+#context-tail {
+    text-align: right;
+    text-indent: 0em;
+}
+
+>>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
 
 
 
