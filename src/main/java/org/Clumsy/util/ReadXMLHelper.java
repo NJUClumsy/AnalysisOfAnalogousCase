@@ -24,7 +24,7 @@ public class ReadXMLHelper {
 
     private static String[] list = {"WS","SSCYRQJ","SSJL","AJJBQK","CPFXGC","CPJG","WW","JBFY","WSMC",
             "AH","SPCX","SSCYRMC","GSJG","AY","KTSLXX","YGSCD","ZKDL","BGBCD","BCDL","CMSSD","BSSLD","FLFTMC","TM",
-            "JTCPD","SPRYXM","CPSJ","XSPJJGFZ","PJZZM","DZPF","ZXPF","SSSF","FL","SPRYJS"};
+            "JTCPD","SPRYXM","CPSJ","XSPJJGFZ","PJZZM","DZPF","ZXPF","SSSF","FL","SPRYJS","ZKZM"};
 
     private static ArrayList<String> newList = new ArrayList<>();
 
@@ -75,6 +75,7 @@ public class ReadXMLHelper {
             document = sax.read(xmlFile);
             Element root=document.getRootElement();
             getNodes(root);
+            System.out.println(allKeyMap+">>>>???>>>>>");
         } catch (DocumentException e) {
             logger.info("context"+e);
         }catch(NullPointerException e){
@@ -196,6 +197,9 @@ public class ReadXMLHelper {
                 case "审判程序":
                     littleCase.setProcess(entry.getValue());
                     break;
+                case "指控罪名":
+                    littleCase.setCause(entry.getValue());
+                    break;
                 case "案由":
                     littleCase.setCause(entry.getValue());
                     break;
@@ -259,6 +263,11 @@ public class ReadXMLHelper {
                 }
                 judgment1.add(defineName(entry.getValue()));
             }else if(lawName.contains(entry.getKey())){
+                System.out.println(entry.getKey()+"key");
+                System.out.println(entry.getValue()+"value");
+                if(!law.containsKey(entry.getKey())){
+                    law.put(entry.getKey(),new ArrayList<>());
+                }
                 law.get(entry.getKey()).add(entry.getValue());
             }else if("公诉机关".equals(entry.getKey())){
                 if(organ==null){
