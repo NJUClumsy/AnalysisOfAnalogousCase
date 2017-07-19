@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,8 +72,8 @@ public class UserInfoController {
      * @param username
      * @return
      */
-    @RequestMapping(value = "/cases", method = RequestMethod.GET)
-    public ResponseEntity<List<CaseNumberVO>> getUserCases(@RequestParam("username") String username) {
+    @RequestMapping(value = "/cases/{username}", method = RequestMethod.GET)
+    public ResponseEntity<List<CaseNumberVO>> getUserCases(@PathVariable("username") String username) {
         List<CaseNumberVO> caseNumberVOS = userService.getUserCases(username);
         if (caseNumberVOS != null) {
             if (caseNumberVOS.size() > 0) {

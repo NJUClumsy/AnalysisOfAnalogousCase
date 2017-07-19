@@ -15,8 +15,6 @@ var CaseInfoController = React.createClass({
         });
     },
 
-<<<<<<< HEAD
-=======
     // anchorJump: function () {
     //     console.log(11)
     //     var anchorName = '#rec-case'
@@ -26,7 +24,6 @@ var CaseInfoController = React.createClass({
     //     }
     // },
 
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
     render: function() {
         return <CaseInfo
             caseInfo={this.state.caseInfo}

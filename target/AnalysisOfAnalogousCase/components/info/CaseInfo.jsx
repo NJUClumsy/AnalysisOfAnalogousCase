@@ -3,8 +3,6 @@ var GeneralInfo = require('./GeneralInfoController')
 var RecCase = require('./RecCaseController')
 var CaseContext = require('./CaseContextController')
 import { Link} from 'react-router';
-<<<<<<< HEAD
-=======
 import { BackTop } from 'antd';
 import $ from 'jquery'
 
@@ -25,16 +23,10 @@ function subAnchorTag(content, n) {
         return null;
     return <span onClick={()=>scrollTo(urls[n])}>{titles[n]}</span>
 }
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
 
 var CaseInfo = function(props) {
     var info = props.caseInfo;
 
-<<<<<<< HEAD
-    console.log(info)
-    return <div className="main-page">
-        <div className="main-info-content">
-=======
     return <div className="main-page">
         <div className="anchor">
             <span onClick={()=>scrollTo('#general-info')}>概况</span>
@@ -52,7 +44,6 @@ var CaseInfo = function(props) {
             <span onClick={()=>scrollTo('#rec-case')}>类案推荐</span>
         </div>
         <div className="main-info-content" id="main">
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
             <div className="case-head">
                 {info.context.head}
             </div>
@@ -63,12 +54,9 @@ var CaseInfo = function(props) {
             <CaseContext/>
             <RecCase/>
         </div>
-<<<<<<< HEAD
-=======
         <div>
             <BackTop />
         </div>
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4
     </div>;
 }
 

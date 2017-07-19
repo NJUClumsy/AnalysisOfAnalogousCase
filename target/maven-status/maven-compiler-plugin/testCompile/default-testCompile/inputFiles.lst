@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/service/UserServiceTest.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/ReadXMLHelperTest.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/controller/UserInfoControllerTest.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/service/CaseServiceTest.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/VOEntityConvertHelperTest.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/BytesToFileTest.java
-=======
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/service/UserServiceTest.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/BytesToFileTest.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/ReadXMLHelperTest.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/controller/UserInfoControllerTest.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/service/CaseServiceTest.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/test/java/org/Clumsy/util/VOEntityConvertHelperTest.java
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4

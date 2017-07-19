@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/controller/CaseInfoController.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/operations/UserOperations.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/impl/CaseRepositoryImpl.java
@@ -30,36 +29,3 @@
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/impl/UserServiceImpl.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/CauseVO.java
 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/UserRepository.java
-=======
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/controller/CaseInfoController.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/operations/UserOperations.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/CaseService.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/JudgementVO.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/impl/CaseServiceImpl.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/SimilarCaseService.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/CauseVO.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/Case.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/impl/UserServiceImpl.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/operations/CaseOperations.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/Law.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/CaseNumberVO.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/controller/UserInfoController.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/UserRepository.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/ContextVO.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/Judgement.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/impl/CaseRepositoryImpl.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/BytesToFile.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/Item.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/UserService.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/controller/SimilarCasesController.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/User.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/VOEntityConvertHelper.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/service/impl/SimilarCaseServiceImpl.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/CaseNumber.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/ReadXMLHelper.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/entity/Context.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/LawVO.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/impl/UserRepositoryImpl.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/dao/CaseRepository.java
-/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/vo/CaseVO.java
->>>>>>> b9db0c393e76fd8f6e621a6974b7f99df76d85e4

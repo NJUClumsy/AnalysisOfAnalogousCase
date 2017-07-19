@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,8 +60,8 @@ public class CaseInfoController {
      * @param caseNumber 案号
      * @return
      */
-    @RequestMapping(value = "/obtainByNum", method = RequestMethod.GET)
-    public ResponseEntity<CaseVO> getCaseByCaseNumber(@RequestParam("caseNumber") String caseNumber) {
+    @RequestMapping(value = "/obtainByNum/{caseNumber}", method = RequestMethod.GET)
+    public ResponseEntity<CaseVO> getCaseByCaseNumber(@PathVariable("caseNumber") String caseNumber) {
         CaseVO caseVO = caseService.getCaseInfoByCaseNumber(caseNumber);
         if (caseVO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -77,8 +78,8 @@ public class CaseInfoController {
      * @param id 文书的id
      * @return
      */
-    @RequestMapping(value = "/obtainById", method = RequestMethod.GET)
-    public ResponseEntity<CaseVO> getCaseByCaseId(@RequestParam("id") String id) {
+    @RequestMapping(value = "/obtainById/{id}", method = RequestMethod.GET)
+    public ResponseEntity<CaseVO> getCaseByCaseId(@PathVariable("id") String id) {
         CaseVO caseVO = caseService.getCaseInfoById(id);
         if (caseVO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
