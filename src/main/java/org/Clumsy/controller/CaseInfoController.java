@@ -29,17 +29,17 @@ public class CaseInfoController {
     /**
      * 上传xml文件
      * @param caseFile
-     * @param username
+     * @param userId
      * @return
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseEntity<String> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("username") String username) {
+    public ResponseEntity<String> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("id") String userId) {
         if (!caseFile.isEmpty()) {
             // 文书未处理过，状态码是201
             if (!caseService.isCreated(caseFile)) {
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setContentType(MediaType.TEXT_PLAIN);
-                return new ResponseEntity<>(caseService.createCase(caseFile), httpHeaders, HttpStatus.CREATED);
+                return new ResponseEntity<>(caseService.createCase(caseFile, userId), httpHeaders, HttpStatus.CREATED);
             }
             // 文书已经处理过，状态码是200
             else {
@@ -54,24 +54,6 @@ public class CaseInfoController {
         }
     }
 
-
-    /**
-     * 获得对应的案号的案件文书
-     * @param caseNumber 案号
-     * @return
-     */
-    @RequestMapping(value = "/obtainByNum/{caseNumber}", method = RequestMethod.GET)
-    public ResponseEntity<CaseVO> getCaseByCaseNumber(@PathVariable("caseNumber") String caseNumber) {
-        CaseVO caseVO = caseService.getCaseInfoByCaseNumber(caseNumber);
-        if (caseVO == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
-            return new ResponseEntity<>(caseVO, httpHeaders, HttpStatus.OK);
-        }
-    }
 
     /**
      * 获得对应的ID的案件文书

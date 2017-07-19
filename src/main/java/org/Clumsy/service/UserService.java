@@ -17,7 +17,7 @@ public interface UserService {
      * @param password
      * @return
      */
-    Boolean login(String username, String password);
+    String login(String username, String password);
 
 
     /**
@@ -26,7 +26,7 @@ public interface UserService {
      * @param password
      * @return
      */
-    Boolean signUp(String username, String password);
+    String signUp(String username, String password);
 
 
     /**
@@ -40,10 +40,10 @@ public interface UserService {
 
     /**
      * 获得用户上传的所有文书
-     * @param username
+     * @param userId
      * @return
      */
-    List<CaseNumberVO> getUserCases(String username);
+    List<CaseNumberVO> getUserCases(String userId);
 
 
     /**

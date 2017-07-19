@@ -23,15 +23,21 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Boolean login(String username, String password) {
-        return userRepository.findAllByUsernameAndPassword(username, password).size() > 0;
+    public String login(String username, String password) {
+        List<User> users = userRepository.findAllByUsernameAndPassword(username, password);
+        if (users.size() > 0) {
+            return users.get(0).getId();
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
-    public Boolean signUp(String username, String password) {
+    public String signUp(String username, String password) {
         // 如果此用户名已经存在
         if (userRepository.findByUsername(username).size() > 0) {
-            return false;
+            return null;
         }
         // 此用户名可用
         else {
@@ -39,8 +45,8 @@ public class UserServiceImpl implements UserService {
             user.setUsername(username);
             user.setPassword(password);
             user.setCases(new ArrayList<>());
-            userRepository.save(user);
-            return true;
+            User user1 = userRepository.save(user);
+            return user1.getId();
         }
     }
 
@@ -50,8 +56,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<CaseNumberVO> getUserCases(String username) {
-        User user = userRepository.getUserCases(username);
+    public List<CaseNumberVO> getUserCases(String userId) {
+        User user = userRepository.getUserCases(userId);
         return user.getCases().stream().map(CaseNumberVO::new).collect(Collectors.toList());
     }
 

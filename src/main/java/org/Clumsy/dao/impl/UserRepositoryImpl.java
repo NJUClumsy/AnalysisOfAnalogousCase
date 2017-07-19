@@ -18,16 +18,16 @@ public class UserRepositoryImpl implements UserOperations {
     private MongoOperations mongo;
 
     @Override
-    public User getUserCases(String username) {
-        Criteria where = Criteria.where("username").is(username);
+    public User getUserCases(String userId) {
+        Criteria where = Criteria.where("id").is(userId);
         Query query = new Query(where);
         query.fields().include("cases");
         return mongo.findOne(query, User.class);
     }
 
     @Override
-    public void saveUserCases(String username, String caseId, String caseNumber) {
-        Criteria where = Criteria.where("username").is(username);
+    public void saveUserCases(String userId, String caseId, String caseNumber) {
+        Criteria where = Criteria.where("id").is(userId);
         Query query = new Query(where);
         CaseNumber c = new CaseNumber();
         c.setCaseId(caseId);

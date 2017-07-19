@@ -60,7 +60,7 @@ public interface CaseService {
      * @param caseFile
      * @return
      */
-    String createCase(MultipartFile caseFile);
+    String createCase(MultipartFile caseFile, String userId);
 
     /**
      * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果

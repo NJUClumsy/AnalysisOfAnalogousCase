@@ -1,11 +1,11 @@
 package org.Clumsy.service.impl;
 
 import org.Clumsy.dao.CaseRepository;
+import org.Clumsy.dao.UserRepository;
 import org.Clumsy.entity.Case;
 import org.Clumsy.service.CaseService;
 import org.Clumsy.util.BytesToFile;
 import org.Clumsy.util.ReadXMLHelper;
-import org.Clumsy.util.VOEntityConvertHelper;
 import org.Clumsy.vo.CaseVO;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,8 @@ public class CaseServiceImpl implements CaseService {
 
     @Autowired
     private CaseRepository caseRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Case> getAllCases() {
@@ -90,14 +92,14 @@ public class CaseServiceImpl implements CaseService {
      * @return String
      */
     @Override
-    public String createCase(MultipartFile caseFile) {
+    public String createCase(MultipartFile caseFile, String userId) {
         Case thisCase = initialize(caseFile);
 
-        if(!isCreated(caseFile)){
-            caseRepository.save(thisCase);
-        }
+        caseRepository.save(thisCase);
+
         String caseNumber = thisCase.getCaseNumber();
         Case found = caseRepository.findIdByCaseNumber(caseNumber);
+        userRepository.saveUserCases(userId, found.getId(), caseNumber);
         return found.getId();
     }
 
