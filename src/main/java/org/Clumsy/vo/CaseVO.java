@@ -55,7 +55,8 @@ public class CaseVO {
         this.defendant = c.getDefendant();
         this.organ = c.getOrgan();
         this.cause = c.getCause();
-        this.law = c.getLaw().stream().map(LawVO::new).collect(Collectors.toList());
+        if (c.getLaw() != null)
+            this.law = c.getLaw().stream().map(LawVO::new).collect(Collectors.toList());
         this.judgement1 = c.getJudgment1();
         this.judgement2 = c.getJudgement2() == null ? null : new JudgementVO(c.getJudgement2());
         this.judge = c.getJudge();

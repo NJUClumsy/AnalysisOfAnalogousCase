@@ -3,10 +3,11 @@ import jieba
 import numpy as np
 import pymongo
 import sys
+from bson import ObjectId
 
 
 def connect_mongodb():
-    servers = "mongodb://localhost:27017"
+    servers = "mongodb://172.26.31.191:27017"
     conn = pymongo.MongoClient(servers)
     db = conn.test
     return db
@@ -38,9 +39,10 @@ def del_stop_words(words, stop_words_set):
     return new_words
 
 
-def get_all_vector(stop_words_set, cause):
+def get_all_vector(stop_words_set):
     db = connect_mongodb()
     collection = db.case
+    cause = collection.find_one({"_id": ObjectId("596b2dbc39e14e6ddb1bb09b")}, {"案由": 1})["案由"]
     all_document = collection.find({"案由": cause}, {"全文": 1}).limit(150)
     names = []
     posts = []
@@ -132,10 +134,10 @@ def kMeans(dataSet, k, distMeas=gen_sim, createCent=randCent):
     return centroids, clusterAssment
 
 
-def getRecommendedCases(Id, cause):
-    name, tfidf = get_all_vector(stop_words('src/main/resources/python/停用词表.txt'), cause)
+def getRecommendedCases(Id):
+    name, tfidf = get_all_vector(stop_words('/Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'))
 
-    num_clusters = 5
+    num_clusters = int(len(name) / 5)
 
     C1, C2 = kMeans(tfidf, num_clusters)
     labels = [int(x[0]) for x in np.array(C2)]
@@ -154,7 +156,7 @@ def getRecommendedCases(Id, cause):
     return similarCases
 
 
-similar_cases = getRecommendedCases(sys.argv[1], sys.argv[2])
+similar_cases = getRecommendedCases(sys.argv[1])
 result = ','.join(similar_cases)
 print(result)
 

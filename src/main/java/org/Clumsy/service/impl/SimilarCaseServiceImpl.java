@@ -35,10 +35,20 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
         CaseVO caseVO = caseService.getCaseInfoById(id);
         String cause = caseVO.cause;
+        System.out.println(id);
+        System.out.println(cause);
 
         try {
-            Process process = Runtime.getRuntime().exec("python3 src/main/resources/python/Recommend.py " + id + " " + cause);
+//            String cp = "/python/Recommend.py";
+//            Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id + " " + cause);
+            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
+
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String errLine;
+            while ((errLine = err.readLine()) != null) {
+                System.out.println(errLine);
+            }
             String line= in.readLine();
             in.close();
             process.waitFor();
