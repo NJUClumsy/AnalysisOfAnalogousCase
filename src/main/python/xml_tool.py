@@ -179,6 +179,20 @@ def analyse_time(father_node):
     return dict
 
 
+#处理刑事案件中的指控罪名
+def analyse_charge(father_node):
+    dict={}
+    father_node=father_node.getElementsByTagName('ZKJL')
+    if len(father_node) == 0:
+        return {}
+    ZKZM = father_node[0].getElementsByTagName('ZKZM')
+    if len(ZKZM) == 0:
+        return {}
+    dict['案由'] = ZKZM[0].getAttribute("value")
+    return dict
+
+
+
 def xml_to_bson(filepath):
     DOMTree = xml.dom.minidom.parse(filepath)
 
@@ -209,6 +223,8 @@ def xml_to_bson(filepath):
                     bson_dict['被告辩称段'] = node.getAttribute("value")
                 if node.nodeName=='BSSLD':
                     bson_dict['查明事实段'] = node.getAttribute("value")
+                if node.nodeName == 'ZKXX':
+                    bson_dict = dict(bson_dict, **analyse_charge(node))
 
         # 处理原被告
         if directory.nodeName == 'SSCYRQJ':
