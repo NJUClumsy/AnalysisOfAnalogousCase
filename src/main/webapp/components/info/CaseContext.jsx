@@ -11,8 +11,6 @@ function generateContext(content, n) {
 var CaseContext = function(props) {
     var info = props.caseInfo;
 
-    console.log(info)
-
     return <div className="case-context" id="case-context">
         <div className="general-info-title">
             原文
