@@ -2,7 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 import $ from 'jquery';
 
-var server_url = 'http://172.28.179.244:8070/'
+var server_url = 'http://172.28.188.222:8080/'
 
 
 var ListStore = assign({}, EventEmitter.prototype, {

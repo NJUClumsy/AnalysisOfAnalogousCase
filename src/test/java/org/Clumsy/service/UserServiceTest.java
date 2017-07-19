@@ -38,10 +38,10 @@ public class UserServiceTest {
 //        userService.saveCase("slowtime", "（2008）丽民初字第3531号");
 //    }
 
-
-    @Test
-    public void tesGetUserCases() throws Exception {
-        System.out.println(userService.getUserCases("slowtime"));
-    }
+//
+//    @Test
+//    public void tesGetUserCases() throws Exception {
+//        System.out.println(userService.getUserCases("slowtime"));
+//    }
 
 }

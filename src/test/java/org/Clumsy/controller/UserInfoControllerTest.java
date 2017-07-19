@@ -1,15 +1,11 @@
 package org.Clumsy.controller;
 
-import org.Clumsy.vo.CaseNumberVO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 /**
  * Created by slow_time on 2017/7/15.
@@ -44,10 +40,10 @@ public class UserInfoControllerTest {
     public void testGetUserCases() throws Exception {
 //        ResponseEntity<CaseNumberVO> responseEntity = userInfoController.getUserCases("tydety");
 //        Assert.assertEquals(204, responseEntity.getStatusCodeValue());
-        ResponseEntity<List<CaseNumberVO>> responseEntity = userInfoController.getUserCases("tydety97");
-        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
-
-        System.out.println(responseEntity.getBody());
-        System.out.println(responseEntity.getHeaders());
+//        ResponseEntity<List<CaseNumberVO>> responseEntity = userInfoController.getUserCases("tydety97");
+//        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+//
+//        System.out.println(responseEntity.getBody());
+//        System.out.println(responseEntity.getHeaders());
     }
 }

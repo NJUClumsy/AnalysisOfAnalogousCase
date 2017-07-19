@@ -18,6 +18,6 @@ public class SimilarCasesServiceTest {
 
     @Test
     public void testRecommendCases() throws Exception{
-        System.out.println(similarCaseService.recommendCases("596b2dbc39e14e6ddb1bb0b2"));
+//        System.out.println(similarCaseService.recommendCases("596b2dbc39e14e6ddb1bb0b2"));
     }
 }
