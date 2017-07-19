@@ -22,4 +22,5 @@ public interface CaseOperations {
      * @return
      */
     Case findIdByCaseNumber(String caseNumber);
+
 }
