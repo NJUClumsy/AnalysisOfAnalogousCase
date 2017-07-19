@@ -29,15 +29,15 @@ public class UserInfoControllerTest {
         Assert.assertEquals(401, userInfoController.login("slowtime", "12345").getStatusCodeValue());
     }
 
-    @Test
-    public void testSignUp() throws Exception {
-//        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety97", "12344533");
-//        Assert.assertEquals(409, responseEntity.getStatusCodeValue());
-//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
-        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety", "12344533");
-        Assert.assertEquals(201, responseEntity.getStatusCodeValue());
-//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
-    }
+//    @Test
+//    public void testSignUp() throws Exception {
+////        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety97", "12344533");
+////        Assert.assertEquals(409, responseEntity.getStatusCodeValue());
+////        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+//        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety", "12344533");
+//        Assert.assertEquals(201, responseEntity.getStatusCodeValue());
+////        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+//    }
 
 
     @Test

@@ -1,1 +1,6 @@
-org/Clumsy/controller/OrderInfoControllerTest.class
+org/Clumsy/util/VOEntityConvertHelperTest.class
+org/Clumsy/service/CaseServiceTest.class
+org/Clumsy/util/ReadXMLHelperTest.class
+org/Clumsy/controller/UserInfoControllerTest.class
+org/Clumsy/util/BytesToFileTest.class
+org/Clumsy/service/UserServiceTest.class

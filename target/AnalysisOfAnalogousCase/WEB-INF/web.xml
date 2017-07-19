@@ -6,7 +6,7 @@
          version="3.0">
     <!--welcome pages-->
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
     <!--配置ContextLoaderListener，加载Spring配置文件-->
