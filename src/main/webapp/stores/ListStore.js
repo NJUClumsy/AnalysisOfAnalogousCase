@@ -61,24 +61,25 @@ var ListStore = assign({}, EventEmitter.prototype, {
 
     userlLogin: function (username, password) {
 
-        // $.ajax({
-        //     async: false,
-        //     contentType: 'application/json; charset=utf-8',
-        //     type : 'POST',
-        //     url : server_url + 'user/login',
-        //     data: JSON.stringify({
-        //         name: username,
-        //         password: password
-        //     }),
-        //     datatype : 'json',
-        //     success : function(data) {
-        //         alert("操作成功");
-        //     }.bind(this),
-        //
-        //     error: function(jqXHR, textStatus, errorThrown) {
-        //         alert(jqXHR.status + ' ' + jqXHR.responseText);
-        //     }
-        // });
+        $.ajax({
+            async: false,
+            contentType: 'application/json; charset=utf-8',
+            type : 'POST',
+            url : server_url + 'user/login',
+            data: JSON.stringify({
+                name: username,
+                password: password
+            }),
+            datatype : 'json',
+            success : function(data) {
+                alert("操作成功");
+            }.bind(this),
+
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status + ' ' + jqXHR.responseText);
+            }
+        });
+
     },
 
     userSignup: function () {
