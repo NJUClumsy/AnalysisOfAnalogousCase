@@ -2,6 +2,9 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 import $ from 'jquery';
 
+var server_url = 'http://172.28.179.244:8070/'
+
+
 var ListStore = assign({}, EventEmitter.prototype, {
     items: [],
     isLogin: true,
@@ -57,24 +60,25 @@ var ListStore = assign({}, EventEmitter.prototype, {
     },
 
     userlLogin: function (username, password) {
-        $.ajax({
-            async: false,
-            contentType: 'application/json; charset=utf-8',
-            type : 'POST',
-            url : 'http://172.25.185.16:8070/user/login',
-            data: JSON.stringify({
-                name: username,
-                password: password
-            }),
-            datatype : 'json',
-            success : function(data) {
-                alert("操作成功");
-            }.bind(this),
 
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status + ' ' + jqXHR.responseText);
-            }
-        });
+        // $.ajax({
+        //     async: false,
+        //     contentType: 'application/json; charset=utf-8',
+        //     type : 'POST',
+        //     url : server_url + 'user/login',
+        //     data: JSON.stringify({
+        //         name: username,
+        //         password: password
+        //     }),
+        //     datatype : 'json',
+        //     success : function(data) {
+        //         alert("操作成功");
+        //     }.bind(this),
+        //
+        //     error: function(jqXHR, textStatus, errorThrown) {
+        //         alert(jqXHR.status + ' ' + jqXHR.responseText);
+        //     }
+        // });
     },
 
     userSignup: function () {

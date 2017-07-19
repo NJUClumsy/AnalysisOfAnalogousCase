@@ -4,7 +4,7 @@ var RecCase = require('./RecCaseController')
 var CaseContext = require('./CaseContextController')
 import { Link} from 'react-router';
 import { BackTop } from 'antd';
-import $ from 'jquery'
+import $ from 'jquery';
 
 function scrollTo(ele, speed){
     if(!speed) speed = 500;
