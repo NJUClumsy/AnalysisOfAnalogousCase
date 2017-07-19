@@ -1,6 +1,8 @@
+# -*- coding: UTF-8 -*-
 import jieba
 import numpy as np
 import pymongo
+import sys
 
 
 def connect_mongodb():
@@ -131,7 +133,7 @@ def kMeans(dataSet, k, distMeas=gen_sim, createCent=randCent):
 
 
 def getRecommendedCases(Id, cause):
-    name, tfidf = get_all_vector(stop_words('停用词表.txt'), cause)
+    name, tfidf = get_all_vector(stop_words('src/main/resources/python/停用词表.txt'), cause)
 
     num_clusters = 5
 
@@ -150,3 +152,9 @@ def getRecommendedCases(Id, cause):
     if len(similarCases) > 5:
         similarCases = similarCases[0:5]
     return similarCases
+
+
+similar_cases = getRecommendedCases(sys.argv[1], sys.argv[2])
+result = ','.join(similar_cases)
+print(result)
+
