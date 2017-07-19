@@ -40,6 +40,7 @@ public class UserInfoController {
         if (userId != null) {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+            httpHeaders.set("Access-Control-Allow-Origin", "*");
             return new ResponseEntity<>(userId, httpHeaders, HttpStatus.OK);
         }
         // 登录失败，返回状态码401
@@ -61,12 +62,14 @@ public class UserInfoController {
         if (userId != null) {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+            httpHeaders.set("Access-Control-Allow-Origin", "*");
             return new ResponseEntity<>(userId, httpHeaders, HttpStatus.CREATED);
         }
         // 注册失败，返回状态码409
         else {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+            httpHeaders.set("Access-Control-Allow-Origin", "*");
             return new ResponseEntity<>("用户名：" + username + "已被占用", httpHeaders, HttpStatus.CONFLICT);
         }
     }
@@ -85,6 +88,7 @@ public class UserInfoController {
             if (caseNumberVOS.size() > 0) {
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+                httpHeaders.set("Access-Control-Allow-Origin", "*");
                 return new ResponseEntity<>(caseNumberVOS, httpHeaders, HttpStatus.OK);
             }
             else {

@@ -37,9 +37,9 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
         String cause = caseVO.cause;
 
         PythonInterpreter interpreter = new PythonInterpreter();
-        interpreter.execfile("src/main/python/getSimilarID.py");//需要修改
+        interpreter.execfile("src/main/resources/python/Recommended.py");//需要修改
 
-        PyFunction pyFunction = interpreter.get("getID", PyFunction.class); // 需要修改第一个参数为函数名字
+        PyFunction pyFunction = interpreter.get("getRecommendedCases", PyFunction.class); // 需要修改第一个参数为函数名字
         PyObject pyObject = pyFunction.__call__(new PyString(id),new PyString(cause));
 
         System.out.println(pyObject);

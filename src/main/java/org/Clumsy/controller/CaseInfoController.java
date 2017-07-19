@@ -39,12 +39,14 @@ public class CaseInfoController {
             if (!caseService.isCreated(caseFile)) {
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+                httpHeaders.set("Access-Control-Allow-Origin", "*");
                 return new ResponseEntity<>(caseService.createCase(caseFile, userId), httpHeaders, HttpStatus.CREATED);
             }
             // 文书已经处理过，状态码是200
             else {
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+                httpHeaders.set("Access-Control-Allow-Origin", "*");
                 return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
             }
         }
@@ -69,6 +71,7 @@ public class CaseInfoController {
         else {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+            httpHeaders.set("Access-Control-Allow-Origin", "*");
             return new ResponseEntity<>(caseVO, httpHeaders, HttpStatus.OK);
         }
     }
