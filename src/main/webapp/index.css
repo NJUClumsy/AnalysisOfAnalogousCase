@@ -204,10 +204,7 @@ body {
     padding: 10px 40px;
     font-size: 15px;
     font-weight: lighter;
-}
-
-.login-form button:focus{
-    outline: -webkit-focus-ring-color auto 0px;
+    border-radius: 0;
 }
 
 .form-action {

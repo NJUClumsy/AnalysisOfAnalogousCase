@@ -50,6 +50,7 @@ var LoginFormController = React.createClass({
         var password = document.getElementById('password').value;
         console.log(username)
         console.log(password)
+        ListStore.userlLogin(username, password);
         // browserHistory.push('/#/upload');
         // window.location.reload();
     },
