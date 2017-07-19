@@ -19,7 +19,7 @@
   "defendant": [
     "崔素元"
   ],
-  "organ": [],
+  "organ": null,
   "cause": "分家析产纠纷",
   "law": [
     {
@@ -36,12 +36,12 @@
     }
   ],
   "judgement1": [
-    "驳回原告李中行的诉讼请求。", "驳回原告李中行的诉讼请求。"
+
   ],
   "judgement2": {
-    "main_charge": "",
-    "single_penalty": "",
-    "exec_penalty": ""
+    "main_charge": "444",
+    "single_penalty": "444",
+    "exec_penalty": "444"
   },
   "judge": [
     "单凤友", "单凤友", "单凤友"

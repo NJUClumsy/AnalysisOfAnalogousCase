@@ -1,6 +1,7 @@
 var React = require('react');
 var Homepage = require('./Homepage');
 import { browserHistory } from 'react-router';
+var ListStore = require('../../stores/ListStore');
 
 var LoginFormController = React.createClass({
     contextTypes: {
@@ -8,7 +9,10 @@ var LoginFormController = React.createClass({
     },
 
     jumpToInfo: function () {
-        browserHistory.push('/#/case');
+        browserHistory.push({
+            pathname: '/#/case/:id',
+            state: { id: '596b2dbc39e14e6ddb1bb09b' }
+        });
         window.location.reload();
     },
 

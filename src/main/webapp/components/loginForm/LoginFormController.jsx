@@ -2,8 +2,8 @@ var React = require('react');
 var LoginForm = require('./LoginForm');
 var ListStore = require('../../stores/ListStore');
 var ButtonActions = require('../../actions/ButtonActions');
-import { browserHistory } from 'react-router';
 var ListStore = require('../../stores/ListStore');
+import { message, Alert } from 'antd';
 
 var LoginFormController = React.createClass({
     contextTypes: {
@@ -34,25 +34,20 @@ var LoginFormController = React.createClass({
         });
     },
 
-    handleSubmit: function (event){
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    },
-
     jumpToUpload: function () {
-        console.log(111)
-        // ListStore.userlLogin('666', '666666');
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
-        console.log(username)
-        console.log(password)
-        ListStore.userlLogin(username, password);
-        // browserHistory.push('/#/upload');
-        // window.location.reload();
+
+        if( this.state.isLogin )
+            ListStore.userlLogin(username, password);
+        else {
+            var pass2 = document.getElementById('password2').value;
+            if (password === pass2)
+                ListStore.userSignup(username, password);
+            else {
+                message.info('注册失败，两次输入的密码不一致');
+            }
+        }
     },
 
     render: function() {

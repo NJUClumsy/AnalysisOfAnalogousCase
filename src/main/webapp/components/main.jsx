@@ -1,5 +1,6 @@
 import React from 'react'
 import HeaderController from './header/HeaderController';
+import { browserHistory } from 'react-router';
 
 export default class Main extends React.Component{
 

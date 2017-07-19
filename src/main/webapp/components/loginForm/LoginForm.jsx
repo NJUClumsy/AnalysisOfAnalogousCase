@@ -1,4 +1,5 @@
 var React = require('react');
+import { message , Alert} from 'antd';
 
 var LoginForm = function(props) {
     // import { DatePicker } from 'antd';
@@ -25,6 +26,7 @@ var LoginForm = function(props) {
         <div className="form-row">
             <span className="form-username from-text">密码</span>
             <input id="password" type="password"/>
+            {/*<Alert class="alert-message" message="Error Text" type="error" />*/}
         </div>
         {passHtml}
         <div className="form-action">

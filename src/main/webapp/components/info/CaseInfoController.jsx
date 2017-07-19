@@ -5,19 +5,20 @@ var ListStore = require('../../stores/ListStore');
 var CaseInfoController = React.createClass({
     getInitialState: function () {
         return {
-            caseInfo: ListStore.getCaseInfo()
+            caseInfo: ListStore.getCaseInfo(this.props.params.id)
         };
     },
 
-    _onChange: function () {
-        this.setState({
-            items: ListStore.getCaseInfo()
-        });
-    },
+    // _onChange: function () {
+    //     this.setState({
+    //         items: ListStore.getCaseInfo()
+    //     });
+    // },
 
     render: function() {
         return <CaseInfo
             caseInfo={this.state.caseInfo}
+            caseId={this.props.params.id}
         />;
     }
 

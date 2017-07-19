@@ -26,6 +26,7 @@ function subAnchorTag(content, n) {
 
 var CaseInfo = function(props) {
     var info = props.caseInfo;
+    var caseId = props.caseId;
 
     return <div className="main-page">
         <div className="anchor">
@@ -50,8 +51,8 @@ var CaseInfo = function(props) {
             <div className="info-back-link">
                 <Link to="/upload">返回文件上传</Link>
             </div>
-            <GeneralInfo/>
-            <CaseContext/>
+            <GeneralInfo caseId={caseId}/>
+            <CaseContext caseId={caseId}/>
             <RecCase/>
         </div>
         <div>
