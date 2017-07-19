@@ -28,8 +28,8 @@ var UploadFile = function(props) {
             <p className="ant-upload-drag-icon">
                 <Icon type="inbox" />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+            <p className="ant-upload-text">法案文件上传</p>
+            <p className="ant-upload-hint">点击或拖拽文件至上传框内，支持标准格式的XML法案文件</p>
         </Dragger>
     </div>
         ;

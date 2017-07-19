@@ -5,7 +5,7 @@ var ListStore = require('../../stores/ListStore');
 var GeneralInfoController = React.createClass({
     getInitialState: function () {
         return {
-            caseInfo: ListStore.getInfo()
+            caseInfo: ListStore.getCaseInfo()
         };
     },
 

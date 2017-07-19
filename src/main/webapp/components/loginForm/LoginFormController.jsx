@@ -3,6 +3,7 @@ var LoginForm = require('./LoginForm');
 var ListStore = require('../../stores/ListStore');
 var ButtonActions = require('../../actions/ButtonActions');
 import { browserHistory } from 'react-router';
+var ListStore = require('../../stores/ListStore');
 
 var LoginFormController = React.createClass({
     contextTypes: {
@@ -34,8 +35,10 @@ var LoginFormController = React.createClass({
     },
 
     jumpToUpload: function () {
-        browserHistory.push('/#/upload');
-        window.location.reload();
+        console.log(111)
+        ListStore.userlLogin('666', '666666');
+        // browserHistory.push('/#/upload');
+        // window.location.reload();
     },
 
     render: function() {

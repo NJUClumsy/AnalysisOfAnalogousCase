@@ -5,24 +5,15 @@ var ListStore = require('../../stores/ListStore');
 var CaseInfoController = React.createClass({
     getInitialState: function () {
         return {
-            caseInfo: ListStore.getInfo()
+            caseInfo: ListStore.getCaseInfo()
         };
     },
 
     _onChange: function () {
         this.setState({
-            items: ListStore.getInfo()
+            items: ListStore.getCaseInfo()
         });
     },
-
-    // anchorJump: function () {
-    //     console.log(11)
-    //     var anchorName = '#rec-case'
-    //     if (anchorName) {
-    //         var anchorElement = document.getElementById(anchorName);
-    //         if(anchorElement) { anchorElement.scrollIntoView(); }
-    //     }
-    // },
 
     render: function() {
         return <CaseInfo

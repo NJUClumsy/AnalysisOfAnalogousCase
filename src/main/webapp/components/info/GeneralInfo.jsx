@@ -30,7 +30,6 @@ function getCiteString(array) {
     if(array === [])
         return '暂无信息';
     return array.map(function (item, i, array) {
-        console.log(array.length)
         if(i === array.length - 1)
             return '第' + item + '条' ;
         return '第' + item + '条' + '、';
