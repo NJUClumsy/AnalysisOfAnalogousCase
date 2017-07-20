@@ -7,7 +7,7 @@ from bson import ObjectId
 
 
 def connect_mongodb():
-    servers = "mongodb://127.0.0.1:27017"
+    servers = "mongodb://121.196.244.53:27017"
     conn = pymongo.MongoClient(servers)
     db = conn.test
     return db
@@ -39,10 +39,10 @@ def del_stop_words(words, stop_words_set):
     return new_words
 
 
-def get_all_vector(stop_words_set):
+def get_all_vector(stop_words_set, id):
     db = connect_mongodb()
     collection = db.case
-    cause = collection.find_one({"_id": ObjectId("596b2dbc39e14e6ddb1bb09b")}, {"案由": 1})["案由"]
+    cause = collection.find_one({"_id": ObjectId(id)}, {"案由": 1})["案由"]
     all_document = collection.find({"案由": cause}, {"全文": 1}).limit(150)
     names = []
     posts = []
@@ -135,7 +135,7 @@ def kMeans(dataSet, k, distMeas=gen_sim, createCent=randCent):
 
 
 def getRecommendedCases(Id):
-    name, tfidf = get_all_vector(stop_words('/Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'))
+    name, tfidf = get_all_vector(stop_words('/Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'), Id)
 
     num_clusters = int(len(name) / 5)
 

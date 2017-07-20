@@ -30,6 +30,7 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
 
         Case cas = caseRepository.findOne(id);
+        System.out.println(id);
         String cause = cas.getCause();
 
         try {
@@ -44,13 +45,18 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
                 System.out.println(errLine);
             }
             String line= in.readLine();
+            if (line == null)
+                return null;
+            System.out.println("line = " + line);
             in.close();
             process.waitFor();
             String[] strList = line.split(",");
+            System.out.println(strList.length);
             if (strList.length == 1) {
                 return list;
             }
             for (String o : strList){
+                System.out.println("o = " + o);
                 Case instantCase = caseRepository.findOne(o);
                 CaseNumberVO ins = new CaseNumberVO(instantCase.getId(),instantCase.getCaseNumber());
                 list.add(ins);
