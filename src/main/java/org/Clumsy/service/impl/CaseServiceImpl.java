@@ -73,7 +73,7 @@ public class CaseServiceImpl implements CaseService {
      * @return boolean
      */
     @Override
-    public Boolean isCreated(MultipartFile caseFile) {
+    public Boolean isCreated(MultipartFile caseFile) throws Exception{
         boolean isCreated = false;
 
         Case thisCase = initialize(caseFile);
@@ -94,7 +94,7 @@ public class CaseServiceImpl implements CaseService {
      * @return String
      */
     @Override
-    public String createCase(MultipartFile caseFile, String userId) {
+    public String createCase(MultipartFile caseFile, String userId) throws Exception{
         Case thisCase = initialize(caseFile);
 
         caseRepository.save(thisCase);
@@ -111,7 +111,7 @@ public class CaseServiceImpl implements CaseService {
      * @return String
      */
     @Override
-    public String constructCase(MultipartFile caseFile) {
+    public String constructCase(MultipartFile caseFile) throws Exception{
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
         Case found = caseRepository.findIdByCaseNumber(caseNumber);
@@ -123,7 +123,7 @@ public class CaseServiceImpl implements CaseService {
      * @param caseFile
      * @return Case
      */
-    public Case initialize(MultipartFile caseFile){
+    public Case initialize(MultipartFile caseFile) throws Exception {
         //处理文件
         Document document = BytesToFile.multipartFileToDocument(caseFile);
         Case thisCase = ReadXMLHelper.getCase(document);
