@@ -7,7 +7,7 @@ from bson import ObjectId
 
 
 def connect_mongodb():
-    servers = "mongodb://172.26.31.191:27017"
+    servers = "mongodb://172.28.188.222:27017"
     conn = pymongo.MongoClient(servers)
     db = conn.test
     return db
@@ -135,7 +135,7 @@ def kMeans(dataSet, k, distMeas=gen_sim, createCent=randCent):
 
 
 def getRecommendedCases(Id):
-    name, tfidf = get_all_vector(stop_words('/Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'))
+    name, tfidf = get_all_vector(stop_words('/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'))
 
     num_clusters = int(len(name) / 5)
 

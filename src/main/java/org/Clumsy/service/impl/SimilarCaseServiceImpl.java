@@ -39,9 +39,9 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
         System.out.println(cause);
 
         try {
-//            String cp = "/python/Recommend.py";
-//            Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id + " " + cause);
-            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
+            String cp = "/python/Recommend.py";
+            Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id);
+//            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
