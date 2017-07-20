@@ -1,15 +1,22 @@
 package org.Clumsy.util;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.util.*;
-import org.apache.log4j.Logger;
 import org.Clumsy.entity.Case;
 import org.Clumsy.entity.Context;
 import org.Clumsy.entity.Judgement;
 import org.Clumsy.entity.Law;
-import org.dom4j.*;
+import org.apache.log4j.Logger;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+
+import java.io.File;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lucifer on 17/7/15.
@@ -75,7 +82,7 @@ public class ReadXMLHelper {
             document = sax.read(xmlFile);
             Element root=document.getRootElement();
             getNodes(root);
-            System.out.println(allKeyMap+">>>>???>>>>>");
+//            System.out.println(allKeyMap+">>>>???>>>>>");
         } catch (DocumentException e) {
             logger.info("context"+e);
         }catch(NullPointerException e){
@@ -263,8 +270,8 @@ public class ReadXMLHelper {
                 }
                 judgment1.add(defineName(entry.getValue()));
             }else if(lawName.contains(entry.getKey())){
-                System.out.println(entry.getKey()+"key");
-                System.out.println(entry.getValue()+"value");
+//                System.out.println(entry.getKey()+"key");
+//                System.out.println(entry.getValue()+"value");
                 if(!law.containsKey(entry.getKey())){
                     law.put(entry.getKey(),new ArrayList<>());
                 }
