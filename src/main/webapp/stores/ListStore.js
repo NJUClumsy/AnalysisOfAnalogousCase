@@ -231,6 +231,9 @@ var ListStore = assign({}, EventEmitter.prototype, {
                     case 200:
                         this.recCase = data;
                         break;
+                    case 204:
+                        this.recCase = [];
+                        break;
                     default:
                         message.info('未知错误，读取类案推荐失败');
                         break;
