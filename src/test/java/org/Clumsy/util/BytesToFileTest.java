@@ -18,8 +18,8 @@ public class BytesToFileTest {
 
     @Test
     public void testGetBytes() throws Exception{
-        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";
-        System.out.println(BytesToFile.getBytes(url));
+//        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";
+//        System.out.println(BytesToFile.getBytes(url));
     }
 
 }
