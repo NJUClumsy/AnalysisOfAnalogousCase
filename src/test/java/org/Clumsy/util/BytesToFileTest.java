@@ -18,7 +18,7 @@ public class BytesToFileTest {
 
     @Test
     public void testGetBytes() throws Exception{
-        String url = "/Users/chengxuelie/Documents/GitHub/AnalysisOfAnalogousCase/src/main/java/org/Clumsy/util/g.xml";
+        String url = "src/test/resources/g.xml";
         System.out.println(BytesToFile.getBytes(url));
     }
 

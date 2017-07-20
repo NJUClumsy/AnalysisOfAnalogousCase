@@ -2,10 +2,8 @@ package org.Clumsy.service.impl;
 
 import org.Clumsy.dao.CaseRepository;
 import org.Clumsy.entity.Case;
-import org.Clumsy.service.CaseService;
 import org.Clumsy.service.SimilarCaseService;
 import org.Clumsy.vo.CaseNumberVO;
-import org.Clumsy.vo.CaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +23,15 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
     @Autowired
     CaseRepository caseRepository;
-    @Autowired
-    CaseService caseService;
 
     @Override
     public List<CaseNumberVO> recommendCases(String id) {
         List<CaseNumberVO> list = new ArrayList<CaseNumberVO>();
 
 
-        CaseVO caseVO = caseService.getCaseInfoById(id);
-        String cause = caseVO.cause;
+        Case cas = caseRepository.findOne(id);
         System.out.println(id);
-        System.out.println(cause);
+        String cause = cas.getCause();
 
         try {
             String cp = "/python/Recommend.py";
@@ -50,11 +45,19 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
                 System.out.println(errLine);
             }
             String line= in.readLine();
+            if (line == null)
+                return null;
+            System.out.println("line = " + line);
             in.close();
             process.waitFor();
             String[] strList = line.split(",");
+            System.out.println(strList.length);
+            if (strList.length == 1) {
+                return list;
+            }
             for (String o : strList){
-                Case instantCase = caseRepository.findById(o);
+                System.out.println("o = " + o);
+                Case instantCase = caseRepository.findOne(o);
                 CaseNumberVO ins = new CaseNumberVO(instantCase.getId(),instantCase.getCaseNumber());
                 list.add(ins);
             }

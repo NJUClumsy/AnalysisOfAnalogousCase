@@ -17,7 +17,8 @@
 
     <mongo:repositories base-package="org.Clumsy.dao"/>
 
-    <mongo:mongo host="172.28.188.222">
+    <mongo:mongo host="121.196.244.53">
+
         <mongo:options connections-per-host="8"
                        threads-allowed-to-block-for-connection-multiplier="4"
                        connect-timeout="10000"

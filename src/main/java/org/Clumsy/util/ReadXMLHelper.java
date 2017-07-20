@@ -1,22 +1,25 @@
 package org.Clumsy.util;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.util.*;
-import org.apache.log4j.Logger;
 import org.Clumsy.entity.Case;
 import org.Clumsy.entity.Context;
 import org.Clumsy.entity.Judgement;
 import org.Clumsy.entity.Law;
-import org.dom4j.*;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+
+import java.io.File;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lucifer on 17/7/15.
  */
 public class ReadXMLHelper {
-
-    private static Logger logger=Logger.getLogger(BytesToFile.class);
 
     private static String name="";
     private static String flftmc="";
@@ -43,14 +46,9 @@ public class ReadXMLHelper {
      */
     public static Case getCase( Document document){
         initialize();
-        try{
-            Element root=document.getRootElement();
-            getNodes(root);
-            return ReadXMLHelper.getEditedCase();
-        }catch(NullPointerException e){
-            logger.info("context"+e);
-        }
-        return null;
+        Element root=document.getRootElement();
+        getNodes(root);
+        return ReadXMLHelper.getEditedCase();
     }
 
     /**
@@ -66,21 +64,14 @@ public class ReadXMLHelper {
      *根据路径初始化键值对
      * @param url
      */
-    public static void initializeAllKeyMap(String url){
+    public static void initializeAllKeyMap(String url) throws Exception {
         initialize();
         SAXReader sax=new SAXReader();
         File xmlFile=new File(url);
-        Document document= null;
-        try {
-            document = sax.read(xmlFile);
-            Element root=document.getRootElement();
-            getNodes(root);
-            System.out.println(allKeyMap+">>>>???>>>>>");
-        } catch (DocumentException e) {
-            logger.info("context"+e);
-        }catch(NullPointerException e){
-            logger.info("context"+e);
-        }
+        Document document;
+        document = sax.read(xmlFile);
+        Element root=document.getRootElement();
+        getNodes(root);
     }
 
     /**
@@ -263,8 +254,6 @@ public class ReadXMLHelper {
                 }
                 judgment1.add(defineName(entry.getValue()));
             }else if(lawName.contains(entry.getKey())){
-                System.out.println(entry.getKey()+"key");
-                System.out.println(entry.getValue()+"value");
                 if(!law.containsKey(entry.getKey())){
                     law.put(entry.getKey(),new ArrayList<>());
                 }
