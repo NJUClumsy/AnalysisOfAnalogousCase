@@ -46,7 +46,7 @@ public interface CaseService {
      * 获得所有的案由，以及其对应的出现的次数
      * @return
      */
-    Map<String, Integer> getAllCauses();
+    Map<String, Long> getAllCauses();
 
     /**
      * 判断文书是否被处理过

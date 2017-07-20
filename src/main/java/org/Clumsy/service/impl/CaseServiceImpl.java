@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * Created by slow_time on 2017/7/16.
@@ -52,18 +54,19 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
-    public Map<String, Integer> getAllCauses() {
+    public Map<String, Long> getAllCauses() {
         List<Case> cases = caseRepository.findCauses();
-        Map<String, Integer> causes = new HashMap<>();
-        for(Case i : cases) {
-            if (i.getCause() != null) {
-                if (causes.containsKey(i.getCause()))
-                    causes.put(i.getCause(), causes.get(i.getCause()) + 1);
-                else
-                    causes.put(i.getCause(), 1);
-            }
-        }
-        return causes;
+//                return cases.stream().collect(Collectors.toMap(Case::getCause, 1, (existingValue, newValue) -> existingValue + newValue))
+//        Map<String, Integer> causes = new HashMap<>();
+//        for(Case i : cases) {
+//            if (i.getCause() != null) {
+//                if (causes.containsKey(i.getCause()))
+//                    causes.put(i.getCause(), causes.get(i.getCause()) + 1);
+//                else
+//                    causes.put(i.getCause(), 1);
+//            }
+//        }
+        return cases.stream().filter(c->c.getCause() != null).collect(groupingBy(Case::getCause, counting()));
     }
 
     /**
