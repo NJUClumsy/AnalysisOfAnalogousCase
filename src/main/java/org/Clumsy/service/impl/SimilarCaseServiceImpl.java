@@ -2,10 +2,8 @@ package org.Clumsy.service.impl;
 
 import org.Clumsy.dao.CaseRepository;
 import org.Clumsy.entity.Case;
-import org.Clumsy.service.CaseService;
 import org.Clumsy.service.SimilarCaseService;
 import org.Clumsy.vo.CaseNumberVO;
-import org.Clumsy.vo.CaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,23 +23,19 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
     @Autowired
     CaseRepository caseRepository;
-    @Autowired
-    CaseService caseService;
 
     @Override
     public List<CaseNumberVO> recommendCases(String id) {
         List<CaseNumberVO> list = new ArrayList<CaseNumberVO>();
 
 
-        CaseVO caseVO = caseService.getCaseInfoById(id);
-        String cause = caseVO.cause;
-        System.out.println(id);
-        System.out.println(cause);
+        Case cas = caseRepository.findOne(id);
+        String cause = cas.getCause();
 
         try {
-//            String cp = "/python/Recommend.py";
-//            Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id + " " + cause);
-            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
+            String cp = "/python/Recommend.py";
+            Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id);
+//            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -53,8 +47,11 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
             in.close();
             process.waitFor();
             String[] strList = line.split(",");
+            if (strList.length == 1) {
+                return list;
+            }
             for (String o : strList){
-                Case instantCase = caseRepository.findById(o);
+                Case instantCase = caseRepository.findOne(o);
                 CaseNumberVO ins = new CaseNumberVO(instantCase.getId(),instantCase.getCaseNumber());
                 list.add(ins);
             }

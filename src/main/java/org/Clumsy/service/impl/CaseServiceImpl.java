@@ -1,13 +1,14 @@
 package org.Clumsy.service.impl;
 
+import org.Clumsy.dao.CaseRepository;
+import org.Clumsy.dao.UserRepository;
 import org.Clumsy.entity.Case;
 import org.Clumsy.service.CaseService;
-import org.Clumsy.stub.CaseRepositoryStub;
-import org.Clumsy.stub.UserRepositoryStub;
 import org.Clumsy.util.BytesToFile;
 import org.Clumsy.util.ReadXMLHelper;
 import org.Clumsy.vo.CaseVO;
 import org.dom4j.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,13 +23,11 @@ import java.util.Map;
 @Service("caseService")
 public class CaseServiceImpl implements CaseService {
 
-//    @Autowired
-//    private CaseRepository caseRepository;
-//    @Autowired
-//    private UserRepository userRepository;
+    @Autowired
+    private CaseRepository caseRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    CaseRepositoryStub caseRepository=new CaseRepositoryStub();
-    UserRepositoryStub userRepository=new UserRepositoryStub();
 
     @Override
     public List<Case> getAllCases() {
@@ -43,7 +42,7 @@ public class CaseServiceImpl implements CaseService {
 
     @Override
     public CaseVO getCaseInfoById(String id) {
-        Case c = caseRepository.findById(id);
+        Case c = caseRepository.findOne(id);
         return transfer(c);
     }
 

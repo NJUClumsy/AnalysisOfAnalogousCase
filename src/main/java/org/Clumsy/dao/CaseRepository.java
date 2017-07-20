@@ -22,5 +22,4 @@ public interface CaseRepository extends MongoRepository<Case, String>, CaseOpera
      */
     List<Case> findByCaseNumber(String causeNumber);
 
-    Case findById(String id);
 }
