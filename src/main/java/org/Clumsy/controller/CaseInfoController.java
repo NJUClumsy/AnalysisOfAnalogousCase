@@ -36,18 +36,23 @@ public class CaseInfoController {
     public ResponseEntity<String> uploadCase(@RequestParam("caseFile") MultipartFile caseFile, @RequestParam("id") String userId) {
         if (!caseFile.isEmpty()) {
             // 文书未处理过，状态码是201
-            if (!caseService.isCreated(caseFile)) {
-                HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.setContentType(MediaType.TEXT_PLAIN);
-                httpHeaders.set("Access-Control-Allow-Origin", "*");
-                return new ResponseEntity<>(caseService.createCase(caseFile, userId), httpHeaders, HttpStatus.CREATED);
-            }
-            // 文书已经处理过，状态码是200
-            else {
-                HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.setContentType(MediaType.TEXT_PLAIN);
-                httpHeaders.set("Access-Control-Allow-Origin", "*");
-                return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
+            try {
+                if (!caseService.isCreated(caseFile)) {
+                    HttpHeaders httpHeaders = new HttpHeaders();
+                    httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+                    httpHeaders.set("Access-Control-Allow-Origin", "*");
+                    return new ResponseEntity<>(caseService.createCase(caseFile, userId), httpHeaders, HttpStatus.CREATED);
+                }
+                // 文书已经处理过，状态码是200
+                else {
+                    HttpHeaders httpHeaders = new HttpHeaders();
+                    httpHeaders.setContentType(MediaType.TEXT_PLAIN);
+                    httpHeaders.set("Access-Control-Allow-Origin", "*");
+                    return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
+                }
+            } catch (Exception e) {
+                // 文书无法解析，状态吗是400
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
         else {

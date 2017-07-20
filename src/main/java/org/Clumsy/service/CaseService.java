@@ -53,19 +53,19 @@ public interface CaseService {
      * @param caseFile
      * @return
      */
-    Boolean isCreated(MultipartFile caseFile);
+    Boolean isCreated(MultipartFile caseFile) throws Exception;
 
     /**
      * 文书未曾处理过，需要处理过后存储，再将处理结果返回
      * @param caseFile
      * @return
      */
-    String createCase(MultipartFile caseFile, String userId);
+    String createCase(MultipartFile caseFile, String userId) throws Exception;
 
     /**
      * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果
      * @param caseFile
      * @return
      */
-    String constructCase(MultipartFile caseFile);
+    String constructCase(MultipartFile caseFile) throws Exception;
 }
