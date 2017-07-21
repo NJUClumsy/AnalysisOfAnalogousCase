@@ -3,7 +3,7 @@ var React = require('react')
 function generateContext(content, n) {
     var urls = ['context-head', 'context-participants', 'context-records', 'context-situation',
         'context-analysis', 'context-result', 'context-tail', 'context-appendix']
-    if(content === '')
+    if(content === null || content === '')
         return null;
     return <p id={urls[n]}>{content}</p>
 }

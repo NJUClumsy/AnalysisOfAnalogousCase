@@ -2,7 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var LoginController = require('./components/pages/LoginController');
 var HomepageController = require('./components/pages/HomepageController');
-var CaseInfoController = require('./components/info/CaseInfoController')
+var CaseInfoController = require('./components/info/CaseInfoController');
+var UserCasesController = require('./components/user/UserCasesController');
 var Main = require('./components/main')
 import { Router, Route, Link, hashHistory, browserHistory, IndexRoute } from 'react-router';
 
@@ -14,6 +15,7 @@ ReactDOM.render(
             <Route path="login" component={LoginController} />
             <Route path="upload" component={HomepageController} />
             <Route path="case/:id" component={CaseInfoController} />
+            <Route path="user/:id" component={UserCasesController} />
         </Route>
     </Router>),
     document.querySelector('#app')

@@ -9,7 +9,7 @@ function checkInfoVal(text) {
 }
 
 function checkArrayVal(array) {
-    if(array === [] || array === null)
+    if(array === null || array.length === 0)
         return null_info;
     return array.map(function (item, i) {
         return <span key={i}>{item} </span>;
@@ -17,7 +17,7 @@ function checkArrayVal(array) {
 }
 
 function getLawName(array) {
-    if(array === [] || array === null)
+    if(array === null || array.length === 0)
         return null_info;
     var law = array.map(function (item, i, array) {
         if(i === array.length - 1)
@@ -28,7 +28,7 @@ function getLawName(array) {
 }
 
 function getCiteString(array) {
-    if(array === [] || array === null)
+    if(array === null || array.length === 0)
         return null_info;
     return array.map(function (item, i, array) {
         if(i === array.length - 1)
@@ -38,7 +38,9 @@ function getCiteString(array) {
 }
 
 function getJudgement(judge1, judge2) {
-    if (judge2 === {} || judge2 === null)
+    if(judge1 === null && judge2 === null)
+        return null_info;
+    if (judge2 === null || judge2 === {})
         return checkArrayVal(judge1);
     else {
         return <div>
@@ -50,6 +52,8 @@ function getJudgement(judge1, judge2) {
 }
 
 function checkDateVal (time) {
+    if(time === null)
+        return null_info;
     return <span>{time.year}-{time.monthValue}-{time.dayOfMonth}</span>
 }
 

@@ -1,5 +1,14 @@
 var React = require('react');
-import { message , Alert} from 'antd';
+import { message, Alert } from 'antd';
+import { browserHistory } from 'react-router';
+
+function checkLogin () {
+    if (localStorage.getItem('userId') != null){
+        message.info('您已登录，正在帮您自动跳转...');
+        browserHistory.push('/#/upload');
+        setTimeout("window.location.reload();", 800);
+    }
+}
 
 var LoginForm = function(props) {
     // import { DatePicker } from 'antd';
@@ -13,7 +22,7 @@ var LoginForm = function(props) {
     var changeTag = isLogin? '注册' : '登录';
     var buttonText = isLogin? '登录' : '注册';
 
-
+    {checkLogin()}
 
     return <div className="login-form">
         <div className="login-form-header">
@@ -36,7 +45,6 @@ var LoginForm = function(props) {
             </div>
             <button onClick={props.onClickButton}>{buttonText}</button>
         </div>
-        {/*<DatePicker/>*/}
     </div>;
 }
 

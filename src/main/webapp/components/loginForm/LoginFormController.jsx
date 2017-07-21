@@ -1,9 +1,8 @@
 var React = require('react');
 var LoginForm = require('./LoginForm');
-var ListStore = require('../../stores/ListStore');
 var ButtonActions = require('../../actions/ButtonActions');
 var ListStore = require('../../stores/ListStore');
-import { message, Alert } from 'antd';
+import { message } from 'antd';
 
 var LoginFormController = React.createClass({
     contextTypes: {

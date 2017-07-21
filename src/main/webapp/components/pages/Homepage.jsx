@@ -6,9 +6,6 @@ var Homepage = function(props) {
     return <div className="main-page">
         <div className="main-content">
             <UploadController/>
-            <div className="test">
-                <button onClick={props.onClick}>sadasdsad</button>
-            </div>
         </div>
     </div>;
 }
