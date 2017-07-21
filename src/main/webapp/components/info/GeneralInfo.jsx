@@ -38,6 +38,8 @@ function getCiteString(array) {
 }
 
 function getJudgement(judge1, judge2) {
+    if(judge1 === null && judge2 === null)
+        return null_info;
     if (judge2 === null || judge2 === {})
         return checkArrayVal(judge1);
     else {
@@ -50,6 +52,8 @@ function getJudgement(judge1, judge2) {
 }
 
 function checkDateVal (time) {
+    if(time === null)
+        return null_info;
     return <span>{time.year}-{time.monthValue}-{time.dayOfMonth}</span>
 }
 

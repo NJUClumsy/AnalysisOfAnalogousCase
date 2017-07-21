@@ -5,7 +5,7 @@ var ListStore = require('../../stores/ListStore');
 var RecCaseController = React.createClass({
     getInitialState: function () {
         return {
-            recCase: ListStore.getRecCases(this.props.caseId)
+            recCase: ListStore.loadRecCases(this.props.caseId)
         };
     },
 

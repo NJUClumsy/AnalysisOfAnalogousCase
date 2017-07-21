@@ -9,12 +9,6 @@ var CaseInfoController = React.createClass({
         };
     },
 
-    // _onChange: function () {
-    //     this.setState({
-    //         items: ListStore.getCaseInfo()
-    //     });
-    // },
-
     render: function() {
         return <CaseInfo
             caseInfo={this.state.caseInfo}

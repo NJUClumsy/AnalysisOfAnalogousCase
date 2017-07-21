@@ -1,6 +1,5 @@
 var React = require('react')
 var LoginFormController = require('../loginForm/LoginFormController');
-// var ButtonController = require('../MyButtonController');
 
 var Login = function(props) {
 

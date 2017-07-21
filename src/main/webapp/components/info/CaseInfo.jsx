@@ -2,7 +2,6 @@ var React = require('react')
 var GeneralInfo = require('./GeneralInfoController')
 var RecCase = require('./RecCaseController')
 var CaseContext = require('./CaseContextController')
-var UserCases = require('../user/UserCasesController')
 import { Link} from 'react-router';
 import { BackTop } from 'antd';
 import $ from 'jquery';

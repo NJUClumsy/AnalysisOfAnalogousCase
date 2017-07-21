@@ -15,6 +15,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
     caseId: '',
     recCase: [],
     userCases: [],
+    uploadHint: '',
 
     getAll: function () {
         return this.items;
@@ -42,6 +43,12 @@ var ListStore = assign({}, EventEmitter.prototype, {
 
     changeFormHandler: function () {
         this.isLogin = !this.isLogin;
+    },
+
+    getUploadHint:function () {
+        if(this.uploadHint === '')
+            this.uploadHint = '点击或拖拽文件至上传框内，支持标准格式的XML法案文件';
+      return this.uploadHint;
     },
 
     getCaseInfo: function (id) {
@@ -185,8 +192,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                         message.info('读取文件信息失败，请检查网络连接或重新尝试');
                         break;
                 }
-                // browserHistory.push('/#/upload');
-                // setTimeout("window.location.reload();", 800);
             }
         });
 
@@ -219,7 +224,11 @@ var ListStore = assign({}, EventEmitter.prototype, {
         return this.userCases;
     },
 
-    getRecCases: function (id) {
+    getRecCases: function () {
+      return this.recCase;
+    },
+
+    loadRecCases: function (id) {
         this.caseId = id;
         $.ajax({
             async: false,
@@ -260,8 +269,53 @@ var ListStore = assign({}, EventEmitter.prototype, {
         if(window.FormData) {
             var formData = new FormData();
 
-            // 建立一个upload表单项，值为上传的文件
             formData.append('caseFile', document.getElementById('upload').files[0]);
+            formData.append('id', localStorage.getItem('userId'));
+
+            this.uploadHint = document.getElementById('upload').files[0].name;
+
+            $.ajax({
+                async: false,
+                contentType: false,
+                processData: false,
+                cache: false,
+                type : 'POST',
+                url : server_url + 'case/upload',
+                data: formData,
+                success : function(data, textStatus, xhr) {
+                    switch (xhr.status) {
+                        case 200:
+                            this.caseId = data;
+                            browserHistory.push({pathname: '/#/case/' + this.caseId});
+                            message.info('已成功匹配到文书数据');
+                            setTimeout("window.location.reload();", 800);
+                            break;
+                        case 201:
+                            this.caseId = data;
+                            browserHistory.push({pathname: '/#/case/' + this.caseId});
+                            message.info('正在生成文书数据');
+                            setTimeout("window.location.reload();", 800);
+                            break;
+                        default:
+                            message.info('您上传的是空文件，无法解析');
+                            break;
+                    }
+                }.bind(this),
+
+                error: function(jqXHR, textStatus, errorThrown) {
+                    message.info('文件格式出错，请选择符合规范的文件上传');
+                }
+            });
+        }
+    },
+
+    fileUpload2: function (files) {
+        this.uploadHint = files[0].name;
+
+        if(window.FormData) {
+            var formData = new FormData();
+
+            formData.append('caseFile', files[0]);
             formData.append('id', localStorage.getItem('userId'));
 
             $.ajax({
@@ -276,7 +330,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                     switch (xhr.status) {
                         case 200:
                             this.caseId = data;
-                            console.log(this.caseId)
                             browserHistory.push({pathname: '/#/case/' + this.caseId});
                             message.info('已成功匹配到文书数据');
                             setTimeout("window.location.reload();", 800);

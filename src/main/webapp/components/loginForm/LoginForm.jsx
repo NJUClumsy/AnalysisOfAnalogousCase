@@ -45,7 +45,6 @@ var LoginForm = function(props) {
             </div>
             <button onClick={props.onClickButton}>{buttonText}</button>
         </div>
-        {/*<DatePicker/>*/}
     </div>;
 }
 

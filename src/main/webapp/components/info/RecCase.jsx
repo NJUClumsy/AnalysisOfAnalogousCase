@@ -1,13 +1,16 @@
 var React = require('react')
 
 var RecCase = function(props) {
+
     var info = props.recCase;
     var innerHtml;
     if (info === null || info.length === 0)
         innerHtml = <div style={{color: '#AAAAAA'}}>暂无信息</div>;
     else
         innerHtml = info.map(function (item, i) {
-            return <div key={i}>{i+1}.{item.caseNumber} </div>;
+            var innerString = item.caseNumber.replace(/\(/i, "（");
+            innerString = innerString.replace(/\)/i, "）");
+            return <div key={i}>{i+1}.{innerString} </div>;
         });
 
     return <div className="rec-case info-head"id="rec-case">
