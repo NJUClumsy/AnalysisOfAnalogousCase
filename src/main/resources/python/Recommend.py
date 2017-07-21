@@ -135,11 +135,7 @@ def kMeans(dataSet, k, distMeas=gen_sim, createCent=randCent):
 
 
 def getRecommendedCases(Id):
-<<<<<<< HEAD
-    name, tfidf = get_all_vector(stop_words('/Users/paranoia/Documents/Summer-project/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'))
-=======
     name, tfidf = get_all_vector(stop_words('/Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/table.txt'), Id)
->>>>>>> 1dbdcdc031be618a12f10852640c9b1fe0d576e9
 
     num_clusters = int(len(name) / 5)
 
