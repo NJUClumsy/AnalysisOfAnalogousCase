@@ -20,7 +20,7 @@ function subAnchorTag(content, n) {
     var titles = ['文首', '诉讼参与人全集', '诉讼记录', '案件基本情况', '裁判分析过程', '裁判结果', '文尾', '附录']
     var urls = ['#context-head', '#context-participants', '#context-records', '#context-situation',
         '#context-analysis', '#context-result', '#context-tail', '#context-appendix']
-    if(content === '')
+    if(content === null || content === '')
         return null;
     return <span onClick={()=>scrollTo(urls[n])}>{titles[n]}</span>
 }

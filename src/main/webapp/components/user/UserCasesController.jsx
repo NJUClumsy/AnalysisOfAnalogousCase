@@ -5,7 +5,7 @@ var ListStore = require('../../stores/ListStore');
 var UserCasesController = React.createClass({
     getInitialState: function () {
         return {
-            userCases: ListStore.getUserCases2()
+            userCases: ListStore.getUserCases()
         };
     },
 

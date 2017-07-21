@@ -1,6 +1,7 @@
 var React = require('react');
 var UploadFile = require('./UploadFile');
 import { browserHistory } from 'react-router';
+import ListStore from '../../stores/ListStore';
 
 var UploadController = React.createClass({
 
@@ -9,8 +10,14 @@ var UploadController = React.createClass({
         window.location.reload();
     },
 
+    handleUpload: function () {
+        ListStore.fileUpload();
+    },
+
     render: function() {
-        return <UploadFile/>;
+        return <UploadFile
+            onClick={this.handleUpload}
+        />;
     }
 
 });

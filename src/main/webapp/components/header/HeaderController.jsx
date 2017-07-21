@@ -12,8 +12,6 @@ var HeaderController = React.createClass({
     },
 
     render: function() {
-        localStorage.setItem('username', '666');
-        console.log(localStorage.getItem('username'));
         return <Header
             handleSignOut={this.handleSignOut}
         />;

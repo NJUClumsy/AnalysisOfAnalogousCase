@@ -94,6 +94,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
                     case 200:
                         this.userId = data;
                         localStorage.setItem('userId', this.userId);
+                        localStorage.setItem('username', username);
                         browserHistory.push('/#/upload');
                         message.info('登录成功');
                         setTimeout("window.location.reload();", 800);
@@ -159,7 +160,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
         $.ajax({
             async: false,
             type : 'GET',
-            // url : server_url + 'user/cases/' + localStorage.getItem('userId'), 596dae010eb65b90fcbe482b
             url : server_url + 'user/cases/' + localStorage.getItem('userId'),
             data: {},
             datatype : 'json',
@@ -168,10 +168,11 @@ var ListStore = assign({}, EventEmitter.prototype, {
                     case 200:
                         this.userCases = data;
                         break;
+                    case 204:
+                        this.userCases = [];
+                        break;
                     default:
-                        message.info('未知错误，读取文件信息失败');
-                        // browserHistory.push('/#/upload');
-                        // setTimeout("window.location.reload();", 800);
+                        this.userCases = null;
                         break;
                 }
             }.bind(this),
@@ -256,43 +257,47 @@ var ListStore = assign({}, EventEmitter.prototype, {
 
     fileUpload: function (file) {
 
-        var formdata = new FormData();
-        formdata.append('caseFile', file.files[0]);
-        formdata.append('id', localStorage.getItem('userId'));
+        if(window.FormData) {
+            var formData = new FormData();
 
-        $.ajax({
-            async: false,
-            contentType: false,
-            processData: false,
-            cache: false,
-            type : 'POST',
-            url : server_url + 'case/upload',
-            data: formdata,
-            success : function(data, textStatus, xhr) {
-                switch (xhr.status) {
-                    case 200:
-                        this.caseId = data;
-                        // browserHistory.push('/#/upload');
-                        message.info('已成功匹配到文书数据');
-                        // setTimeout("window.location.reload();", 800);
-                        break;
-                    case 201:
-                        this.caseId = data;
-                        // browserHistory.push('/#/upload');
-                        message.info('正在生成文书数据');
-                        // setTimeout("window.location.reload();", 800);
-                        break;
-                    default:
-                        message.info('您上传的是空文件，无法解析');
-                        break;
+            // 建立一个upload表单项，值为上传的文件
+            formData.append('caseFile', document.getElementById('upload').files[0]);
+            formData.append('id', localStorage.getItem('userId'));
+
+            $.ajax({
+                async: false,
+                contentType: false,
+                processData: false,
+                cache: false,
+                type : 'POST',
+                url : server_url + 'case/upload',
+                data: formData,
+                success : function(data, textStatus, xhr) {
+                    switch (xhr.status) {
+                        case 200:
+                            this.caseId = data;
+                            console.log(this.caseId)
+                            browserHistory.push({pathname: '/#/case/' + this.caseId});
+                            message.info('已成功匹配到文书数据');
+                            setTimeout("window.location.reload();", 800);
+                            break;
+                        case 201:
+                            this.caseId = data;
+                            browserHistory.push({pathname: '/#/case/' + this.caseId});
+                            message.info('正在生成文书数据');
+                            setTimeout("window.location.reload();", 800);
+                            break;
+                        default:
+                            message.info('您上传的是空文件，无法解析');
+                            break;
+                    }
+                }.bind(this),
+
+                error: function(jqXHR, textStatus, errorThrown) {
+                    message.info('文件格式出错，请选择符合规范的文件上传');
                 }
-            }.bind(this),
-
-            error: function(jqXHR, textStatus, errorThrown) {
-                message.info('文件格式出错，请选择符合规范的文件上传');
-            }
-        });
-        // console.log(localStorage.getItem('userId'));
+            });
+        }
     }
 });
 

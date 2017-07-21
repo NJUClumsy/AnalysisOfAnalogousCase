@@ -3,9 +3,14 @@ import { Link} from 'react-router';
 
 var UserCases = function(props) {
     var cases = props.cases;
-    var innerHtml = cases.map(function (item, i) {
-        return <div key={i}>{i+1}.{item.caseNumber} </div>;
-    });
+    console.log(cases);
+    var innerHtml = <span style={{color: '#AAAAAA'}}>您暂时没有上传过的文件</span>;
+    if (cases != null && cases.length > 0) {
+        console.log(223)
+        innerHtml = cases.map(function (item, i) {
+            return <div key={i}>{i+1}.{item.caseNumber} </div>;
+        });
+    }
 
     return <div className="main-page">
         <div className="user-page">
