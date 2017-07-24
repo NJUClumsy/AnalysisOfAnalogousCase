@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { message} from 'antd';
 import { browserHistory } from 'react-router';
 
-var server_url = 'http://172.28.188.222:8080/'
+var server_url = 'http://localhost:8070/'
 
 
 var ListStore = assign({}, EventEmitter.prototype, {
@@ -16,6 +16,8 @@ var ListStore = assign({}, EventEmitter.prototype, {
     recCase: [],
     userCases: [],
     uploadHint: '',
+    uploadFile: null,
+    serverUrl: 'http://localhost:8070/',
 
     getAll: function () {
         return this.items;
@@ -45,10 +47,20 @@ var ListStore = assign({}, EventEmitter.prototype, {
         this.isLogin = !this.isLogin;
     },
 
+    saveUploadFile: function (file) {
+        this.uploadFile = file;
+    },
+
+    displayFileName: function(text) {
+        console.log(text)
+        this.uploadHint = text;
+    },
+
     getUploadHint:function () {
         if(this.uploadHint === '')
             this.uploadHint = '点击或拖拽文件至上传框内，支持标准格式的XML法案文件';
-      return this.uploadHint;
+        console.log(this.uploadHint)
+        return this.uploadHint;
     },
 
     getCaseInfo: function (id) {
@@ -57,6 +69,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
             async: false,
             type : 'GET',
             url : server_url + 'case/obtainById/' + id,
+            // url: './data.json',
             data: {},
             datatype : 'json',
             success : function(data, textStatus, xhr) {
@@ -66,8 +79,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                         break;
                     default:
                         message.info('未知错误，读取文件信息失败');
-                        browserHistory.push('/#/upload');
-                        setTimeout("window.location.reload();", 800);
                         break;
                 }
             }.bind(this),
@@ -202,8 +213,8 @@ var ListStore = assign({}, EventEmitter.prototype, {
         $.ajax({
             async: false,
             type : 'GET',
-            // url : server_url + 'user/cases/' + localStorage.getItem('userId'), 596dae010eb65b90fcbe482b
-            url : '../data2.json',
+            url : server_url + 'user/cases/' + localStorage.getItem('userId'), // 596dae010eb65b90fcbe482b
+            // url : '../data2.json',
             data: {},
             datatype : 'json',
             success : function(data, textStatus, xhr) {
@@ -234,6 +245,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
             async: false,
             type : 'GET',
             url : server_url + 'similar/recommend/' + id,
+            // url: './data2.json',
             data: {},
             datatype : 'json',
             success : function(data, textStatus, xhr) {
@@ -264,92 +276,49 @@ var ListStore = assign({}, EventEmitter.prototype, {
         return this.recCase;
     },
 
-    fileUpload: function (file) {
+    fileUpload: function () {
+        if(this.uploadFile === null){
+            message.info('请先选择您要上传的文件');
+        }else {
+            if (window.FormData) {
+                var formData = new FormData();
 
-        if(window.FormData) {
-            var formData = new FormData();
+                formData.append('caseFile', file);
+                formData.append('id', localStorage.getItem('userId'));
 
-            formData.append('caseFile', document.getElementById('upload').files[0]);
-            formData.append('id', localStorage.getItem('userId'));
+                $.ajax({
+                    async: false,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    type: 'POST',
+                    url: server_url + 'case/upload',
+                    data: formData,
+                    success: function (data, textStatus, xhr) {
+                        switch (xhr.status) {
+                            case 200:
+                                this.caseId = data;
+                                browserHistory.push({pathname: '/#/case/' + this.caseId});
+                                message.info('已成功匹配到文书数据');
+                                setTimeout("window.location.reload();", 800);
+                                break;
+                            case 201:
+                                this.caseId = data;
+                                browserHistory.push({pathname: '/#/case/' + this.caseId});
+                                message.info('正在生成文书数据');
+                                setTimeout("window.location.reload();", 800);
+                                break;
+                            default:
+                                message.info('您上传的是空文件，无法解析');
+                                break;
+                        }
+                    }.bind(this),
 
-            this.uploadHint = document.getElementById('upload').files[0].name;
-
-            $.ajax({
-                async: false,
-                contentType: false,
-                processData: false,
-                cache: false,
-                type : 'POST',
-                url : server_url + 'case/upload',
-                data: formData,
-                success : function(data, textStatus, xhr) {
-                    switch (xhr.status) {
-                        case 200:
-                            this.caseId = data;
-                            browserHistory.push({pathname: '/#/case/' + this.caseId});
-                            message.info('已成功匹配到文书数据');
-                            setTimeout("window.location.reload();", 800);
-                            break;
-                        case 201:
-                            this.caseId = data;
-                            browserHistory.push({pathname: '/#/case/' + this.caseId});
-                            message.info('正在生成文书数据');
-                            setTimeout("window.location.reload();", 800);
-                            break;
-                        default:
-                            message.info('您上传的是空文件，无法解析');
-                            break;
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        message.info('文件格式出错，请选择符合规范的文件上传');
                     }
-                }.bind(this),
-
-                error: function(jqXHR, textStatus, errorThrown) {
-                    message.info('文件格式出错，请选择符合规范的文件上传');
-                }
-            });
-        }
-    },
-
-    fileUpload2: function (files) {
-        this.uploadHint = files[0].name;
-
-        if(window.FormData) {
-            var formData = new FormData();
-
-            formData.append('caseFile', files[0]);
-            formData.append('id', localStorage.getItem('userId'));
-
-            $.ajax({
-                async: false,
-                contentType: false,
-                processData: false,
-                cache: false,
-                type : 'POST',
-                url : server_url + 'case/upload',
-                data: formData,
-                success : function(data, textStatus, xhr) {
-                    switch (xhr.status) {
-                        case 200:
-                            this.caseId = data;
-                            browserHistory.push({pathname: '/#/case/' + this.caseId});
-                            message.info('已成功匹配到文书数据');
-                            setTimeout("window.location.reload();", 800);
-                            break;
-                        case 201:
-                            this.caseId = data;
-                            browserHistory.push({pathname: '/#/case/' + this.caseId});
-                            message.info('正在生成文书数据');
-                            setTimeout("window.location.reload();", 800);
-                            break;
-                        default:
-                            message.info('您上传的是空文件，无法解析');
-                            break;
-                    }
-                }.bind(this),
-
-                error: function(jqXHR, textStatus, errorThrown) {
-                    message.info('文件格式出错，请选择符合规范的文件上传');
-                }
-            });
+                });
+            }
         }
     }
 });

@@ -12,6 +12,10 @@ AppDispatcher.register(function (action) {
             ListStore.changeFormHandler();
             ListStore.emitChange();
             break;
+        case 'DISPLAY_FILE_NAME':
+            ListStore.displayFileName(action.text);
+            ListStore.emitChange();
+            break;
         default:
         // no op
     }

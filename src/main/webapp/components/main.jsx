@@ -8,6 +8,11 @@ export default class Main extends React.Component{
         super(props);
     }
 
+    componentWillUnmount() {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('username');
+    }
+
     render() {
         return (
             <div className="main-div">
