@@ -4,7 +4,6 @@ import org.Clumsy.entity.Case;
 import org.Clumsy.entity.Law;
 import org.Clumsy.vo.CaseVO;
 import org.Clumsy.vo.ContextVO;
-import org.Clumsy.vo.JudgementVO;
 import org.Clumsy.vo.LawVO;
 
 import java.time.LocalDate;

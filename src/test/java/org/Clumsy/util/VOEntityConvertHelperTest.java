@@ -5,7 +5,6 @@ import org.Clumsy.entity.Context;
 import org.Clumsy.entity.Law;
 import org.Clumsy.vo.CaseVO;
 import org.Clumsy.vo.ContextVO;
-import org.Clumsy.vo.JudgementVO;
 import org.Clumsy.vo.LawVO;
 import org.junit.Before;
 import org.junit.Test;

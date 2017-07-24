@@ -9,7 +9,7 @@ from bson import ObjectId
 def connect_mongodb():
     servers = "mongodb://127.0.0.1:27017"
     conn = pymongo.MongoClient(servers)
-    db = conn.test
+    db = conn.court
     return db
 
 
