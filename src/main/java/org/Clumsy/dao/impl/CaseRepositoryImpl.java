@@ -31,4 +31,11 @@ public class CaseRepositoryImpl implements CaseOperations {
         query.fields().include("id");
         return mongo.findOne(query, Case.class);
     }
+
+    @Override
+    public List<Case> findAllByMajorCause(String majorCause) {
+        Criteria where = Criteria.where("majorCause.accusationCode").is(majorCause);
+        Query query = new Query(where);
+        return mongo.find(query, Case.class);
+    }
 }

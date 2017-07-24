@@ -50,7 +50,7 @@ public class CaseServiceImpl implements CaseService {
 
     @Override
     public List<Case> getCasesByCause(String cause) {
-        return caseRepository.findAllByCause(cause);
+        return caseRepository.findAllByMajorCause(cause);
     }
 
     @Override

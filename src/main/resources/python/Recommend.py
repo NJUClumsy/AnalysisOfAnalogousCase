@@ -42,8 +42,8 @@ def del_stop_words(words, stop_words_set):
 def get_all_vector(stop_words_set, id):
     db = connect_mongodb()
     collection = db.case
-    cause = collection.find_one({"_id": ObjectId(id)}, {"案由": 1})["案由"]
-    all_document = collection.find({"案由": cause}, {"全文": 1}).limit(150)
+    cause = collection.find_one({"_id": ObjectId(id)}, {"起诉主案由": 1})["起诉主案由"]
+    all_document = collection.find({"起诉主案由": cause}, {"全文": 1}).limit(150)
     names = []
     posts = []
     for document in all_document:

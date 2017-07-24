@@ -23,4 +23,12 @@ public interface CaseOperations {
      */
     Case findIdByCaseNumber(String caseNumber);
 
+
+    /**
+     * 获得所有主案由相同的文书
+     * @param majorCause
+     * @return
+     */
+    List<Case> findAllByMajorCause(String majorCause);
+
 }

@@ -31,8 +31,6 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
         Case cas = caseRepository.findOne(id);
         System.out.println(id);
-        String cause = cas.getMajorCause().getAccusationCode();
-
         try {
             String cp = "/python/Recommend.py";
             Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id);

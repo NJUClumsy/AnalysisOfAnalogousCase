@@ -13,7 +13,6 @@ public interface CaseRepository extends MongoRepository<Case, String>, CaseOpera
 
     Case findFirstByCaseNumber(String caseNumber);
 
-    List<Case> findAllByCause(String cause);
 
     /**
      * 根据案号返回对应的文书
