@@ -66,7 +66,7 @@ public class CaseServiceImpl implements CaseService {
 //                    causes.put(i.getCause(), 1);
 //            }
 //        }
-        return cases.stream().filter(c->c.getCause() != null).collect(groupingBy(Case::getCause, counting()));
+        return cases.stream().filter(c->c.getMajorCause() != null).collect(groupingBy(c -> c.getMajorCause().getAccusationName(), counting()));
     }
 
     /**

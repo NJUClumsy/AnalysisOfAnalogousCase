@@ -1,6 +1,9 @@
 package org.Clumsy.vo;
 
+import org.Clumsy.entity.Agent;
 import org.Clumsy.entity.Case;
+import org.Clumsy.entity.Prosecution;
+import org.Clumsy.entity.RespondingParty;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -12,56 +15,80 @@ import java.util.stream.Collectors;
 public class CaseVO {
 
     public String id;
+    // 全文
     public ContextVO context;
+    // 经办法院
     public String court;
-    public String type;
-    public String process;
-    public Collection<String> accuser;
-    public Collection<String> defendant;
-    public Collection<String> organ;
-    public String cause;
+    // 文书名称
+    public String name;
+    // 审判程序
+    public String judicialProcedure;
+    // 起诉方
+    public Collection<String> prosecution;
+    // 代理人
+    public Collection<String> agents;
+    // 公诉方
+    public String publicProsecution;
+    // 应诉方
+    public Collection<String> respondingParty;
+    // 起诉主案由
+    public String majorCause;
+    // 引用法条
     public Collection<LawVO> law;
-    public Collection<String> judgement1;
-    public JudgementVO judgement2;
-    public Collection<String> judge;
-    public String court_clerk;
+    // 原公诉机关
+    public String formerProcedureOrgan;
+    // 二审结案方式
+    public String closureWay;
+    // 结案原因
+    public String reason;
+    // 裁判时间
     public LocalDate date;
+    // 文书标题
+    public String title;
+    // 文书副标题
+    public String subTitle;
 
-    public CaseVO(String id, ContextVO context, String court, String type, String process, Collection<String> accuser, Collection<String> defendant, Collection<String> organ, String cause, Collection<LawVO> law, Collection<String> judgement1, JudgementVO judgement2, Collection<String> judge, String court_clerk, LocalDate date) {
+    public CaseVO(String id, ContextVO context, String court, String name, String judicialProcedure, Collection<String> prosecution, Collection<String> agents, String publicProsecution, Collection<String> respondingParty, String majorCause, Collection<LawVO> law, String formerProcedureOrgan, String closureWay, String reason, LocalDate date, String title, String subTitle) {
         this.id = id;
         this.context = context;
         this.court = court;
-        this.type = type;
-        this.process = process;
-        this.accuser = accuser;
-        this.defendant = defendant;
-        this.organ = organ;
-        this.cause = cause;
+        this.name = name;
+        this.judicialProcedure = judicialProcedure;
+        this.prosecution = prosecution;
+        this.agents = agents;
+        this.publicProsecution = publicProsecution;
+        this.respondingParty = respondingParty;
+        this.majorCause = majorCause;
         this.law = law;
-        this.judgement1 = judgement1;
-        this.judgement2 = judgement2;
-        this.judge = judge;
-        this.court_clerk = court_clerk;
+        this.formerProcedureOrgan = formerProcedureOrgan;
+        this.closureWay = closureWay;
+        this.reason = reason;
         this.date = date;
+        this.title = title;
+        this.subTitle = subTitle;
     }
 
     public CaseVO(Case c) {
         this.id = c.getId();
         this.context = new ContextVO(c.getContext());
-        this.court = c.getCourt();
-        this.type = c.getType();
-        this.process = c.getProcess();
-        this.accuser = c.getAccuser();
-        this.defendant = c.getDefendant();
-        this.organ = c.getOrgan();
-        this.cause = c.getCause();
+        this.court = c.getCourt().getName();
+        this.name = c.getName();
+        this.judicialProcedure = c.getJudicialProcedure();
+        this.prosecution = c.getProsecutions().stream().map(Prosecution::getParticipant).collect(Collectors.toList());
+        if (c.getAgents() != null)
+            this.agents = c.getAgents().stream().map(Agent::getParticipant).collect(Collectors.toList());
+        this.publicProsecution = c.getPublicProsecution().getParticipant();
+        if (c.getRespondingParties() != null)
+            this.respondingParty = c.getRespondingParties().stream().map(RespondingParty::getParticipant).collect(Collectors.toList());
+        this.majorCause = c.getMajorCause().getAccusationName();
         if (c.getLaw() != null)
             this.law = c.getLaw().stream().map(LawVO::new).collect(Collectors.toList());
-        this.judgement1 = c.getJudgment1();
-        this.judgement2 = c.getJudgement2() == null ? null : new JudgementVO(c.getJudgement2());
-        this.judge = c.getJudge();
-        this.court_clerk = c.getCourt_clerk();
+        this.formerProcedureOrgan = c.getFormerProcedureOrgan();
+        this.closureWay = c.getClosureWay();
+        this.reason = c.getReason();
         this.date = c.getDate();
+        this.title = c.getTitle();
+        this.subTitle = c.getSubTitle();
     }
 
     @Override
@@ -70,18 +97,20 @@ public class CaseVO {
                 "id='" + id + '\'' +
                 ", context=" + context +
                 ", court='" + court + '\'' +
-                ", type='" + type + '\'' +
-                ", process='" + process + '\'' +
-                ", accuser=" + accuser +
-                ", defendant=" + defendant +
-                ", organ=" + organ +
-                ", cause='" + cause + '\'' +
+                ", name='" + name + '\'' +
+                ", judicialProcedure='" + judicialProcedure + '\'' +
+                ", prosecution=" + prosecution +
+                ", agents=" + agents +
+                ", publicProsecution='" + publicProsecution + '\'' +
+                ", respondingParty=" + respondingParty +
+                ", majorCause='" + majorCause + '\'' +
                 ", law=" + law +
-                ", judgement1=" + judgement1 +
-                ", judgement2=" + judgement2 +
-                ", judge=" + judge +
-                ", court_clerk='" + court_clerk + '\'' +
+                ", formerProcedureOrgan='" + formerProcedureOrgan + '\'' +
+                ", closureWay='" + closureWay + '\'' +
+                ", reason='" + reason + '\'' +
                 ", date=" + date +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
                 '}';
     }
 }

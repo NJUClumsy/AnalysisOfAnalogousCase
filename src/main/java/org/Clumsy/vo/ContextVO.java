@@ -7,13 +7,21 @@ import org.Clumsy.entity.Context;
  */
 public class ContextVO {
 
+    // 文首
     public String head;
+    // 当事人
     public String participants;
+    // 诉讼记录
     public String records;
+    // 案件基本情况
     public String situation;
+    // 裁判分析过程
     public String analysis;
+    // 裁判结果
     public String result;
+    // 文尾
     public String tail;
+    // 附件
     public String appendix;
 
     public ContextVO(String head, String participants, String records, String situation, String analysis, String result, String tail, String appendix) {

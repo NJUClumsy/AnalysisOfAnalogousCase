@@ -2,7 +2,6 @@ package org.Clumsy.util;
 
 import org.Clumsy.entity.Case;
 import org.Clumsy.entity.Context;
-import org.Clumsy.entity.Judgement;
 import org.Clumsy.entity.Law;
 import org.Clumsy.vo.CaseVO;
 import org.Clumsy.vo.ContextVO;

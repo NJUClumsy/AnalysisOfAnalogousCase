@@ -19,41 +19,73 @@ public class Case {
     @Field("全文")
     private Context context;
     @Field("经办法院")
-    private String court;
+    private Court court;
     @Field("文书名称")
-    private String type;
+    private String name;
     @Field("案号")
     private String caseNumber;
+    @Field("案件类别")
+    private String typeOfCase;
+    @Field("文书种类")
+    private String typeOfWrit;
     @Field("审判程序")
-    private String process;
-    @Field("原告")
-    private Collection<String> accuser;
-    @Field("被告")
-    private Collection<String> defendant;
-    @Field("公诉机关")
-    private Collection<String> organ;
-    @Field("案由")
-    private String cause;
-    @Field("开庭审理信息")
-    private String info_try;
-    @Field("原告诉称段")
-    private String accuser_state;
-    @Field("被告辩称段")
-    private String defendant_state;
-    @Field("查明事实段")
-    private String fact;
-    @Field("法条")
+    private String judicialProcedure;
+    @Field("公诉方")
+    private PublicProsecution publicProsecution;
+    @Field("起诉方")
+    private Collection<Prosecution> prosecutions;
+    @Field("代理人")
+    private Collection<Agent> agents;
+    @Field("应诉方")
+    private Collection<RespondingParty> respondingParties;
+    @Field("被告人缺席")
+    private Boolean absenceOfDefendant;
+    @Field("开庭审理")
+    private Boolean openCourt;
+    @Field("诉讼性质")
+    private String natureOfLawsuit;
+    @Field("检察院建议延期审理")
+    private Boolean postpone;
+    @Field("少年法庭")
+    private Boolean juvenileCourt;
+    @Field("指控信息")
+    private Collection<ChargeInfo> chargeInfos;
+    @Field("起诉主案由")
+    private Accusation majorCause;
+    @Field("其他起诉案由")
+    private Collection<Accusation> minorCause;
+    @Field("案件由来与审理经过段")
+    private CaseProcess caseProcess;
+    @Field("二审案件来源")
+    private String origin;
+    @Field("上诉或抗诉范围")
+    private String scopeOfAppeal;
+    @Field("原公诉机关")
+    private String formerProcedureOrgan;
+    @Field("审判组织")
+    private String collegiateBench;
+    @Field("质证情况")
+    private String crossExamination;
+    @Field("提出管辖权异议")
+    private Boolean objectionOfCompetency;
+    @Field("开庭前申请撤回上诉")
+    private Boolean applyForWithdraw;
+    @Field("法律法条引用")
     private Collection<Law> law;
-    @Field("具体裁判段")
-    private Collection<String> judgement1;
-    @Field("刑事判决结果分组")
-    private Judgement judgement2;
-    @Field("审判员")
-    private Collection<String> judge;
-    @Field("书记员")
-    private String court_clerk;
+    @Field("二审复核")
+    private Boolean recheck;
+    @Field("二审结案方式")
+    private String closureWay;
+    @Field("结案原因")
+    private String reason;
     @Field("裁判时间")
     private LocalDate date;
+    @Field("审判组织成员")
+    private Collection<MemberOfTrial> memberOfTrials;
+    @Field("文书标题")
+    private String title;
+    @Field("文书副标题")
+    private String subTitle;
 
     public String getId() {
         return id;
@@ -71,20 +103,20 @@ public class Case {
         this.context = context;
     }
 
-    public String getCourt() {
+    public Court getCourt() {
         return court;
     }
 
-    public void setCourt(String court) {
+    public void setCourt(Court court) {
         this.court = court;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCaseNumber() {
@@ -95,76 +127,188 @@ public class Case {
         this.caseNumber = caseNumber;
     }
 
-    public String getProcess() {
-        return process;
+    public String getTypeOfCase() {
+        return typeOfCase;
     }
 
-    public void setProcess(String process) {
-        this.process = process;
+    public void setTypeOfCase(String typeOfCase) {
+        this.typeOfCase = typeOfCase;
     }
 
-    public Collection<String> getAccuser() {
-        return accuser;
+    public String getTypeOfWrit() {
+        return typeOfWrit;
     }
 
-    public void setAccuser(Collection<String> accuser) {
-        this.accuser = accuser;
+    public void setTypeOfWrit(String typeOfWrit) {
+        this.typeOfWrit = typeOfWrit;
     }
 
-    public Collection<String> getDefendant() {
-        return defendant;
+    public String getJudicialProcedure() {
+        return judicialProcedure;
     }
 
-    public void setDefendant(Collection<String> defendant) {
-        this.defendant = defendant;
+    public void setJudicialProcedure(String judicialProcedure) {
+        this.judicialProcedure = judicialProcedure;
     }
 
-    public Collection<String> getOrgan() {
-        return organ;
+    public PublicProsecution getPublicProsecution() {
+        return publicProsecution;
     }
 
-    public void setOrgan(Collection<String> organ) {
-        this.organ = organ;
+    public void setPublicProsecution(PublicProsecution publicProsecution) {
+        this.publicProsecution = publicProsecution;
     }
 
-    public String getCause() {
-        return cause;
+    public Collection<Prosecution> getProsecutions() {
+        return prosecutions;
     }
 
-    public void setCause(String cause) {
-        this.cause = cause;
+    public void setProsecutions(Collection<Prosecution> prosecutions) {
+        this.prosecutions = prosecutions;
     }
 
-    public String getInfo_try() {
-        return info_try;
+    public Collection<Agent> getAgents() {
+        return agents;
     }
 
-    public void setInfo_try(String info_try) {
-        this.info_try = info_try;
+    public void setAgents(Collection<Agent> agents) {
+        this.agents = agents;
     }
 
-    public String getAccuser_state() {
-        return accuser_state;
+    public Collection<RespondingParty> getRespondingParties() {
+        return respondingParties;
     }
 
-    public void setAccuser_state(String accuser_state) {
-        this.accuser_state = accuser_state;
+    public void setRespondingParties(Collection<RespondingParty> respondingParties) {
+        this.respondingParties = respondingParties;
     }
 
-    public String getDefendant_state() {
-        return defendant_state;
+    public Boolean getAbsenceOfDefendant() {
+        return absenceOfDefendant;
     }
 
-    public void setDefendant_state(String defendant_state) {
-        this.defendant_state = defendant_state;
+    public void setAbsenceOfDefendant(Boolean absenceOfDefendant) {
+        this.absenceOfDefendant = absenceOfDefendant;
     }
 
-    public String getFact() {
-        return fact;
+    public Boolean getOpenCourt() {
+        return openCourt;
     }
 
-    public void setFact(String fact) {
-        this.fact = fact;
+    public void setOpenCourt(Boolean openCourt) {
+        this.openCourt = openCourt;
+    }
+
+    public String getNatureOfLawsuit() {
+        return natureOfLawsuit;
+    }
+
+    public void setNatureOfLawsuit(String natureOfLawsuit) {
+        this.natureOfLawsuit = natureOfLawsuit;
+    }
+
+    public Boolean getPostpone() {
+        return postpone;
+    }
+
+    public void setPostpone(Boolean postpone) {
+        this.postpone = postpone;
+    }
+
+    public Boolean getJuvenileCourt() {
+        return juvenileCourt;
+    }
+
+    public void setJuvenileCourt(Boolean juvenileCourt) {
+        this.juvenileCourt = juvenileCourt;
+    }
+
+    public Collection<ChargeInfo> getChargeInfos() {
+        return chargeInfos;
+    }
+
+    public void setChargeInfos(Collection<ChargeInfo> chargeInfos) {
+        this.chargeInfos = chargeInfos;
+    }
+
+    public Accusation getMajorCause() {
+        return majorCause;
+    }
+
+    public void setMajorCause(Accusation majorCause) {
+        this.majorCause = majorCause;
+    }
+
+    public Collection<Accusation> getMinorCause() {
+        return minorCause;
+    }
+
+    public void setMinorCause(Collection<Accusation> minorCause) {
+        this.minorCause = minorCause;
+    }
+
+    public CaseProcess getCaseProcess() {
+        return caseProcess;
+    }
+
+    public void setCaseProcess(CaseProcess caseProcess) {
+        this.caseProcess = caseProcess;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getScopeOfAppeal() {
+        return scopeOfAppeal;
+    }
+
+    public void setScopeOfAppeal(String scopeOfAppeal) {
+        this.scopeOfAppeal = scopeOfAppeal;
+    }
+
+    public String getFormerProcedureOrgan() {
+        return formerProcedureOrgan;
+    }
+
+    public void setFormerProcedureOrgan(String formerProcedureOrgan) {
+        this.formerProcedureOrgan = formerProcedureOrgan;
+    }
+
+    public String getCollegiateBench() {
+        return collegiateBench;
+    }
+
+    public void setCollegiateBench(String collegiateBench) {
+        this.collegiateBench = collegiateBench;
+    }
+
+    public String getCrossExamination() {
+        return crossExamination;
+    }
+
+    public void setCrossExamination(String crossExamination) {
+        this.crossExamination = crossExamination;
+    }
+
+    public Boolean getObjectionOfCompetency() {
+        return objectionOfCompetency;
+    }
+
+    public void setObjectionOfCompetency(Boolean objectionOfCompetency) {
+        this.objectionOfCompetency = objectionOfCompetency;
+    }
+
+    public Boolean getApplyForWithdraw() {
+        return applyForWithdraw;
+    }
+
+    public void setApplyForWithdraw(Boolean applyForWithdraw) {
+        this.applyForWithdraw = applyForWithdraw;
     }
 
     public Collection<Law> getLaw() {
@@ -175,36 +319,28 @@ public class Case {
         this.law = law;
     }
 
-    public Collection<String> getJudgment1() {
-        return judgement1;
+    public Boolean getRecheck() {
+        return recheck;
     }
 
-    public void setJudgment1(Collection<String> judgment1) {
-        this.judgement1 = judgment1;
+    public void setRecheck(Boolean recheck) {
+        this.recheck = recheck;
     }
 
-    public Judgement getJudgement2() {
-        return judgement2;
+    public String getClosureWay() {
+        return closureWay;
     }
 
-    public void setJudgement2(Judgement judgement2) {
-        this.judgement2 = judgement2;
+    public void setClosureWay(String closureWay) {
+        this.closureWay = closureWay;
     }
 
-    public Collection<String> getJudge() {
-        return judge;
+    public String getReason() {
+        return reason;
     }
 
-    public void setJudge(Collection<String> judge) {
-        this.judge = judge;
-    }
-
-    public String getCourt_clerk() {
-        return court_clerk;
-    }
-
-    public void setCourt_clerk(String court_clerk) {
-        this.court_clerk = court_clerk;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public LocalDate getDate() {
@@ -215,30 +351,28 @@ public class Case {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Case{" +
-                "id='" + id + '\'' +
-                ", context=" + context +
-                ", court='" + court + '\'' +
-                ", type='" + type + '\'' +
-                ", caseNumber='" + caseNumber + '\'' +
-                ", process='" + process + '\'' +
-                ", accuser=" + accuser +
-                ", defendant=" + defendant +
-                ", organ=" + organ +
-                ", cause='" + cause + '\'' +
-                ", info_try='" + info_try + '\'' +
-                ", accuser_state='" + accuser_state + '\'' +
-                ", defendant_state='" + defendant_state + '\'' +
-                ", fact='" + fact + '\'' +
-                ", law=" + law +
-                ", judgment1=" + judgement1 +
-                ", judgement2=" + judgement2 +
-                ", judge=" + judge +
-                ", court_clerk='" + court_clerk + '\'' +
-                ", date=" + date +
-                '}';
+    public Collection<MemberOfTrial> getMemberOfTrials() {
+        return memberOfTrials;
+    }
+
+    public void setMemberOfTrials(Collection<MemberOfTrial> memberOfTrials) {
+        this.memberOfTrials = memberOfTrials;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 
     @Override
@@ -251,25 +385,52 @@ public class Case {
         if (id != null ? !id.equals(aCase.id) : aCase.id != null) return false;
         if (context != null ? !context.equals(aCase.context) : aCase.context != null) return false;
         if (court != null ? !court.equals(aCase.court) : aCase.court != null) return false;
-        if (type != null ? !type.equals(aCase.type) : aCase.type != null) return false;
+        if (name != null ? !name.equals(aCase.name) : aCase.name != null) return false;
         if (caseNumber != null ? !caseNumber.equals(aCase.caseNumber) : aCase.caseNumber != null) return false;
-        if (process != null ? !process.equals(aCase.process) : aCase.process != null) return false;
-        if (accuser != null ? !accuser.equals(aCase.accuser) : aCase.accuser != null) return false;
-        if (defendant != null ? !defendant.equals(aCase.defendant) : aCase.defendant != null) return false;
-        if (organ != null ? !organ.equals(aCase.organ) : aCase.organ != null) return false;
-        if (cause != null ? !cause.equals(aCase.cause) : aCase.cause != null) return false;
-        if (info_try != null ? !info_try.equals(aCase.info_try) : aCase.info_try != null) return false;
-        if (accuser_state != null ? !accuser_state.equals(aCase.accuser_state) : aCase.accuser_state != null)
+        if (typeOfCase != null ? !typeOfCase.equals(aCase.typeOfCase) : aCase.typeOfCase != null) return false;
+        if (typeOfWrit != null ? !typeOfWrit.equals(aCase.typeOfWrit) : aCase.typeOfWrit != null) return false;
+        if (judicialProcedure != null ? !judicialProcedure.equals(aCase.judicialProcedure) : aCase.judicialProcedure != null)
             return false;
-        if (defendant_state != null ? !defendant_state.equals(aCase.defendant_state) : aCase.defendant_state != null)
+        if (publicProsecution != null ? !publicProsecution.equals(aCase.publicProsecution) : aCase.publicProsecution != null)
             return false;
-        if (fact != null ? !fact.equals(aCase.fact) : aCase.fact != null) return false;
+        if (prosecutions != null ? !prosecutions.equals(aCase.prosecutions) : aCase.prosecutions != null) return false;
+        if (agents != null ? !agents.equals(aCase.agents) : aCase.agents != null) return false;
+        if (respondingParties != null ? !respondingParties.equals(aCase.respondingParties) : aCase.respondingParties != null)
+            return false;
+        if (absenceOfDefendant != null ? !absenceOfDefendant.equals(aCase.absenceOfDefendant) : aCase.absenceOfDefendant != null)
+            return false;
+        if (openCourt != null ? !openCourt.equals(aCase.openCourt) : aCase.openCourt != null) return false;
+        if (natureOfLawsuit != null ? !natureOfLawsuit.equals(aCase.natureOfLawsuit) : aCase.natureOfLawsuit != null)
+            return false;
+        if (postpone != null ? !postpone.equals(aCase.postpone) : aCase.postpone != null) return false;
+        if (juvenileCourt != null ? !juvenileCourt.equals(aCase.juvenileCourt) : aCase.juvenileCourt != null)
+            return false;
+        if (chargeInfos != null ? !chargeInfos.equals(aCase.chargeInfos) : aCase.chargeInfos != null) return false;
+        if (majorCause != null ? !majorCause.equals(aCase.majorCause) : aCase.majorCause != null) return false;
+        if (minorCause != null ? !minorCause.equals(aCase.minorCause) : aCase.minorCause != null) return false;
+        if (caseProcess != null ? !caseProcess.equals(aCase.caseProcess) : aCase.caseProcess != null) return false;
+        if (origin != null ? !origin.equals(aCase.origin) : aCase.origin != null) return false;
+        if (scopeOfAppeal != null ? !scopeOfAppeal.equals(aCase.scopeOfAppeal) : aCase.scopeOfAppeal != null)
+            return false;
+        if (formerProcedureOrgan != null ? !formerProcedureOrgan.equals(aCase.formerProcedureOrgan) : aCase.formerProcedureOrgan != null)
+            return false;
+        if (collegiateBench != null ? !collegiateBench.equals(aCase.collegiateBench) : aCase.collegiateBench != null)
+            return false;
+        if (crossExamination != null ? !crossExamination.equals(aCase.crossExamination) : aCase.crossExamination != null)
+            return false;
+        if (objectionOfCompetency != null ? !objectionOfCompetency.equals(aCase.objectionOfCompetency) : aCase.objectionOfCompetency != null)
+            return false;
+        if (applyForWithdraw != null ? !applyForWithdraw.equals(aCase.applyForWithdraw) : aCase.applyForWithdraw != null)
+            return false;
         if (law != null ? !law.equals(aCase.law) : aCase.law != null) return false;
-        if (judgement1 != null ? !judgement1.equals(aCase.judgement1) : aCase.judgement1 != null) return false;
-        if (judgement2 != null ? !judgement2.equals(aCase.judgement2) : aCase.judgement2 != null) return false;
-        if (judge != null ? !judge.equals(aCase.judge) : aCase.judge != null) return false;
-        if (court_clerk != null ? !court_clerk.equals(aCase.court_clerk) : aCase.court_clerk != null) return false;
-        return date != null ? date.equals(aCase.date) : aCase.date == null;
+        if (recheck != null ? !recheck.equals(aCase.recheck) : aCase.recheck != null) return false;
+        if (closureWay != null ? !closureWay.equals(aCase.closureWay) : aCase.closureWay != null) return false;
+        if (reason != null ? !reason.equals(aCase.reason) : aCase.reason != null) return false;
+        if (date != null ? !date.equals(aCase.date) : aCase.date != null) return false;
+        if (memberOfTrials != null ? !memberOfTrials.equals(aCase.memberOfTrials) : aCase.memberOfTrials != null)
+            return false;
+        if (title != null ? !title.equals(aCase.title) : aCase.title != null) return false;
+        return subTitle != null ? subTitle.equals(aCase.subTitle) : aCase.subTitle == null;
     }
 
     @Override
@@ -277,23 +438,81 @@ public class Case {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (context != null ? context.hashCode() : 0);
         result = 31 * result + (court != null ? court.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (caseNumber != null ? caseNumber.hashCode() : 0);
-        result = 31 * result + (process != null ? process.hashCode() : 0);
-        result = 31 * result + (accuser != null ? accuser.hashCode() : 0);
-        result = 31 * result + (defendant != null ? defendant.hashCode() : 0);
-        result = 31 * result + (organ != null ? organ.hashCode() : 0);
-        result = 31 * result + (cause != null ? cause.hashCode() : 0);
-        result = 31 * result + (info_try != null ? info_try.hashCode() : 0);
-        result = 31 * result + (accuser_state != null ? accuser_state.hashCode() : 0);
-        result = 31 * result + (defendant_state != null ? defendant_state.hashCode() : 0);
-        result = 31 * result + (fact != null ? fact.hashCode() : 0);
+        result = 31 * result + (typeOfCase != null ? typeOfCase.hashCode() : 0);
+        result = 31 * result + (typeOfWrit != null ? typeOfWrit.hashCode() : 0);
+        result = 31 * result + (judicialProcedure != null ? judicialProcedure.hashCode() : 0);
+        result = 31 * result + (publicProsecution != null ? publicProsecution.hashCode() : 0);
+        result = 31 * result + (prosecutions != null ? prosecutions.hashCode() : 0);
+        result = 31 * result + (agents != null ? agents.hashCode() : 0);
+        result = 31 * result + (respondingParties != null ? respondingParties.hashCode() : 0);
+        result = 31 * result + (absenceOfDefendant != null ? absenceOfDefendant.hashCode() : 0);
+        result = 31 * result + (openCourt != null ? openCourt.hashCode() : 0);
+        result = 31 * result + (natureOfLawsuit != null ? natureOfLawsuit.hashCode() : 0);
+        result = 31 * result + (postpone != null ? postpone.hashCode() : 0);
+        result = 31 * result + (juvenileCourt != null ? juvenileCourt.hashCode() : 0);
+        result = 31 * result + (chargeInfos != null ? chargeInfos.hashCode() : 0);
+        result = 31 * result + (majorCause != null ? majorCause.hashCode() : 0);
+        result = 31 * result + (minorCause != null ? minorCause.hashCode() : 0);
+        result = 31 * result + (caseProcess != null ? caseProcess.hashCode() : 0);
+        result = 31 * result + (origin != null ? origin.hashCode() : 0);
+        result = 31 * result + (scopeOfAppeal != null ? scopeOfAppeal.hashCode() : 0);
+        result = 31 * result + (formerProcedureOrgan != null ? formerProcedureOrgan.hashCode() : 0);
+        result = 31 * result + (collegiateBench != null ? collegiateBench.hashCode() : 0);
+        result = 31 * result + (crossExamination != null ? crossExamination.hashCode() : 0);
+        result = 31 * result + (objectionOfCompetency != null ? objectionOfCompetency.hashCode() : 0);
+        result = 31 * result + (applyForWithdraw != null ? applyForWithdraw.hashCode() : 0);
         result = 31 * result + (law != null ? law.hashCode() : 0);
-        result = 31 * result + (judgement1 != null ? judgement1.hashCode() : 0);
-        result = 31 * result + (judgement2 != null ? judgement2.hashCode() : 0);
-        result = 31 * result + (judge != null ? judge.hashCode() : 0);
-        result = 31 * result + (court_clerk != null ? court_clerk.hashCode() : 0);
+        result = 31 * result + (recheck != null ? recheck.hashCode() : 0);
+        result = 31 * result + (closureWay != null ? closureWay.hashCode() : 0);
+        result = 31 * result + (reason != null ? reason.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (memberOfTrials != null ? memberOfTrials.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (subTitle != null ? subTitle.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+                "id='" + id + '\'' +
+                ", context=" + context +
+                ", court=" + court +
+                ", name='" + name + '\'' +
+                ", caseNumber='" + caseNumber + '\'' +
+                ", typeOfCase='" + typeOfCase + '\'' +
+                ", typeOfWrit='" + typeOfWrit + '\'' +
+                ", judicialProcedure='" + judicialProcedure + '\'' +
+                ", publicProsecution=" + publicProsecution +
+                ", prosecutions=" + prosecutions +
+                ", agents=" + agents +
+                ", respondingParties=" + respondingParties +
+                ", absenceOfDefendant=" + absenceOfDefendant +
+                ", openCourt=" + openCourt +
+                ", natureOfLawsuit='" + natureOfLawsuit + '\'' +
+                ", postpone=" + postpone +
+                ", juvenileCourt=" + juvenileCourt +
+                ", chargeInfos=" + chargeInfos +
+                ", majorCause=" + majorCause +
+                ", minorCause=" + minorCause +
+                ", caseProcess=" + caseProcess +
+                ", origin='" + origin + '\'' +
+                ", scopeOfAppeal='" + scopeOfAppeal + '\'' +
+                ", formerProcedureOrgan='" + formerProcedureOrgan + '\'' +
+                ", collegiateBench='" + collegiateBench + '\'' +
+                ", crossExamination='" + crossExamination + '\'' +
+                ", objectionOfCompetency=" + objectionOfCompetency +
+                ", applyForWithdraw=" + applyForWithdraw +
+                ", law=" + law +
+                ", recheck=" + recheck +
+                ", closureWay='" + closureWay + '\'' +
+                ", reason='" + reason + '\'' +
+                ", date=" + date +
+                ", memberOfTrials=" + memberOfTrials +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                '}';
     }
 }

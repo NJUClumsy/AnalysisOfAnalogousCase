@@ -1,8 +1,6 @@
 package org.Clumsy.vo;
 
 
-import org.Clumsy.entity.Judgement;
-
 /**
  * Created by slow_time on 2017/7/17.
  */

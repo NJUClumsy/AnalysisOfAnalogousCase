@@ -10,7 +10,7 @@ public class Context {
 
     @Field("文首")
     private String head;
-    @Field("诉讼参与人全集")
+    @Field("当事人")
     private String participants;
     @Field("诉讼记录")
     private String records;
@@ -22,7 +22,7 @@ public class Context {
     private String result;
     @Field("文尾")
     private String tail;
-    @Field("附录")
+    @Field("附件")
     private String appendix;
 
     public String getHead() {
