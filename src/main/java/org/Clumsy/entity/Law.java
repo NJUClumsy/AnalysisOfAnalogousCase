@@ -9,9 +9,9 @@ import java.util.Collection;
  */
 public class Law {
 
-    @Field("法条名称")
+    @Field("名称")
     private String lawName;
-    @Field("引用条目")
+    @Field("条目")
     private Collection<String> cite;
 
     public String getLawName() {
