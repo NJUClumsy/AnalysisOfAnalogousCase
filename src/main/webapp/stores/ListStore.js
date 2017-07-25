@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { message} from 'antd';
 import { browserHistory } from 'react-router';
 
-var server_url = 'http://localhost:8070/'
+var server_url = 'http://localhost:8080/';
 
 
 var ListStore = assign({}, EventEmitter.prototype, {
@@ -52,14 +52,12 @@ var ListStore = assign({}, EventEmitter.prototype, {
     },
 
     displayFileName: function(text) {
-        console.log(text)
         this.uploadHint = text;
     },
 
     getUploadHint:function () {
         if(this.uploadHint === '')
             this.uploadHint = '点击或拖拽文件至上传框内，支持标准格式的XML法案文件';
-        console.log(this.uploadHint)
         return this.uploadHint;
     },
 
@@ -95,7 +93,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                 setTimeout("window.location.reload();", 800);
             }
         });
-
         return this.caseInfo;
     },
 
@@ -134,11 +131,9 @@ var ListStore = assign({}, EventEmitter.prototype, {
                 }
             }
         });
-
     },
 
     userSignup: function (username, password) {
-
         $.ajax({
             async: false,
             contentType: 'application/x-www-form-urlencoded; charset=utf-8',
@@ -205,7 +200,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                 }
             }
         });
-
         return this.userCases;
     },
 
@@ -231,7 +225,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                 }
             }
         });
-
         return this.userCases;
     },
 
@@ -272,7 +265,6 @@ var ListStore = assign({}, EventEmitter.prototype, {
                 }
             }
         });
-
         return this.recCase;
     },
 
@@ -283,7 +275,7 @@ var ListStore = assign({}, EventEmitter.prototype, {
             if (window.FormData) {
                 var formData = new FormData();
 
-                formData.append('caseFile', file);
+                formData.append('caseFile', this.uploadFile);
                 formData.append('id', localStorage.getItem('userId'));
 
                 $.ajax({

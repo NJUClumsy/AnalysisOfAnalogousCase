@@ -46,7 +46,7 @@ var CaseInfo = function(props) {
         </div>
         <div className="main-info-content" id="main">
             <div className="case-head">
-                <span>{info.title}</span><br/>
+                <span>{info.title}</span>
                 <span>{info.subTitle}</span>
             </div>
             <div className="info-back-link">

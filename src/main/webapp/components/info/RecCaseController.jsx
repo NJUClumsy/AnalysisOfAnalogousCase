@@ -23,10 +23,13 @@ var RecCaseController = React.createClass({
     },
 
     componentDidMount: function () {
-        // // this.sleep(2000);
-        this.setState({
-            recCase: ListStore.loadRecCases(this.props.caseId),
-            isLoading: false
+        var caseId = this.props.caseId;
+        var that = this;
+        $(document).ready(function(){
+            that.setState({
+                recCase: ListStore.loadRecCases(caseId),
+                isLoading: false
+            });
         });
     },
 
