@@ -9,6 +9,11 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <!--项目默认编码 utf-8-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->

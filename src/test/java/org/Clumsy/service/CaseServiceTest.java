@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Set;
-
 /**
  * Created by slow_time on 2017/7/15.
  */
@@ -39,10 +37,10 @@ public class CaseServiceTest {
 
     @Test
     public void testGetAllCauses() throws Exception {
-        Set<String> causes = (caseService.getAllCauses().keySet());
-        for (String cause : causes) {
-            System.out.println(cause + caseService.getAllCauses().get(cause));
-        }
+//        Set<String> causes = (caseService.getAllCauses().keySet());
+//        for (String cause : causes) {
+//            System.out.println(cause + caseService.getAllCauses().get(cause));
+//        }
     }
 
 }

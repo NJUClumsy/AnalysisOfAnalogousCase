@@ -964,7 +964,7 @@ public class ReadXMLHelper {
      * @return LocalDate
      */
     public static LocalDate getDate(String text){
-        //System.out.println(text);
+        System.out.println(text);
         if(text.contains("年")&&text.contains("月")&&text.contains("日")){
             int ydex=text.indexOf('年');
             int mdex=text.indexOf('月');
@@ -978,7 +978,7 @@ public class ReadXMLHelper {
             mdex = Integer.parseInt(monthStr);
             ddex  = Integer.parseInt(dateStr);
             return LocalDate.of(ydex,mdex,ddex);
-        }else{
+        }else if(text.contains("年")&& text.contains("月")){
             int ydex=text.indexOf('年');
             int mdex=text.indexOf('月');
 
@@ -988,6 +988,11 @@ public class ReadXMLHelper {
             ydex = Integer.parseInt(yearStr);
             mdex = Integer.parseInt(monthStr);
             return LocalDate.of(ydex,mdex,1);
+        }else{
+            int ydex=text.indexOf('年');
+            String yearStr = getModified(text.substring(0,ydex));
+            ydex = Integer.parseInt(yearStr);
+            return LocalDate.of(ydex,1,1);
         }
     }
 

@@ -51,6 +51,7 @@ public class CaseInfoController {
                     return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 // 文书无法解析，状态吗是400
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }

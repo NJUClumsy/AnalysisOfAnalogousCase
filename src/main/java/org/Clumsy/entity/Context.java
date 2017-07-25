@@ -18,7 +18,7 @@ public class Context {
     private String situation;
     @Field("裁判分析过程")
     private String analysis;
-    @Field("裁判结果")
+    @Field("判决结果")
     private String result;
     @Field("文尾")
     private String tail;

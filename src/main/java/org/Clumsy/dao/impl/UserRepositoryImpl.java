@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserOperations {
         CaseNumber c = new CaseNumber();
         c.setCaseId(caseId);
         c.setCaseNumber(caseNumber);
-        Update update = new Update().addToSet("cases", caseNumber);
+        Update update = new Update().addToSet("cases", c);
         mongo.updateFirst(query, update, User.class);
     }
 }
