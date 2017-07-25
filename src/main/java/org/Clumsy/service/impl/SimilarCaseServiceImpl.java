@@ -29,12 +29,9 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
         List<CaseNumberVO> list = new ArrayList<CaseNumberVO>();
 
 
-        Case cas = caseRepository.findOne(id);
-        System.out.println(id);
         try {
             String cp = "/python/Recommend.py";
             Process process = Runtime.getRuntime().exec("python3 " + SimilarCaseServiceImpl.class.getResource(cp).getFile() + " " + id);
-//            Process process = Runtime.getRuntime().exec("python3 /Users/slow_time/Desktop/AnalysisOfAnalogousCase/src/main/resources/python/Recommend.py  " + id);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -63,26 +60,6 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
             e.printStackTrace();
         }
         return list;
-
-//        PythonInterpreter interpreter = new PythonInterpreter();
-//        interpreter.execfile("src/main/resources/python/Recommend.py");//需要修改
-//
-//        PyFunction pyFunction = interpreter.get("getRecommendedCases", PyFunction.class); // 需要修改第一个参数为函数名字
-//        PyObject pyObject = pyFunction.__call__(new PyString(id),new PyString(cause));
-//
-//        System.out.println(pyObject);
-//
-//        String instant = pyObject.toString();
-//        instant = instant.substring(1,instant.length()-1);
-//        System.out.println(instant);
-//        String[] strList = instant.split(", ");
-//        for (String o:strList){
-//            o = o.substring(1,o.length()-1);
-//            System.out.println(o);
-//            Case instantCase = caseRepository.findById(o);
-//            CaseNumberVO ins = new CaseNumberVO(instantCase.getId(),instantCase.getCaseNumber());
-//            list.add(ins);
-//        }
 
     }
 }

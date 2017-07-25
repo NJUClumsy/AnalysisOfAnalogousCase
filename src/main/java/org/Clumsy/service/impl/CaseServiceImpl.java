@@ -81,9 +81,9 @@ public class CaseServiceImpl implements CaseService {
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
 
-        List<Case> caseList = getAllCases();
-        for(Case ins: caseList){
-            if(ins.getCaseNumber().equals(caseNumber)){
+        List<Case> caseList = caseRepository.findByCaseNumber(caseNumber);
+        if (caseList != null) {
+            if (caseList.size() > 0) {
                 isCreated = true;
             }
         }
@@ -120,12 +120,14 @@ public class CaseServiceImpl implements CaseService {
         return found.getId();
     }
 
+
+
     /**
      * 初始化文件
      * @param caseFile
      * @return Case
      */
-    public Case initialize(MultipartFile caseFile) throws Exception {
+    private Case initialize(MultipartFile caseFile) throws Exception {
         //处理文件
         Document document = BytesToFile.multipartFileToDocument(caseFile);
         Case thisCase = ReadXMLHelper.getCase(document);
