@@ -2,6 +2,8 @@ package org.Clumsy.entity;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Collection;
+
 /**
  * Created by Bourbon on 2017/7/24.
  * 起诉方
@@ -19,7 +21,7 @@ public class Prosecution {
     @Field("当事人类别")
     private String participantType;
     @Field("前科劣迹")
-    private CriminalRecord criminalRecord;
+    private Collection<CriminalRecord> criminalRecord;
     @Field("缓刑考验期内犯罪")
     private boolean probationCrime;
     @Field("假释考验期内犯罪")
@@ -77,11 +79,11 @@ public class Prosecution {
         this.participantType = participantType;
     }
 
-    public CriminalRecord getCriminalRecord() {
+    public Collection<CriminalRecord> getCriminalRecord() {
         return criminalRecord;
     }
 
-    public void setCriminalRecord(CriminalRecord criminalRecord) {
+    public void setCriminalRecord(Collection<CriminalRecord> criminalRecord) {
         this.criminalRecord = criminalRecord;
     }
 
@@ -150,26 +152,6 @@ public class Prosecution {
     }
 
     @Override
-    public String toString() {
-        return "Prosecution{" +
-                "participant='" + participant + '\'' +
-                ", identity='" + identity + '\'' +
-                ", type='" + type + '\'' +
-                ", nation='" + nation + '\'' +
-                ", participantType='" + participantType + '\'' +
-                ", criminalRecord=" + criminalRecord +
-                ", probationCrime=" + probationCrime +
-                ", paroleCrime=" + paroleCrime +
-                ", criminalResponsibility='" + criminalResponsibility + '\'' +
-                ", statusOfThisTrial='" + statusOfThisTrial + '\'' +
-                ", statusOfLastTrial='" + statusOfLastTrial + '\'' +
-                ", relation='" + relation + '\'' +
-                ", victim=" + victim +
-                ", personalIdentity='" + personalIdentity + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -214,5 +196,25 @@ public class Prosecution {
         result = 31 * result + (victim ? 1 : 0);
         result = 31 * result + (personalIdentity != null ? personalIdentity.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Prosecution{" +
+                "participant='" + participant + '\'' +
+                ", identity='" + identity + '\'' +
+                ", type='" + type + '\'' +
+                ", nation='" + nation + '\'' +
+                ", participantType='" + participantType + '\'' +
+                ", criminalRecord=" + criminalRecord +
+                ", probationCrime=" + probationCrime +
+                ", paroleCrime=" + paroleCrime +
+                ", criminalResponsibility='" + criminalResponsibility + '\'' +
+                ", statusOfThisTrial='" + statusOfThisTrial + '\'' +
+                ", statusOfLastTrial='" + statusOfLastTrial + '\'' +
+                ", relation='" + relation + '\'' +
+                ", victim=" + victim +
+                ", personalIdentity='" + personalIdentity + '\'' +
+                '}';
     }
 }

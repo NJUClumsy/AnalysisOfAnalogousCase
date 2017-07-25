@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -28,13 +27,13 @@ public class CaseServiceTest {
 
     @Test
     public void testCaseInfoByCaseNumber() throws Exception {
-        System.out.println(caseService.getCaseInfoByCaseNumber("（2007）红民一初字第645号"));
+        System.out.println(caseService.getCaseInfoByCaseNumber("（2015）漯刑终字第29号"));
     }
 
 
     @Test
     public void testGetCasesByCause() throws Exception {
-        System.out.println(caseService.getCasesByCause("分家析产纠纷").size());
+        System.out.println(caseService.getCasesByCause("200").size());
     }
 
 

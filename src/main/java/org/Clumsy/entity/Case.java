@@ -39,7 +39,7 @@ public class Case {
     @Field("应诉方")
     private Collection<RespondingParty> respondingParties;
     @Field("被告人缺席")
-    private Boolean absenceOfDefendant;
+    private String absenceOfDefendant;
     @Field("开庭审理")
     private Boolean openCourt;
     @Field("诉讼性质")
@@ -183,11 +183,11 @@ public class Case {
         this.respondingParties = respondingParties;
     }
 
-    public Boolean getAbsenceOfDefendant() {
+    public String getAbsenceOfDefendant() {
         return absenceOfDefendant;
     }
 
-    public void setAbsenceOfDefendant(Boolean absenceOfDefendant) {
+    public void setAbsenceOfDefendant(String absenceOfDefendant) {
         this.absenceOfDefendant = absenceOfDefendant;
     }
 
@@ -489,7 +489,7 @@ public class Case {
                 ", prosecutions=" + prosecutions +
                 ", agents=" + agents +
                 ", respondingParties=" + respondingParties +
-                ", absenceOfDefendant=" + absenceOfDefendant +
+                ", absenceOfDefendant='" + absenceOfDefendant + '\'' +
                 ", openCourt=" + openCourt +
                 ", natureOfLawsuit='" + natureOfLawsuit + '\'' +
                 ", postpone=" + postpone +

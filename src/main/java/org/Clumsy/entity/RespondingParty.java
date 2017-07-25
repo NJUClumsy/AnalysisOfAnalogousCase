@@ -2,6 +2,8 @@ package org.Clumsy.entity;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Collection;
+
 /**
  * Created by Bourbon on 2017/7/24.
  * 应诉方
@@ -19,7 +21,7 @@ public class RespondingParty {
     @Field("当事人类别")
     private String participantType;
     @Field("前科劣迹")
-    private CriminalRecord criminalRecord;
+    private Collection<CriminalRecord> criminalRecord;
     @Field("缓刑考验期内犯罪")
     private boolean probationCrime;
     @Field("假释考验期内犯罪")
@@ -75,11 +77,11 @@ public class RespondingParty {
         this.participantType = participantType;
     }
 
-    public CriminalRecord getCriminalRecord() {
+    public Collection<CriminalRecord> getCriminalRecord() {
         return criminalRecord;
     }
 
-    public void setCriminalRecord(CriminalRecord criminalRecord) {
+    public void setCriminalRecord(Collection<CriminalRecord> criminalRecord) {
         this.criminalRecord = criminalRecord;
     }
 

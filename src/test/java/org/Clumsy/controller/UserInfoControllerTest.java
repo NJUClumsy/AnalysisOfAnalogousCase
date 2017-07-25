@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,18 +23,18 @@ public class UserInfoControllerTest {
     @Test
     public void testLogin() throws Exception {
         Assert.assertEquals(200, userInfoController.login("tydety97", "123456").getStatusCodeValue());
-        Assert.assertEquals(401, userInfoController.login("slowtime", "12345").getStatusCodeValue());
+        Assert.assertEquals(200, userInfoController.login("tydety", "12344533").getStatusCodeValue());
     }
 
-//    @Test
-//    public void testSignUp() throws Exception {
-////        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety97", "12344533");
-////        Assert.assertEquals(409, responseEntity.getStatusCodeValue());
-////        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
-//        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety", "12344533");
-//        Assert.assertEquals(201, responseEntity.getStatusCodeValue());
-////        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
-//    }
+    @Test
+    public void testSignUp() throws Exception {
+//        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety97", "12344533");
+//        Assert.assertEquals(409, responseEntity.getStatusCodeValue());
+//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+        ResponseEntity<String> responseEntity = userInfoController.signUp("tydety", "12344533");
+        Assert.assertEquals(201, responseEntity.getStatusCodeValue());
+//        Assert.assertEquals("用户名：tydety97已被占用", responseEntity.getBody());
+    }
 
 
     @Test
