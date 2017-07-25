@@ -32,8 +32,8 @@ function getCiteString(array) {
         return null_info;
     return array.map(function (item, i, array) {
         if(i === array.length - 1)
-            return '第' + item + '条' ;
-        return '第' + item + '条' + '、';
+            return item;
+        return item + '、';
     });
 }
 
