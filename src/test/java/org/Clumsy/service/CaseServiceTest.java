@@ -20,7 +20,7 @@ public class CaseServiceTest {
 
     @Test
     public void testGetAllCases() throws Exception {
-        System.out.println(caseService.getAllCases().size());
+//        System.out.println(caseService.getAllCases().size());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CaseServiceTest {
 
     @Test
     public void testGetCasesByCause() throws Exception {
-        System.out.println(caseService.getCasesByCause("200").size());
+//        System.out.println(caseService.getCasesByCause("200").size());
     }
 
 
