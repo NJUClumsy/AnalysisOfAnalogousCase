@@ -78,6 +78,101 @@ public class ReadXMLHelper {
     }
 
     /**
+     *递归获得所有需要的键值对
+     * @param node
+     */
+    public static void getNodes(Element node){
+        ArrayList<String> instant = new ArrayList<>();
+
+        switch(node.getName()){
+            case "JBFY":
+                dealWithThisCourt(node);
+                break;
+            case "GSF":
+                dealWithGSF(node);
+                break;
+            case "QSF":
+                dealWithQSF(node);
+                break;
+            case "DLR":
+                dealWithDLR(node);
+                break;
+            case "YSF":
+                dealWithYSF(node);
+                break;
+            case "QSZAY":
+                dealWithMainCause(node);
+                break;
+            case "QSAY":
+                dealWithOtherCause(node);
+                break;
+            case "AJYLYSLJGD":
+                dealWithProcess(node);
+                break;
+            case "ZKJL":
+                dealWithInfo(node);
+                break;
+            case "QKLJ"://前科劣迹
+                dealWithBefore(node);
+                break;
+            case "QSFY"://前审法院
+                dealWithCourt(node);
+                break;
+            case "CFYYZ"://处罚原因。。。。。。
+                dealWithPunish(node);
+                break;
+            case "ZKZM"://指控罪名
+                dealWithRule(node);
+                break;
+            default:
+                break;
+        }
+
+        if(node.getName().equals("title")){
+            String title = node.attribute(0).getValue();
+            allKeyMap.put("文书标题",title);
+        }
+        if(node.getName().equals("subTitle")){
+            String subTitle = node.attribute(0).getValue();
+            allKeyMap.put("文书副标题",subTitle);
+        }
+
+        List<Attribute> listAttr=node.attributes();
+        for(Attribute attr:listAttr){
+            String value=attr.getValue();
+            instant.add(value);
+        }
+        if(instant.size()==1){
+            instant.add("空");
+        }
+
+        if(instant.size()!=0){
+            if("审判人员姓名".equals(instant.get(0))){
+                spryxm=instant.get(1);
+            }else if("审判人员角色".equals(instant.get(0))){
+                allKeyMap.put(instant.get(1),spryxm);
+            }
+
+            if("名称".equals(instant.get(0))){
+                flftmc=instant.get(1);
+                allKeyMap.put(instant.get(0),instant.get(1));
+                lawName.add(instant.get(1));
+            }else if("条".equals(instant.get(0))){
+                allKeyMap.put(flftmc,instant.get(1));
+            }
+
+            if(instant.size()==2){
+                allKeyMap.put(instant.get(0),instant.get(1));
+            }
+        }
+
+        List<Element> listElement=node.elements();
+        for(Element e:listElement){
+            getNodes(e);
+        }
+    }
+
+    /**
      * 获取节点内部属性
      * @param node
      * @return
@@ -299,7 +394,7 @@ public class ReadXMLHelper {
      */
     public static void dealWithYSF(Element node){
         Map<String,String> map = dealWithNode(node);
-//        //生成一个应诉方加入list
+        //生成一个应诉方加入list
         if(respondingParties == null){
             respondingParties = new ArrayList<>();
         }
@@ -638,101 +733,6 @@ public class ReadXMLHelper {
     }
 
     /**
-     *递归获得所有需要的键值对
-     * @param node
-     */
-    public static void getNodes(Element node){
-        ArrayList<String> instant = new ArrayList<>();
-
-        switch(node.getName()){
-            case "JBFY":
-                dealWithThisCourt(node);
-                break;
-            case "GSF":
-                dealWithGSF(node);
-                break;
-            case "QSF":
-                dealWithQSF(node);
-                break;
-            case "DLR":
-                dealWithDLR(node);
-                break;
-            case "YSF":
-                dealWithYSF(node);
-                break;
-            case "QSZAY":
-                dealWithMainCause(node);
-                break;
-            case "QSAY":
-                dealWithOtherCause(node);
-                break;
-            case "AJYLYSLJGD":
-                dealWithProcess(node);
-                break;
-            case "ZKJL":
-                dealWithInfo(node);
-                break;
-            case "QKLJ"://前科劣迹
-                dealWithBefore(node);
-                break;
-            case "QSFY"://前审法院
-                dealWithCourt(node);
-                break;
-            case "CFYYZ"://处罚原因。。。。。。
-                dealWithPunish(node);
-                break;
-            case "ZKZM"://指控罪名
-                dealWithRule(node);
-                break;
-            default:
-                break;
-        }
-
-        if(node.getName().equals("title")){
-            String title = node.attribute(0).getValue();
-            allKeyMap.put("文书标题",title);
-        }
-        if(node.getName().equals("subTitle")){
-            String subTitle = node.attribute(0).getValue();
-            allKeyMap.put("文书副标题",subTitle);
-        }
-
-        List<Attribute> listAttr=node.attributes();
-        for(Attribute attr:listAttr){
-            String value=attr.getValue();
-            instant.add(value);
-        }
-        if(instant.size()==1){
-            instant.add("空");
-        }
-
-        if(instant.size()!=0){
-            if("审判人员姓名".equals(instant.get(0))){
-                spryxm=instant.get(1);
-            }else if("审判人员角色".equals(instant.get(0))){
-                allKeyMap.put(instant.get(1),spryxm);
-            }
-
-            if("名称".equals(instant.get(0))){
-                flftmc=instant.get(1);
-                allKeyMap.put(instant.get(0),instant.get(1));
-                lawName.add(instant.get(1));
-            }else if("条".equals(instant.get(0))){
-                allKeyMap.put(flftmc,instant.get(1));
-            }
-
-            if(instant.size()==2){
-                allKeyMap.put(instant.get(0),instant.get(1));
-            }
-        }
-
-        List<Element> listElement=node.elements();
-        for(Element e:listElement){
-            getNodes(e);
-        }
-    }
-
-    /**
      *获得编辑后的Case
      * @return Case
      */
@@ -931,10 +931,8 @@ public class ReadXMLHelper {
                         //pl.get(i).getCriminalRecord().setCause(reason.get(i));//minor error
                     }
                 } else if(i>=size1){
-                //System.out.println(i);
-               // System.out.println(size1);
-                //rl.get(i-size1).getCriminalRecord().setCause(reason.get(i));
-            }//因为只记录了一次前科劣迹??
+                    //rl.get(i-size1).getCriminalRecord().setCause(reason.get(i));
+                }
             }
         }
 
@@ -1008,6 +1006,5 @@ public class ReadXMLHelper {
         result = result.replace('Ｏ', '0');
         return result;
     }
-
 
 }
