@@ -9,9 +9,15 @@ var UserCasesController = React.createClass({
         };
     },
 
+    refreshPage: function () {
+        window.location.reload();
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
+    },
+
     render: function() {
         return <UserCases
             cases={this.state.userCases}
+            refreshPage={this.refreshPage}
         />;
     }
 

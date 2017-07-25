@@ -37,19 +37,19 @@ function getCiteString(array) {
     });
 }
 
-function getJudgement(judge1, judge2) {
-    if(judge1 === null && judge2 === null)
-        return null_info;
-    if (judge2 === null || judge2 === {})
-        return checkArrayVal(judge1);
-    else {
-        return <div>
-            <span>裁决主罪名： </span> <span>{judge2.main_charge}</span><br/>
-            <span>单罪判罚： </span> <span>{judge2.single_penalty}</span><br/>
-            <span>执行判罚： </span> <span>{judge2.exec_penalty}</span><br/>
-        </div>
-    }
-}
+// function getJudgement(judge1, judge2) {
+//     if(judge1 === null && judge2 === null)
+//         return null_info;
+//     if (judge2 === null || judge2 === {})
+//         return checkArrayVal(judge1);
+//     else {
+//         return <div>
+//             <span>裁决主罪名： </span> <span>{judge2.main_charge}</span><br/>
+//             <span>单罪判罚： </span> <span>{judge2.single_penalty}</span><br/>
+//             <span>执行判罚： </span> <span>{judge2.exec_penalty}</span><br/>
+//         </div>
+//     }
+// }
 
 function checkDateVal (time) {
     if(time === null)
@@ -84,15 +84,7 @@ var GeneralInfo = function(props) {
                         <div className="general-info-cell"> 文书名称 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkInfoVal(info.type)} </div>
-                    </div>
-                </div>
-                <div className="general-info-row">
-                    <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 公诉机关 </div>
-                    </div>
-                    <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkArrayVal(info.organ)} </div>
+                        <div className="general-info-cell"> {checkInfoVal(info.name)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
@@ -100,55 +92,63 @@ var GeneralInfo = function(props) {
                         <div className="general-info-cell"> 审判程序 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkInfoVal(info.process)} </div>
+                        <div className="general-info-cell"> {checkInfoVal(info.judicialProcedure)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 原告 </div>
+                        <div className="general-info-cell"> 应诉方 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkArrayVal(info.accuser)} </div>
+                        <div className="general-info-cell"> {checkArrayVal(info.respondingParty)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 被告 </div>
+                        <div className="general-info-cell"> 起诉方 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkArrayVal(info.defendant)} </div>
+                        <div className="general-info-cell"> {checkArrayVal(info.prosecution)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 具体裁判段 </div>
+                        <div className="general-info-cell"> 代理人 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {getJudgement(info.judgement1, info.judgement2)} </div>
+                        <div className="general-info-cell"> {checkArrayVal(info.agents)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 书记员 </div>
+                        <div className="general-info-cell"> 公诉方 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkInfoVal(info.court_clerk)} </div>
+                        <div className="general-info-cell"> {checkInfoVal(info.publicProsecution)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 审判员 </div>
+                        <div className="general-info-cell"> 起诉主案由 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkArrayVal(info.judge)} </div>
+                        <div className="general-info-cell"> {checkInfoVal(info.majorCause)} </div>
                     </div>
                 </div>
                 <div className="general-info-row">
                     <div className="general-info-row-unit general-info-column-f">
-                        <div className="general-info-cell"> 案由 </div>
+                        <div className="general-info-cell"> 原公诉机关 </div>
                     </div>
                     <div className="general-info-row-unit-2">
-                        <div className="general-info-cell"> {checkInfoVal(info.cause)} </div>
+                        <div className="general-info-cell"> {checkInfoVal(info.formerProcedureOrgan)} </div>
+                    </div>
+                </div>
+                <div className="general-info-row">
+                    <div className="general-info-row-unit general-info-column-f">
+                        <div className="general-info-cell"> 二审结案方式 </div>
+                    </div>
+                    <div className="general-info-row-unit-2">
+                        <div className="general-info-cell"> {checkInfoVal(info.closureWay)} </div>
                     </div>
                 </div>
                 <div className="general-info-row general-info-row-l">
@@ -159,6 +159,14 @@ var GeneralInfo = function(props) {
                         <div className="general-info-cell general-info-row-l"> {checkDateVal(info.date)} </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div className="general-info-row">
+            <div className="general-info-row-unit general-info-column-f">
+                <div className="general-info-cell general-info-column-f"> 结案原因 </div>
+            </div>
+            <div className="general-info-row-unit general-info-column-m1">
+                <div className="general-info-cell general-info-row-l"> {checkInfoVal(info.reason)} </div>
             </div>
         </div>
         <div className="general-info-row">

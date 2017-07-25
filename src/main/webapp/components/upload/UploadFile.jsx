@@ -15,7 +15,7 @@ var UploadFile = function(props) {
                 <div className="upload-text">法案文件上传</div>
                 <div className="upload-hint">{props.uploadHint}</div>
             </div>
-            <input type="file" id="upload" name="upload" /> <br />
+            <input type="file" id="upload" name="upload"  onChange={props.changeFileName}/> <br />
         </div>
         <div className="upload-button">
             <button onClick={props.onClick}>确认上传</button>

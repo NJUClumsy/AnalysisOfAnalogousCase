@@ -1,5 +1,7 @@
 {
   "id": "596b2dbc39e14e6ddb1bb09b",
+  "title": "我是主标题",
+  "subTitle": "我是副标题",
   "context": {
     "head": "天津市东丽区人民法院 民事判决书 （2008）丽民初字第3531号",
     "participants": "原告李中行（身份证号120110196111131218），男，1961年11月13日出生，汉族，农民，住天津市东丽区军粮城镇民生村四区五巷21号。 被告崔素元（身份证号120110193511211221），女，1935年11月21日出生，汉族，农民，住天津市东丽区军粮城镇民生村四区五巷22号。",
@@ -11,16 +13,19 @@
     "appendix": ""
   },
   "court": "天津市东丽区人民法院",
-  "type": "民事判决书",
-  "process": "一审案件",
-  "accuser": [
+  "name": "民事判决书",
+  "judicialProcedure": "一审案件",
+  "respondingParty": [
     "李中行", "李中行"
   ],
-  "defendant": [
+  "prosecution": [
     "崔素元"
   ],
-  "organ": null,
-  "cause": "分家析产纠纷",
+  "agents": [
+    "我是代理人孙皓"
+  ],
+  "publicProsecution": "我是公诉方",
+  "majorCause": "分家析产纠纷",
   "law": [
     {
       "lawName": "最高人民法院关于民事诉讼证据的若干规定",
@@ -35,17 +40,12 @@
       ]
     }
   ],
-  "judgement1": [
-
-  ],
-  "judgement2": {
-    "main_charge": "444",
-    "single_penalty": "444",
-    "exec_penalty": "444"
-  },
-  "judge": [
-    "单凤友", "单凤友", "单凤友"
-  ],
-  "court_clerk": "蔡学滨",
-  "date": "2008-09-23"
+  "formerProcedureOrgan": "原公诉机关",
+  "closureWay": "二审结案方式",
+  "reason": "不想吵了",
+  "date": {
+    "year": 2008,
+    "monthValue": 9,
+    "dayOfMonth": 13
+  }
 }

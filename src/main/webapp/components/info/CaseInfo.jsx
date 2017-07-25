@@ -16,7 +16,7 @@ function scrollTo(ele, speed){
 }
 
 function subAnchorTag(content, n) {
-    var titles = ['文首', '诉讼参与人全集', '诉讼记录', '案件基本情况', '裁判分析过程', '裁判结果', '文尾', '附录']
+    var titles = ['文首', '当事人', '诉讼记录', '案件基本情况', '裁判分析过程', '裁判结果', '文尾', '附录']
     var urls = ['#context-head', '#context-participants', '#context-records', '#context-situation',
         '#context-analysis', '#context-result', '#context-tail', '#context-appendix']
     if(content === null || content === '')
@@ -46,7 +46,8 @@ var CaseInfo = function(props) {
         </div>
         <div className="main-info-content" id="main">
             <div className="case-head">
-                {info.context.head}
+                <span>{info.title}</span><br/>
+                <span>{info.subTitle}</span>
             </div>
             <div className="info-back-link">
                 <Link to="/upload">返回文件上传</Link>
