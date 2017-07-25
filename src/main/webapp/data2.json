@@ -1,5 +1,4 @@
-{
-  "userCases": [
+[
     {
       "caseNumber": "假装我是一个案号",
       "caseId": "596ebc078d6ab04c90bb643a"
@@ -9,4 +8,3 @@
       "caseId": "596ebc078d6ab04c90bb643a"
     }
   ]
-}

@@ -6,7 +6,9 @@ var UserCases = function(props) {
     var innerHtml = <span style={{color: '#AAAAAA'}}>您暂时没有上传过的文件</span>;
     if (cases != null && cases.length > 0) {
         innerHtml = cases.map(function (item, i) {
-            return <div key={i}>{i+1}.{item.caseNumber} </div>;
+            return <div key={i}>
+                <Link to={{ pathname: '/case/' + item.caseId}} onClick={props.refreshPage}>{i+1}.{item.caseNumber}</Link>
+            </div>;
         });
     }
 
