@@ -2,6 +2,7 @@ package org.Clumsy.controller;
 
 import org.Clumsy.service.CaseService;
 import org.Clumsy.vo.CaseVO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class CaseInfoController {
     @Autowired
     private CaseService caseService;
 
+    private static Logger logger=Logger.getLogger(CaseInfoController.class);
 
     /**
      * 上传xml文件
@@ -51,7 +53,7 @@ public class CaseInfoController {
                     return new ResponseEntity<>(caseService.constructCase(caseFile), httpHeaders, HttpStatus.OK);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.info(e);
                 // 文书无法解析，状态吗是400
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
