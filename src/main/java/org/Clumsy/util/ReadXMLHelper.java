@@ -128,11 +128,11 @@ public class ReadXMLHelper {
                 break;
         }
 
-        if(node.getName().equals("title")){
+        if("title".equals(node.getName())){
             String title = node.attribute(0).getValue();
             allKeyMap.put("文书标题",title);
         }
-        if(node.getName().equals("subTitle")){
+        if("subTitle".equals(node.getName())){
             String subTitle = node.attribute(0).getValue();
             allKeyMap.put("文书副标题",subTitle);
         }
@@ -146,7 +146,7 @@ public class ReadXMLHelper {
             instant.add("空");
         }
 
-        if(instant.size()!=0){
+        if(!instant.isEmpty()){
             if("审判人员姓名".equals(instant.get(0))){
                 spryxm=instant.get(1);
             }else if("审判人员角色".equals(instant.get(0))){
@@ -177,7 +177,7 @@ public class ReadXMLHelper {
      * @param node
      * @return
      */
-    public static ArrayList<String> get(Element node){
+    public static List<String> get(Element node){
         ArrayList<String> ins = new ArrayList<>();
 
         List<Attribute> listAttr=node.attributes();
@@ -194,31 +194,26 @@ public class ReadXMLHelper {
      */
     public static Map<String,String> dealWithNode(Element node){
         Map<String,String> map = new HashMap<>();
-        //System.out.println("++++++++++++++++++++");
         ArrayList<String> instant = new ArrayList<>();
 
-        //System.out.println("当前节点名称："+node.getName());
         List<Attribute> listAttr=node.attributes();
         for(Attribute attr:listAttr){
             String value=attr.getValue();
-            //System.out.println("属性值："+value);
             instant.add(value);
         }
 
         List<Element> listElement=node.elements();
         for(Element e:listElement){
-            ArrayList<String> ins = get(e);
-            //System.out.println(ins);
-            if(ins.get(0).equals("诉讼参与人")){
+            List<String> ins = get(e);
+            if("诉讼参与人".equals(ins.get(0))) {
                 name = ins.get(1);
-            }else if(ins.get(0).equals("前科类别")){
+            }else if("前科类别".equals(ins.get(0))){
                 qklb = ins.get(1);
             }
             if(ins.size() == 2){
                 map.put(ins.get(0),ins.get(1));
             }
         }
-        //System.out.println("++++++++++++++++++++");
         return map;
     }
     /**

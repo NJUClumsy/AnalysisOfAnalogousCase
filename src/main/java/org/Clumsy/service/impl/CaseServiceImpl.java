@@ -56,16 +56,6 @@ public class CaseServiceImpl implements CaseService {
     @Override
     public Map<String, Long> getAllCauses() {
         List<Case> cases = caseRepository.findCauses();
-//                return cases.stream().collect(Collectors.toMap(Case::getCause, 1, (existingValue, newValue) -> existingValue + newValue))
-//        Map<String, Integer> causes = new HashMap<>();
-//        for(Case i : cases) {
-//            if (i.getCause() != null) {
-//                if (causes.containsKey(i.getCause()))
-//                    causes.put(i.getCause(), causes.get(i.getCause()) + 1);
-//                else
-//                    causes.put(i.getCause(), 1);
-//            }
-//        }
         return cases.stream().filter(c->c.getMajorCause() != null).collect(groupingBy(c -> c.getMajorCause().getAccusationName(), counting()));
     }
 
@@ -82,10 +72,8 @@ public class CaseServiceImpl implements CaseService {
         String caseNumber = thisCase.getCaseNumber();
 
         List<Case> caseList = caseRepository.findByCaseNumber(caseNumber);
-        if (caseList != null) {
-            if (caseList.size() > 0) {
-                isCreated = true;
-            }
+        if (caseList != null && !caseList.isEmpty()) {
+            isCreated = true;
         }
         return isCreated;
     }

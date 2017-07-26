@@ -57,7 +57,7 @@ public class BytesToFile {
      */
     private static Document getDocument(byte[] bfile) throws Exception {
         SAXReader reader = new SAXReader();
-        Document document = null;
+        Document document;
         document = reader.read(new ByteArrayInputStream(bfile));
 
         return document;

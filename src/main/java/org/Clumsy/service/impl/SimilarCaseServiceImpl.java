@@ -4,6 +4,7 @@ import org.Clumsy.dao.CaseRepository;
 import org.Clumsy.entity.Case;
 import org.Clumsy.service.SimilarCaseService;
 import org.Clumsy.vo.CaseNumberVO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
     @Autowired
     CaseRepository caseRepository;
 
+    private static Logger logger=Logger.getLogger(SimilarCaseServiceImpl.class);
+
     @Override
     public List<CaseNumberVO> recommendCases(String id) {
         List<CaseNumberVO> list = new ArrayList<>();
@@ -37,11 +40,11 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
             BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String errLine;
             while ((errLine = err.readLine()) != null) {
-                System.out.println(errLine);
+                logger.info(errLine);
             }
             String line= in.readLine();
             if (line == null)
-                return null;
+                return list;
             in.close();
             process.waitFor();
             String[] strList = line.split(",");
@@ -54,7 +57,7 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
                 list.add(ins);
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.info(e);
         }
         return list;
 
