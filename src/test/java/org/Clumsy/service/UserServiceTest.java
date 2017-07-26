@@ -20,7 +20,7 @@ public class UserServiceTest {
 
     @Test
     public void testReturnJson() throws Exception {
-        System.out.println(userService.getAllUsers().get(0));
+//        System.out.println(userService.getAllUsers().get(0));
     }
 
 //    @Test

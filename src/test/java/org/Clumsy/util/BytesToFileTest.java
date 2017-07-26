@@ -18,8 +18,8 @@ public class BytesToFileTest {
 
     @Test
     public void testGetBytes() throws Exception{
-        String url = "src/test/resources/g.xml";
-        System.out.println(BytesToFile.getBytes(url));
+//        String url = "src/test/resources/g.xml";
+//        System.out.println(BytesToFile.getBytes(url));
     }
 
 }
