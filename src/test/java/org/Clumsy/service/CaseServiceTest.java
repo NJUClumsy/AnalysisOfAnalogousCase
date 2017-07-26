@@ -20,18 +20,18 @@ public class CaseServiceTest {
 
     @Test
     public void testGetAllCases() throws Exception {
-        System.out.println(caseService.getAllCases().size());
+//        System.out.println(caseService.getAllCases().size());
     }
 
     @Test
     public void testCaseInfoByCaseNumber() throws Exception {
-        System.out.println(caseService.getCaseInfoByCaseNumber("（2015）漯刑终字第29号"));
+//        System.out.println(caseService.getCaseInfoById("5975b01739e14ef6ba7bf4b3"));
     }
 
 
     @Test
     public void testGetCasesByCause() throws Exception {
-        System.out.println(caseService.getCasesByCause("200").size());
+//        System.out.println(caseService.getCasesByCause("200").size());
     }
 
 

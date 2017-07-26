@@ -21,7 +21,7 @@ public class UserInfoControllerTest {
 
     @Test
     public void testLogin() throws Exception {
-        Assert.assertEquals(200, userInfoController.login("tydety97", "12344533").getStatusCodeValue());
+        Assert.assertEquals(200, userInfoController.login("tydety97", "123456").getStatusCodeValue());
 //        Assert.assertEquals(200, userInfoController.login("tydety", "12344533").getStatusCodeValue());
     }
 

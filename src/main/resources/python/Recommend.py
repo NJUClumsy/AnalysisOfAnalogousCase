@@ -7,7 +7,8 @@ from bson import ObjectId
 
 
 def connect_mongodb():
-    servers = "mongodb://127.0.0.1:27017"
+    # servers = "mongodb://127.0.0.1:27017"
+    servers = "mongodb://121.196.244.53:27017"
     conn = pymongo.MongoClient(servers)
     db = conn.court
     return db

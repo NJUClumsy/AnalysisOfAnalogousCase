@@ -26,7 +26,7 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
 
     @Override
     public List<CaseNumberVO> recommendCases(String id) {
-        List<CaseNumberVO> list = new ArrayList<CaseNumberVO>();
+        List<CaseNumberVO> list = new ArrayList<>();
 
 
         try {
@@ -42,16 +42,13 @@ public class SimilarCaseServiceImpl implements SimilarCaseService {
             String line= in.readLine();
             if (line == null)
                 return null;
-            System.out.println("line = " + line);
             in.close();
             process.waitFor();
             String[] strList = line.split(",");
-            System.out.println(strList.length);
             if (strList.length == 1) {
                 return list;
             }
             for (String o : strList){
-                System.out.println("o = " + o);
                 Case instantCase = caseRepository.findOne(o);
                 CaseNumberVO ins = new CaseNumberVO(instantCase.getId(),instantCase.getCaseNumber());
                 list.add(ins);
