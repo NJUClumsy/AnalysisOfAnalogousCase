@@ -52,7 +52,6 @@ var UploadController = React.createClass({
             var file = document.getElementById('upload').files[0];
             ButtonActions.displayFileName(file.name);
             ListStore.saveUploadFile(file);
-            console.log(file.name);
         }
     },
 

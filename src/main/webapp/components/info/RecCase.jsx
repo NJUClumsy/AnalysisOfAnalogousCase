@@ -8,7 +8,6 @@ var RecCase = function(props) {
     var innerHtml;
     if (info === null || info.length === 0) {
         innerHtml = <div style={{color: '#AAAAAA'}}>暂无信息</div>;
-        console.log('nullss')
     }
     else
         innerHtml = info.map(function (item, i) {
