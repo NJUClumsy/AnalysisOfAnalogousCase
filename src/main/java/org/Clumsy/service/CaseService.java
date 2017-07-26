@@ -2,8 +2,10 @@ package org.Clumsy.service;
 
 import org.Clumsy.entity.Case;
 import org.Clumsy.vo.CaseVO;
+import org.dom4j.DocumentException;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -53,19 +55,19 @@ public interface CaseService {
      * @param caseFile
      * @return
      */
-    Boolean isCreated(MultipartFile caseFile) throws Exception;
+    Boolean isCreated(MultipartFile caseFile) throws IOException, DocumentException;
 
     /**
      * 文书未曾处理过，需要处理过后存储，再将处理结果返回
      * @param caseFile
      * @return
      */
-    String createCase(MultipartFile caseFile, String userId) throws Exception;
+    String createCase(MultipartFile caseFile, String userId)throws IOException, DocumentException;
 
     /**
      * 文书已经处理过，直接解析出文件中的案号，去数据库获取处理结果
      * @param caseFile
      * @return
      */
-    String constructCase(MultipartFile caseFile) throws Exception;
+    String constructCase(MultipartFile caseFile) throws IOException, DocumentException;
 }

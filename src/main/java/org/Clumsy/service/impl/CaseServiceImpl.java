@@ -8,10 +8,12 @@ import org.Clumsy.util.BytesToFile;
 import org.Clumsy.util.ReadXMLHelper;
 import org.Clumsy.vo.CaseVO;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +67,7 @@ public class CaseServiceImpl implements CaseService {
      * @return boolean
      */
     @Override
-    public Boolean isCreated(MultipartFile caseFile) throws Exception{
+    public Boolean isCreated(MultipartFile caseFile) throws IOException, DocumentException {
         boolean isCreated = false;
 
         Case thisCase = initialize(caseFile);
@@ -84,7 +86,7 @@ public class CaseServiceImpl implements CaseService {
      * @return String
      */
     @Override
-    public String createCase(MultipartFile caseFile, String userId) throws Exception{
+    public String createCase(MultipartFile caseFile, String userId) throws IOException, DocumentException {
         Case thisCase = initialize(caseFile);
 
         caseRepository.save(thisCase);
@@ -101,7 +103,7 @@ public class CaseServiceImpl implements CaseService {
      * @return String
      */
     @Override
-    public String constructCase(MultipartFile caseFile) throws Exception{
+    public String constructCase(MultipartFile caseFile) throws IOException, DocumentException {
         Case thisCase = initialize(caseFile);
         String caseNumber = thisCase.getCaseNumber();
         Case found = caseRepository.findIdByCaseNumber(caseNumber);
@@ -115,7 +117,7 @@ public class CaseServiceImpl implements CaseService {
      * @param caseFile
      * @return Case
      */
-    private Case initialize(MultipartFile caseFile) throws Exception {
+    private Case initialize(MultipartFile caseFile) throws IOException, DocumentException {
         //处理文件
         Document document = BytesToFile.multipartFileToDocument(caseFile);
         Case thisCase = ReadXMLHelper.getCase(document);

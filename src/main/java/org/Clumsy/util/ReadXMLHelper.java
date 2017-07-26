@@ -3,6 +3,7 @@ package org.Clumsy.util;
 import org.Clumsy.entity.*;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
@@ -67,7 +68,7 @@ public class ReadXMLHelper {
      *根据路径初始化键值对
      * @param url
      */
-    public static void initializeAllKeyMap(String url) throws Exception {
+    public static void initializeAllKeyMap(String url) throws DocumentException {
         initialize();
         SAXReader sax=new SAXReader();
         File xmlFile=new File(url);
